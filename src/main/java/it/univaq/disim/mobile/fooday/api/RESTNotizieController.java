@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.univaq.disim.mobile.fooday.business.MyUnivaqService;
+import it.univaq.disim.mobile.fooday.business.FoodayService;
 import it.univaq.disim.mobile.fooday.domain.Notizia;
 
 @RestController
@@ -16,7 +16,7 @@ import it.univaq.disim.mobile.fooday.domain.Notizia;
 public class RESTNotizieController {
 	
 	@Autowired
-	private MyUnivaqService service;
+	private FoodayService service;
 	
 	@GetMapping
 	public List<Notizia> list() {

@@ -2,18 +2,17 @@ package it.univaq.disim.mobile.fooday.business;
 
 import java.util.List;
 
-import it.univaq.disim.mobile.fooday.domain.Appello;
-import it.univaq.disim.mobile.fooday.domain.Insegnamento;
-import it.univaq.disim.mobile.fooday.domain.Notizia;
-import it.univaq.disim.mobile.fooday.domain.Utente;
+import it.univaq.disim.mobile.fooday.domain.*;
 
-public interface MyUnivaqService {
+public interface FoodayService {
 
 	Utente findUtenteByUsername(String username) throws BusinessException;
 
 	Utente updateProfilo(Utente utente) throws BusinessException;
 
 	List<Notizia> findAllNotizie() throws BusinessException;
+
+	List<Prenotazione> findAllPrenotazioni(Utente utente) throws BusinessException;
 
 	Notizia findNotiziaById(Long id) throws BusinessException;
 

@@ -2,6 +2,12 @@ package it.univaq.disim.mobile.fooday.business.impl;
 
 import java.util.List;
 
+import it.univaq.disim.mobile.fooday.business.impl.repositories.InsegnamentoRepository;
+import it.univaq.disim.mobile.fooday.business.impl.repositories.NotiziaRepository;
+import it.univaq.disim.mobile.fooday.business.impl.repositories.PrenotazioneRepository;
+import it.univaq.disim.mobile.fooday.business.impl.repositories.UtenteRepository;
+import it.univaq.disim.mobile.fooday.business.impl.repositories.AppelloRepository;
+import it.univaq.disim.mobile.fooday.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.JpaSort;
@@ -9,25 +15,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.univaq.disim.mobile.fooday.business.BusinessException;
-import it.univaq.disim.mobile.fooday.business.MyUnivaqService;
-import it.univaq.disim.mobile.fooday.business.impl.repositories.AppelloRepository;
-import it.univaq.disim.mobile.fooday.business.impl.repositories.InsegnamentoRepository;
-import it.univaq.disim.mobile.fooday.business.impl.repositories.NotiziaRepository;
-import it.univaq.disim.mobile.fooday.business.impl.repositories.UtenteRepository;
-import it.univaq.disim.mobile.fooday.domain.Appello;
-import it.univaq.disim.mobile.fooday.domain.Insegnamento;
-import it.univaq.disim.mobile.fooday.domain.Notizia;
-import it.univaq.disim.mobile.fooday.domain.Utente;
+import it.univaq.disim.mobile.fooday.business.FoodayService;
 
 @Service
 @Transactional
-public class MyUnivaqServiceImpl implements MyUnivaqService {
+public class FoodayServiceImpl implements FoodayService {
 
 	@Autowired
 	private UtenteRepository utenteRepository;
 
 	@Autowired
 	private NotiziaRepository notiziaRepository;
+
+	@Autowired
+	private PrenotazioneRepository prenotazioneRepository;
 
 	@Autowired
 	private InsegnamentoRepository insegnamentoRepository;
@@ -43,6 +44,11 @@ public class MyUnivaqServiceImpl implements MyUnivaqService {
 	@Override
 	public List<Notizia> findAllNotizie() throws BusinessException {
 		return notiziaRepository.findAll(JpaSort.unsafe(Direction.DESC, "dataPubblicazione"));
+	}
+
+	@Override
+	public List<Prenotazione> findAllPrenotazioni(Utente utente) throws BusinessException {
+		return prenotazioneRepository.findPrenotazioniByUtenteId(utente.getId(), JpaSort.unsafe(Direction.ASC, "timestamp"));
 	}
 
 	@Override

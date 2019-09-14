@@ -5,13 +5,18 @@ import it.univaq.disim.mobile.fooday.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 
-@SpringBootApplication
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
 public class FoodayApplication {
 
     @Autowired
@@ -24,7 +29,7 @@ public class FoodayApplication {
 
 
     @Bean
-    public CommandLineRunner loadData(UtenteRepository utenteRepository, NotiziaRepository notiziaRepository, TipologiaNotiziaRepository tipologiaNotiziaRepository, CorsoDiLaureaRepository corsoDiLaureaRepository, InsegnamentoRepository insegnamentoRepository, AppelloRepository appelloRepository) {
+    public CommandLineRunner loadData(UtenteRepository utenteRepository, PrenotazioneRepository prenotazioneRepository, RistoranteRepository ristoranteRepository, NotiziaRepository notiziaRepository, TipologiaNotiziaRepository tipologiaNotiziaRepository, CorsoDiLaureaRepository corsoDiLaureaRepository, InsegnamentoRepository insegnamentoRepository, AppelloRepository appelloRepository) {
         return (args) -> {
             TipologiaNotizia tipologiaDidattica = new TipologiaNotizia();
             tipologiaDidattica.setNome("Didattica");
@@ -43,6 +48,29 @@ public class FoodayApplication {
             corsoDiLaureaMaster.setClasse("L-32");
             corsoDiLaureaMaster.setNome("Master Web Technology");
             corsoDiLaureaMaster = corsoDiLaureaRepository.save(corsoDiLaureaMaster);
+
+            Ristorante ristorante1 = new Ristorante();
+            ristorante1 = ristoranteRepository.save(ristorante1);
+
+            Utente utente1 = new Utente();
+            utente1.setUsername("stefano15");
+            utente1.setPassword(passwordEncoder.encode("stefano"));
+            utente1.setNome("Stefano");
+            utente1.setCognome("Florio");
+            utente1.setEmail("stefano.florio@student.univaq.it");
+            utente1.setMatricola("246817");
+            utente1.setTelefono("3333333336");
+            utente1 = utenteRepository.save(utente1);
+
+            Prenotazione preno1 = new Prenotazione();
+            preno1.setOrario(new Date(System.currentTimeMillis() + (20 * 86400000)));
+            preno1.setPosti(7);
+            preno1.setScontoApplicato(20);
+            preno1.setTimestamp(new Date(System.currentTimeMillis()));
+            preno1.setRistorante(ristorante1);
+            preno1.setUtente(utente1);
+            preno1 = prenotazioneRepository.save(preno1);
+
 
             Docente amleto = new Docente();
             amleto.setUsername("amleto");

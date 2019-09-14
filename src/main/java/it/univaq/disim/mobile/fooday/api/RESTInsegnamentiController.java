@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.univaq.disim.mobile.fooday.business.MyUnivaqService;
+import it.univaq.disim.mobile.fooday.business.FoodayService;
 import it.univaq.disim.mobile.fooday.common.Utility;
 import it.univaq.disim.mobile.fooday.domain.Appello;
 import it.univaq.disim.mobile.fooday.domain.Insegnamento;
@@ -19,7 +19,7 @@ import it.univaq.disim.mobile.fooday.domain.Utente;
 public class RESTInsegnamentiController {
 
 	@Autowired
-	private MyUnivaqService service;
+	private FoodayService service;
 	
 	@GetMapping
 	public List<Insegnamento> list() {

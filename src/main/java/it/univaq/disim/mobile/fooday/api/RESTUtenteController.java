@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.univaq.disim.mobile.fooday.business.MyUnivaqService;
+import it.univaq.disim.mobile.fooday.business.FoodayService;
 import it.univaq.disim.mobile.fooday.common.spring.security.JWTTokenUtil;
 import it.univaq.disim.mobile.fooday.common.spring.security.UserDetailsImpl;
 import it.univaq.disim.mobile.fooday.domain.Utente;
@@ -34,7 +34,7 @@ public class RESTUtenteController {
 	private JWTTokenUtil jwtTokenUtil;
 
 	@Autowired
-	private MyUnivaqService myUnivaqService;
+	private FoodayService myUnivaqService;
 
 	@PostMapping("/login")
 	public UtenteResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException {
