@@ -10,9 +10,9 @@ public interface FoodayService {
 
 	Utente updateProfilo(Utente utente) throws BusinessException;
 
-	List<Notizia> findAllNotizie() throws BusinessException;
+	List<Ristorante> findAllRistoranti() throws BusinessException;
 
-	List<Prenotazione> findAllPrenotazioni(Utente utente) throws BusinessException;
+	List<Notizia> findAllNotizie() throws BusinessException;
 
 	Notizia findNotiziaById(Long id) throws BusinessException;
 

@@ -2,20 +2,19 @@ package it.univaq.disim.mobile.fooday.business.impl;
 
 import java.util.List;
 
-import it.univaq.disim.mobile.fooday.business.impl.repositories.InsegnamentoRepository;
-import it.univaq.disim.mobile.fooday.business.impl.repositories.NotiziaRepository;
-import it.univaq.disim.mobile.fooday.business.impl.repositories.PrenotazioneRepository;
-import it.univaq.disim.mobile.fooday.business.impl.repositories.UtenteRepository;
-import it.univaq.disim.mobile.fooday.business.impl.repositories.AppelloRepository;
+import it.univaq.disim.mobile.fooday.business.BusinessException;
+import it.univaq.disim.mobile.fooday.business.FoodayService;
+import it.univaq.disim.mobile.fooday.business.impl.repositories.*;
 import it.univaq.disim.mobile.fooday.domain.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import it.univaq.disim.mobile.fooday.business.BusinessException;
-import it.univaq.disim.mobile.fooday.business.FoodayService;
+import javax.persistence.Entity;
+
 
 @Service
 @Transactional
@@ -28,7 +27,7 @@ public class FoodayServiceImpl implements FoodayService {
 	private NotiziaRepository notiziaRepository;
 
 	@Autowired
-	private PrenotazioneRepository prenotazioneRepository;
+	private RistoranteRepository ristoranteRepository;
 
 	@Autowired
 	private InsegnamentoRepository insegnamentoRepository;
@@ -47,13 +46,13 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public List<Prenotazione> findAllPrenotazioni(Utente utente) throws BusinessException {
-		return prenotazioneRepository.findPrenotazioniByUtenteId(utente.getId(), JpaSort.unsafe(Direction.ASC, "timestamp"));
+	public Notizia findNotiziaById(Long id) throws BusinessException {
+		return notiziaRepository.findById(id).get();
 	}
 
 	@Override
-	public Notizia findNotiziaById(Long id) throws BusinessException {
-		return notiziaRepository.findById(id).get();
+	public List<Ristorante> findAllRistoranti() throws BusinessException {
+		return ristoranteRepository.findAll();
 	}
 
 	@Override
