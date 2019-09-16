@@ -14,6 +14,18 @@ public class Immagine {
     @Column(name = "SRC", nullable = false)
     private String src;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_RISTORANTE")
+    private Ristorante ristorante;
+
+    public Ristorante getRistorante() {
+        return ristorante;
+    }
+
+    public void setRistorante(Ristorante ristorante) {
+        this.ristorante = ristorante;
+    }
+
     public Long getId() {
         return id;
     }

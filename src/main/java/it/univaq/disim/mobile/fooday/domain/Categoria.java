@@ -1,6 +1,8 @@
 package it.univaq.disim.mobile.fooday.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "categorie")

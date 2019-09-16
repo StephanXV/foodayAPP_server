@@ -15,11 +15,46 @@ public class Ristorante {
     @Column(name = "NOME", nullable = false)
     private String nome;
 
+    @Column(name = "INDIRIZZO")
+    private String indirizzo;
+
+    @Column(name = "DESCRIZIONE")
+    private String descrizione;
+
+    @Column(name = "NUM_POSTI")
+    private int postiTot;
+
+    @Column(name = "MEDIA_PUNTEGGIO")
+    private int punteggio;
+
+    @Column(name = "PREZZO_MEDIO")
+    private int prezzoMedio;
+
+    @Column(name = "SCONTO")
+    private int sconto;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_CITTA")
+    private Citta citta;
+
+    @ManyToMany
+    @JoinTable(name="CATEGORIZZAZIONE",
+            joinColumns={@JoinColumn(name="ID_RISTORANTE")},
+            inverseJoinColumns={@JoinColumn(name="ID_CATEGORIA")})
+    private Set<Ristorante> categorizzazione = new HashSet<>();
+
     @ManyToMany
     @JoinTable(name="PREFERITI",
             joinColumns={@JoinColumn(name="ID_RISTORANTE")},
             inverseJoinColumns={@JoinColumn(name="ID_UTENTE")})
-    private Set<Utente> preferiti = new HashSet<>();
+    private Set<Ristorante> preferiti = new HashSet<>();
+
+    @OneToMany(mappedBy = "ristorante")
+    private Set<Prenotazione> prenotazioni =new HashSet<Prenotazione>();
+
+    @OneToMany(mappedBy = "ristorante")
+    private Set<Recensione> recensioni =new HashSet<Recensione>();
+
 
     public Long getId() {
         return id;
@@ -35,5 +70,77 @@ public class Ristorante {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public int getPostiTot() {
+        return postiTot;
+    }
+
+    public void setPostiTot(int postiTot) {
+        this.postiTot = postiTot;
+    }
+
+    public int getPunteggio() {
+        return punteggio;
+    }
+
+    public void setPunteggio(int punteggio) {
+        this.punteggio = punteggio;
+    }
+
+    public int getPrezzoMedio() {
+        return prezzoMedio;
+    }
+
+    public void setPrezzoMedio(int prezzoMedio) {
+        this.prezzoMedio = prezzoMedio;
+    }
+
+    public int getSconto() {
+        return sconto;
+    }
+
+    public void setSconto(int sconto) {
+        this.sconto = sconto;
+    }
+
+    public Citta getCitta() {
+        return citta;
+    }
+
+    public void setCitta(Citta citta) {
+        this.citta = citta;
+    }
+
+    public Set<Ristorante> getCategorizzazione() {
+        return categorizzazione;
+    }
+
+    public void setCategorizzazione(Set<Ristorante> categorizzazione) {
+        this.categorizzazione = categorizzazione;
+    }
+
+    public Set<Ristorante> getPreferiti() {
+        return preferiti;
+    }
+
+    public void setPreferiti(Set<Ristorante> preferiti) {
+        this.preferiti = preferiti;
     }
 }

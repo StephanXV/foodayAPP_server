@@ -1,24 +1,46 @@
 package it.univaq.disim.mobile.fooday.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "recensioni")
 public class Recensione {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_RECENSIONE", nullable = false)
-    private Long id;
+    @Embeddable
+    public static class Id implements Serializable {
+        @Column(name = "ID_RISTORANTE")
+        private Long ristoranteId;
+        @Column(name = "ID_UTENTE")
+        private Long utenteId;
+
+        public Id() {
+        }
+
+        public Id(Long ristoranteId, Long utenteId) {
+            this.ristoranteId = ristoranteId;
+            this.utenteId = utenteId;
+        }
+
+        public boolean equals(Object o) {
+            if (o != null && o instanceof Recensione.Id) {
+                Recensione.Id that = (Recensione.Id) o;
+                return this.ristoranteId.equals(that.ristoranteId)
+                        && this.utenteId.equals(that.utenteId);
+            } else {
+                return false;
+            }
+        }
+
+        public int hashCode() {
+            return ristoranteId.hashCode() + utenteId.hashCode();
+        }
+    }
+
+    @EmbeddedId
+    private Id id = new Id();
 
     @Column(name = "VOTO_CUCINA", nullable = false)
     private int votoCucina;
@@ -36,20 +58,12 @@ public class Recensione {
     private Date timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "ID_UTENTE", nullable = false)
+    @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
     private Utente utente;
 
     @ManyToOne
-    @JoinColumn(name = "ID_RISTORANTE", nullable = false)
+    @JoinColumn(name = "ID_RISTORANTE", insertable = false, updatable = false)
     private Ristorante ristorante;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public int getVotoCucina() {
         return votoCucina;

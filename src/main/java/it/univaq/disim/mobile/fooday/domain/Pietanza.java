@@ -17,6 +17,13 @@ public class Pietanza {
     @Column(name = "PREZZO", nullable = false)
     private int prezzo;
 
+    @Enumerated(EnumType.STRING)
+    private TipologiaPietanza tipologia;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_RISTORANTE")
+    private Ristorante ristorante;
+
     public Long getId() {
         return id;
     }

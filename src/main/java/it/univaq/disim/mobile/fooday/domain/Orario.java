@@ -18,6 +18,10 @@ public class Orario {
     @Column(name = "CHIUSURA", nullable = false)
     private Date chiusura;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_RISTORANTE")
+    private Ristorante ristorante;
+
     public Long getId() {
         return id;
     }

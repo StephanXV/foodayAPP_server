@@ -1,18 +1,11 @@
 package it.univaq.disim.mobile.fooday.domain;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "utenti")
@@ -47,6 +40,12 @@ public class Utente {
 
 	@Column(name = "TELEFONO", nullable = true, length = 20)
 	private String telefono;
+
+	@OneToMany(mappedBy = "utente")
+	private Set<Prenotazione> prenotazioni =new HashSet<Prenotazione>();
+
+	@OneToMany(mappedBy = "utente")
+	private Set<Recensione> recensioni =new HashSet<Recensione>();
 
 	public Long getId() {
 		return id;
