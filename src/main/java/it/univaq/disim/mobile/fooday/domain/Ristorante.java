@@ -1,6 +1,8 @@
 package it.univaq.disim.mobile.fooday.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "ristoranti")
@@ -12,6 +14,12 @@ public class Ristorante {
 
     @Column(name = "NOME", nullable = false)
     private String nome;
+
+    @ManyToMany
+    @JoinTable(name="PREFERITI",
+            joinColumns={@JoinColumn(name="ID_RISTORANTE")},
+            inverseJoinColumns={@JoinColumn(name="ID_UTENTE")})
+    private Set<Utente> preferiti = new HashSet<>();
 
     public Long getId() {
         return id;

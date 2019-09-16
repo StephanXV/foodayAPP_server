@@ -24,32 +24,12 @@ public class FoodayServiceImpl implements FoodayService {
 	private UtenteRepository utenteRepository;
 
 	@Autowired
-	private NotiziaRepository notiziaRepository;
-
-	@Autowired
 	private RistoranteRepository ristoranteRepository;
-
-	@Autowired
-	private InsegnamentoRepository insegnamentoRepository;
-
-	@Autowired
-	private AppelloRepository appelloRepository;
 
 	@Override
 	public Utente findUtenteByUsername(String username) throws BusinessException {
 		return utenteRepository.findByUsername(username);
 	}
-
-	@Override
-	public List<Notizia> findAllNotizie() throws BusinessException {
-		return notiziaRepository.findAll(JpaSort.unsafe(Direction.DESC, "dataPubblicazione"));
-	}
-
-	@Override
-	public Notizia findNotiziaById(Long id) throws BusinessException {
-		return notiziaRepository.findById(id).get();
-	}
-
 	@Override
 	public List<Ristorante> findAllRistoranti() throws BusinessException {
 		return ristoranteRepository.findAll();
@@ -62,36 +42,4 @@ public class FoodayServiceImpl implements FoodayService {
 		utente.setTelefono(profilo.getTelefono());
 		return utente;
 	}
-
-	@Override
-	public List<Insegnamento> findAllInsegnamenti(Utente utente) throws BusinessException {
-		return insegnamentoRepository.findInsegnamentiByDocenteId(utente.getId(), JpaSort.unsafe(Direction.ASC, "denominazione"));
-	}
-
-	@Override
-	public List<Appello> findAllAppelli(long idInsegnamento) throws BusinessException {
-		return appelloRepository.findAppelliByInsegnamentoId(idInsegnamento);
-	}
-
-	@Override
-	public void createAppello(Appello appello) throws BusinessException {
-		appelloRepository.save(appello);		
-	}
-
-	@Override
-	public Appello findAppelloById(long idAppello) throws BusinessException {
-		return appelloRepository.findById(idAppello).get();
-	}
-
-	@Override
-	public void updateAppello(Appello appello) throws BusinessException {
-		appelloRepository.save(appello);
-	}
-
-	@Override
-	public void deleteAppello(long idAppello) throws BusinessException {
-		appelloRepository.deleteById(idAppello);
-		
-	}
-
 }

@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import it.univaq.disim.mobile.fooday.domain.Docente;
-import it.univaq.disim.mobile.fooday.domain.Studente;
 import it.univaq.disim.mobile.fooday.domain.Utente;
 
 @SuppressWarnings("serial")
@@ -55,11 +53,11 @@ public class UserDetailsImpl implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> result = new ArrayList<>();
 
-		if (utente instanceof Docente) {
+		if (utente instanceof Utente) {
 			GrantedAuthorityImpl authorityImpl = new GrantedAuthorityImpl("docente");
 			result.add(authorityImpl);
 		} else {
-			if (utente instanceof Studente) {
+			if (utente instanceof Utente) {
 				GrantedAuthorityImpl authorityImpl = new GrantedAuthorityImpl("studente");
 				result.add(authorityImpl);
 			}

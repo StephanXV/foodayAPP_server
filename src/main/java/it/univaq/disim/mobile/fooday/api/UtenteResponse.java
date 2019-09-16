@@ -1,6 +1,5 @@
 package it.univaq.disim.mobile.fooday.api;
 
-import it.univaq.disim.mobile.fooday.domain.Docente;
 import it.univaq.disim.mobile.fooday.domain.Utente;
 
 public class UtenteResponse {
@@ -23,7 +22,7 @@ public class UtenteResponse {
 		this.email = utente.getEmail();
 		this.matricola = utente.getMatricola();
 		this.telefono = utente.getTelefono();
-		if (utente instanceof Docente) {
+		if (utente instanceof Utente) {
 			this.ruolo = "docente";
 		} else {
 			this.ruolo = "studente";
