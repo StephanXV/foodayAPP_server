@@ -65,6 +65,14 @@ public class Recensione {
     @JoinColumn(name = "ID_RISTORANTE", insertable = false, updatable = false)
     private Ristorante ristorante;
 
+    public Id getId() {
+        return id;
+    }
+
+    public void setId(Id id) {
+        this.id = id;
+    }
+
     public int getVotoCucina() {
         return votoCucina;
     }

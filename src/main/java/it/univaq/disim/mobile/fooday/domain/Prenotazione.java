@@ -63,6 +63,14 @@ public class Prenotazione {
     private Ristorante ristorante;
 
 
+    public Id getId() {
+        return id;
+    }
+
+    public void setId(Id id) {
+        this.id = id;
+    }
+
     public Date getOrario() {
         return orario;
     }

@@ -143,4 +143,20 @@ public class Ristorante {
     public void setPreferiti(Set<Ristorante> preferiti) {
         this.preferiti = preferiti;
     }
+
+    public Set<Prenotazione> getPrenotazioni() {
+        return prenotazioni;
+    }
+
+    public void setPrenotazioni(Set<Prenotazione> prenotazioni) {
+        this.prenotazioni = prenotazioni;
+    }
+
+    public Set<Recensione> getRecensioni() {
+        return recensioni;
+    }
+
+    public void setRecensioni(Set<Recensione> recensioni) {
+        this.recensioni = recensioni;
+    }
 }

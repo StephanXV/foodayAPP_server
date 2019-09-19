@@ -44,7 +44,23 @@ public class Pietanza {
         return prezzo;
     }
 
-    public void setCodicePostale(int prezzo) {
+    public void setPrezzo(int prezzo) {
         this.prezzo = prezzo;
+    }
+
+    public TipologiaPietanza getTipologia() {
+        return tipologia;
+    }
+
+    public void setTipologia(TipologiaPietanza tipologia) {
+        this.tipologia = tipologia;
+    }
+
+    public Ristorante getRistorante() {
+        return ristorante;
+    }
+
+    public void setRistorante(Ristorante ristorante) {
+        this.ristorante = ristorante;
     }
 }

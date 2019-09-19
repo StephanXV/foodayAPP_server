@@ -14,7 +14,7 @@ public class Citta {
     @Column(name = "NOME", nullable = false)
     private String nome;
 
-    @Column(name = "CODICE_POSTALE", nullable = false)
+    @Column(name = "CODICE_POSTALE")
     private String codicePostale;
 
     public Long getId() {

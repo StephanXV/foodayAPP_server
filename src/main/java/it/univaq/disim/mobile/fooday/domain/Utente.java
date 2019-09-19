@@ -41,6 +41,10 @@ public class Utente {
 	@Column(name = "TELEFONO", nullable = true, length = 20)
 	private String telefono;
 
+	@ManyToOne
+	@JoinColumn(name = "ID_CITTA")
+	private Citta citta;
+
 	@OneToMany(mappedBy = "utente")
 	private Set<Prenotazione> prenotazioni =new HashSet<Prenotazione>();
 
@@ -110,5 +114,28 @@ public class Utente {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	
+
+	public Citta getCitta() {
+		return citta;
+	}
+
+	public void setCitta(Citta citta) {
+		this.citta = citta;
+	}
+
+	public Set<Prenotazione> getPrenotazioni() {
+		return prenotazioni;
+	}
+
+	public void setPrenotazioni(Set<Prenotazione> prenotazioni) {
+		this.prenotazioni = prenotazioni;
+	}
+
+	public Set<Recensione> getRecensioni() {
+		return recensioni;
+	}
+
+	public void setRecensioni(Set<Recensione> recensioni) {
+		this.recensioni = recensioni;
+	}
 }
