@@ -1,5 +1,8 @@
 package it.univaq.disim.mobile.fooday.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,23 +13,23 @@ import javax.persistence.*;
 public class Prenotazione {
 
     @Embeddable
-    public static class Id implements Serializable {
+    public static class PrenotazioneId implements Serializable {
         @Column(name = "ID_RISTORANTE")
         private Long ristoranteId;
         @Column(name = "ID_UTENTE")
         private Long utenteId;
 
-        public Id() {
+        public PrenotazioneId() {
         }
 
-        public Id(Long ristoranteId, Long utenteId) {
+        public PrenotazioneId(Long ristoranteId, Long utenteId) {
             this.ristoranteId = ristoranteId;
             this.utenteId = utenteId;
         }
 
         public boolean equals(Object o) {
-            if (o != null && o instanceof Id) {
-                Id that = (Id) o;
+            if (o != null && o instanceof PrenotazioneId) {
+                PrenotazioneId that = (PrenotazioneId) o;
                 return this.ristoranteId.equals(that.ristoranteId)
                         && this.utenteId.equals(that.utenteId);
             } else {
@@ -40,7 +43,7 @@ public class Prenotazione {
     }
 
     @EmbeddedId
-    private Id id = new Id();
+    private PrenotazioneId id;
 
     @Column(name = "ORARIO", nullable = false)
     private Date orario;
@@ -54,20 +57,35 @@ public class Prenotazione {
     @Column(name = "TIMESTAMP", nullable = false)
     private Date timestamp;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
     private Utente utente;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "ID_RISTORANTE", insertable = false, updatable = false)
     private Ristorante ristorante;
 
+    public Prenotazione() {
+    }
 
-    public Id getId() {
+    public Prenotazione(Date orario, int posti, int scontoApplicato,
+                        Date timestamp, Utente utente, Ristorante ristorante) {
+        this.id = new PrenotazioneId(ristorante.getId(), utente.getId());
+        this.orario = orario;
+        this.posti = posti;
+        this.scontoApplicato = scontoApplicato;
+        this.timestamp = timestamp;
+        this.utente = utente;
+        this.ristorante = ristorante;
+    }
+
+    public PrenotazioneId getId() {
         return id;
     }
 
-    public void setId(Id id) {
+    public void setId(PrenotazioneId id) {
         this.id = id;
     }
 

@@ -3,6 +3,7 @@ package it.univaq.disim.mobile.fooday.domain;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -35,21 +36,37 @@ public class Utente {
 	@Column(name = "EMAIL", nullable = false, length = 255)
 	private String email;
 
-	@Column(name = "MATRICOLA", nullable = true, length = 6)
-	private String matricola;
+	@Column(name = "SESSO", nullable = false, length = 1)
+	private String sesso;
 
 	@Column(name = "TELEFONO", nullable = true, length = 20)
 	private String telefono;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_CITTA")
+	@JoinColumn(name = "ID_CITTA", nullable = false)
 	private Citta citta;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "utente")
 	private Set<Prenotazione> prenotazioni =new HashSet<Prenotazione>();
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "utente")
 	private Set<Recensione> recensioni =new HashSet<Recensione>();
+
+	public Utente() {
+	}
+
+	public Utente(String nome, String cognome, String username, String password, String email, String sesso, String telefono, Citta citta) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.sesso = sesso;
+		this.telefono = telefono;
+		this.citta = citta;
+	}
 
 	public Long getId() {
 		return id;
@@ -97,14 +114,6 @@ public class Utente {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getMatricola() {
-		return matricola;
-	}
-
-	public void setMatricola(String matricola) {
-		this.matricola = matricola;
 	}
 
 	public String getTelefono() {

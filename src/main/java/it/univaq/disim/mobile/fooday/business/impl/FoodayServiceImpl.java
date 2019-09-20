@@ -1,6 +1,7 @@
 package it.univaq.disim.mobile.fooday.business.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import it.univaq.disim.mobile.fooday.business.BusinessException;
 import it.univaq.disim.mobile.fooday.business.FoodayService;
@@ -90,7 +91,7 @@ public class FoodayServiceImpl implements FoodayService {
 
 	@Override
 	public List<Prenotazione> findPrenotazioniByUtenteId(Long idUtente) throws BusinessException {
-		return null;
+		return prenotazioneRepository.findPrenotazioniByUtenteId(idUtente);
 	}
 
 	@Override
@@ -114,7 +115,7 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public List<Ristorante> findRistorantiByLocationInput(Long idCitta) throws BusinessException {
+	public List<Ristorante> findRistorantiByUserCity(Long idCitta) throws BusinessException {
 		return ristoranteRepository.findRistorantiByCittaId(idCitta);
 	}
 
@@ -143,5 +144,10 @@ public class FoodayServiceImpl implements FoodayService {
 		utente.setEmail(profilo.getEmail());
 		utente.setTelefono(profilo.getTelefono());
 		return utente;
+	}
+
+	@Override
+	public List<Citta> findCittaByNome( ) throws BusinessException {
+		return cittaRepository.findAll();
 	}
 }

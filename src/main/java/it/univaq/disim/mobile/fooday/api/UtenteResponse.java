@@ -20,7 +20,6 @@ public class UtenteResponse {
 		this.cognome = utente.getCognome();
 		this.username = utente.getUsername();
 		this.email = utente.getEmail();
-		this.matricola = utente.getMatricola();
 		this.telefono = utente.getTelefono();
 		if (utente instanceof Utente) {
 			this.ruolo = "docente";
@@ -53,13 +52,6 @@ public class UtenteResponse {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getMatricola() {
-		return matricola;
-	}
-	public void setMatricola(String matricola) {
-		this.matricola = matricola;
-	}
-	
 	public String getTelefono() {
 		return telefono;
 	}

@@ -1,6 +1,7 @@
 package it.univaq.disim.mobile.fooday.business;
 
 import java.util.List;
+import java.util.Set;
 
 import it.univaq.disim.mobile.fooday.domain.*;
 
@@ -32,7 +33,9 @@ public interface FoodayService {
 
 	List<Ristorante> findRistorantiByStringInput(String input) throws BusinessException;
 
-	List<Ristorante> findRistorantiByLocationInput(Long idCitta) throws BusinessException;
+	List<Ristorante> findRistorantiByUserCity(Long idCitta) throws BusinessException;
+
+	List<Citta> findCittaByNome() throws BusinessException;
 
 	List<Ristorante> findRistorantiByCategoryId(Long idCategory) throws BusinessException;
 

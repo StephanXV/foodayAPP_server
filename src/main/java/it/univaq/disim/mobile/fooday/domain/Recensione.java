@@ -1,5 +1,7 @@
 package it.univaq.disim.mobile.fooday.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,23 +12,23 @@ import javax.persistence.*;
 public class Recensione {
 
     @Embeddable
-    public static class Id implements Serializable {
+    public static class RecensioneId implements Serializable {
         @Column(name = "ID_RISTORANTE")
         private Long ristoranteId;
         @Column(name = "ID_UTENTE")
         private Long utenteId;
 
-        public Id() {
+        public RecensioneId() {
         }
 
-        public Id(Long ristoranteId, Long utenteId) {
+        public RecensioneId(Long ristoranteId, Long utenteId) {
             this.ristoranteId = ristoranteId;
             this.utenteId = utenteId;
         }
 
         public boolean equals(Object o) {
-            if (o != null && o instanceof Recensione.Id) {
-                Recensione.Id that = (Recensione.Id) o;
+            if (o != null && o instanceof Recensione.RecensioneId) {
+                Recensione.RecensioneId that = (Recensione.RecensioneId) o;
                 return this.ristoranteId.equals(that.ristoranteId)
                         && this.utenteId.equals(that.utenteId);
             } else {
@@ -40,7 +42,7 @@ public class Recensione {
     }
 
     @EmbeddedId
-    private Id id = new Id();
+    private RecensioneId id;
 
     @Column(name = "VOTO_CUCINA", nullable = false)
     private int votoCucina;
@@ -57,19 +59,36 @@ public class Recensione {
     @Column(name = "TIMESTAMP", nullable = false)
     private Date timestamp;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
     private Utente utente;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "ID_RISTORANTE", insertable = false, updatable = false)
     private Ristorante ristorante;
 
-    public Id getId() {
+    public Recensione() {
+    }
+
+    public Recensione(int votoCucina, int votoServizio, int votoPrezzo,
+                      String descrizione, Date timestamp, Utente utente, Ristorante ristorante) {
+        this.id = new RecensioneId(ristorante.getId(), utente.getId());
+        this.votoCucina = votoCucina;
+        this.votoServizio = votoServizio;
+        this.votoPrezzo = votoPrezzo;
+        this.descrizione = descrizione;
+        this.timestamp = timestamp;
+        this.utente = utente;
+        this.ristorante = ristorante;
+    }
+
+    public RecensioneId getId() {
         return id;
     }
 
-    public void setId(Id id) {
+    public void setId(RecensioneId id) {
         this.id = id;
     }
 

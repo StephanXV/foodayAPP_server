@@ -10,15 +10,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import it.univaq.disim.mobile.fooday.business.FoodayService;
 import it.univaq.disim.mobile.fooday.common.spring.security.JWTTokenUtil;
 import it.univaq.disim.mobile.fooday.common.spring.security.UserDetailsImpl;
 import it.univaq.disim.mobile.fooday.domain.Utente;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -56,5 +55,5 @@ public class RESTUtenteController {
 		Utente nuovoUtente = myUnivaqService.updateProfilo(utente);		
 		return new UtenteResponse(nuovoUtente);
 	}
-	
+
 }
