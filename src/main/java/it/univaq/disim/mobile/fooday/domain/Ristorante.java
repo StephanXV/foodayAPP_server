@@ -25,10 +25,10 @@ public class Ristorante {
     private int postiTot;
 
     @Column(name = "MEDIA_PUNTEGGIO")
-    private int punteggio;
+    private double punteggio;
 
     @Column(name = "PREZZO_MEDIO")
-    private int prezzoMedio;
+    private double prezzoMedio;
 
     @Column(name = "SCONTO")
     private int sconto;
@@ -96,19 +96,19 @@ public class Ristorante {
         this.postiTot = postiTot;
     }
 
-    public int getPunteggio() {
+    public double getPunteggio() {
         return punteggio;
     }
 
-    public void setPunteggio(int punteggio) {
+    public void setPunteggio(double punteggio) {
         this.punteggio = punteggio;
     }
 
-    public int getPrezzoMedio() {
+    public double getPrezzoMedio() {
         return prezzoMedio;
     }
 
-    public void setPrezzoMedio(int prezzoMedio) {
+    public void setPrezzoMedio(double prezzoMedio) {
         this.prezzoMedio = prezzoMedio;
     }
 

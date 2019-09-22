@@ -15,7 +15,7 @@ public class Pietanza {
     private String nome;
 
     @Column(name = "PREZZO", nullable = false)
-    private int prezzo;
+    private double prezzo;
 
     @Enumerated(EnumType.STRING)
     private TipologiaPietanza tipologia;
@@ -23,6 +23,16 @@ public class Pietanza {
     @ManyToOne
     @JoinColumn(name = "ID_RISTORANTE")
     private Ristorante ristorante;
+
+    public Pietanza() {
+    }
+
+    public Pietanza(String nome, double prezzo, TipologiaPietanza tipologia, Ristorante ristorante) {
+        this.nome = nome;
+        this.prezzo = prezzo;
+        this.tipologia = tipologia;
+        this.ristorante = ristorante;
+    }
 
     public Long getId() {
         return id;
@@ -40,11 +50,11 @@ public class Pietanza {
         this.nome = nome;
     }
 
-    public int getPrezzo() {
+    public double getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(int prezzo) {
+    public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
     }
 

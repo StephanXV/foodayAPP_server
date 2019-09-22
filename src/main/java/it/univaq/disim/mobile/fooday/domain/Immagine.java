@@ -18,6 +18,14 @@ public class Immagine {
     @JoinColumn(name = "ID_RISTORANTE")
     private Ristorante ristorante;
 
+    public Immagine() {
+    }
+
+    public Immagine(String src, Ristorante ristorante) {
+        this.src = src;
+        this.ristorante = ristorante;
+    }
+
     public Ristorante getRistorante() {
         return ristorante;
     }

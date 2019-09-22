@@ -18,6 +18,15 @@ public class Orario {
     @Column(name = "CHIUSURA", nullable = false)
     private Date chiusura;
 
+    public Orario() {
+    }
+
+    public Orario(Date apertura, Date chiusura, Ristorante ristorante) {
+        this.apertura = apertura;
+        this.chiusura = chiusura;
+        this.ristorante = ristorante;
+    }
+
     @ManyToOne
     @JoinColumn(name = "ID_RISTORANTE")
     private Ristorante ristorante;
