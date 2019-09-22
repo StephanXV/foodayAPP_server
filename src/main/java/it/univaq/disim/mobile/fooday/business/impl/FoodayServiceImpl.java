@@ -126,7 +126,7 @@ public class FoodayServiceImpl implements FoodayService {
 
 	@Override
 	public Ristorante findRistoranteById(Long idRistorante) throws BusinessException {
-		return null;
+		return ristoranteRepository.findById(idRistorante).get();
 	}
 
 	@Override

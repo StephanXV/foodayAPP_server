@@ -65,11 +65,13 @@ public class FoodayApplication {
 
             Ristorante ristorante1 = new Ristorante();
             ristorante1.setNome("Lu Barrott");
+            ristorante1.setDescrizione("Le vuoi le rostelle?");
             ristorante1.setCitta(citta1);
             ristoranteRepository.save(ristorante1);
 
             Ristorante ristorante2 = new Ristorante();
             ristorante2.setNome("Burger King");
+            ristorante2.setDescrizione("Un tipico fast-food");
             ristorante2.setCitta(citta1);
             ristoranteRepository.save(ristorante2);
 

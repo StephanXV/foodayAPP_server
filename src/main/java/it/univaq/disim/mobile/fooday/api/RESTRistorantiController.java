@@ -18,4 +18,9 @@ public class RESTRistorantiController {
     public List<Ristorante> list(@RequestParam(value = "idCitta") Long idCitta) {
         return foodayService.findRistorantiByUserCity(idCitta);
     }
+
+    @GetMapping("/{idRistorante}")
+    public Ristorante getRistoranteById(@PathVariable long idRistorante) {
+        return foodayService.findRistoranteById(idRistorante);
+    }
 }
