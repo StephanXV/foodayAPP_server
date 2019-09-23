@@ -47,6 +47,13 @@ public class Utente {
 	private Citta citta;
 
 	@JsonManagedReference
+	@ManyToMany
+	@JoinTable(name="PREFERITI",
+			joinColumns={@JoinColumn(name="ID_UTENTE")},
+			inverseJoinColumns={@JoinColumn(name="ID_RISTORANTE")})
+	private Set<Ristorante> preferiti = new HashSet<>();
+
+	@JsonManagedReference
 	@OneToMany(mappedBy = "utente")
 	private Set<Prenotazione> prenotazioni =new HashSet<Prenotazione>();
 
@@ -66,6 +73,22 @@ public class Utente {
 		this.sesso = sesso;
 		this.telefono = telefono;
 		this.citta = citta;
+	}
+
+	public String getSesso() {
+		return sesso;
+	}
+
+	public void setSesso(String sesso) {
+		this.sesso = sesso;
+	}
+
+	public Set<Ristorante> getPreferiti() {
+		return preferiti;
+	}
+
+	public void setPreferiti(Set<Ristorante> preferiti) {
+		this.preferiti = preferiti;
 	}
 
 	public Long getId() {

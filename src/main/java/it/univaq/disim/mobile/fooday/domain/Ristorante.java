@@ -1,7 +1,12 @@
 package it.univaq.disim.mobile.fooday.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,17 +42,16 @@ public class Ristorante {
     @JoinColumn(name = "ID_CITTA")
     private Citta citta;
 
+    @JsonManagedReference
     @ManyToMany
     @JoinTable(name="CATEGORIZZAZIONE",
             joinColumns={@JoinColumn(name="ID_RISTORANTE")},
             inverseJoinColumns={@JoinColumn(name="ID_CATEGORIA")})
-    private Set<Ristorante> categorizzazione = new HashSet<>();
+    private Set<Categoria> categorie = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(name="PREFERITI",
-            joinColumns={@JoinColumn(name="ID_RISTORANTE")},
-            inverseJoinColumns={@JoinColumn(name="ID_UTENTE")})
-    private Set<Ristorante> preferiti = new HashSet<>();
+    @JsonBackReference
+    @ManyToMany(mappedBy = "preferiti")
+    private Set<Utente> utenti = new HashSet<Utente>();
 
     @OneToMany(mappedBy = "ristorante")
     private Set<Prenotazione> prenotazioni =new HashSet<Prenotazione>();
@@ -55,6 +59,41 @@ public class Ristorante {
     @OneToMany(mappedBy = "ristorante")
     private Set<Recensione> recensioni =new HashSet<Recensione>();
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ristorante")
+    private List<Orario> orari = new ArrayList<Orario>();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ristorante")
+    private List<Pietanza> pietanze = new ArrayList<Pietanza>();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ristorante")
+    private List<Immagine> immagini = new ArrayList<Immagine>();
+
+    public Set<Categoria> getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Set<Categoria> categorie) {
+        this.categorie = categorie;
+    }
+
+    public Set<Utente> getUtenti() {
+        return utenti;
+    }
+
+    public void setUtenti(Set<Utente> utenti) {
+        this.utenti = utenti;
+    }
+
+    public void setOrari(List<Orario> orari) {
+        this.orari = orari;
+    }
+
+    public List<Orario> getOrari() {
+        return orari;
+    }
 
     public Long getId() {
         return id;
@@ -128,21 +167,6 @@ public class Ristorante {
         this.citta = citta;
     }
 
-    public Set<Ristorante> getCategorizzazione() {
-        return categorizzazione;
-    }
-
-    public void setCategorizzazione(Set<Ristorante> categorizzazione) {
-        this.categorizzazione = categorizzazione;
-    }
-
-    public Set<Ristorante> getPreferiti() {
-        return preferiti;
-    }
-
-    public void setPreferiti(Set<Ristorante> preferiti) {
-        this.preferiti = preferiti;
-    }
 
     public Set<Prenotazione> getPrenotazioni() {
         return prenotazioni;

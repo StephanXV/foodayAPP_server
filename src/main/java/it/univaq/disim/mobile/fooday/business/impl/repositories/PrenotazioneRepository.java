@@ -10,5 +10,5 @@ import java.util.Set;
 
 public interface PrenotazioneRepository extends JpaRepository<Prenotazione, Long> {
 
-    List<Prenotazione> findPrenotazioniByUtenteId(Long idUtente);
+    List<Prenotazione> findPrenotazioniByUtenteId(long idUtente);
 }

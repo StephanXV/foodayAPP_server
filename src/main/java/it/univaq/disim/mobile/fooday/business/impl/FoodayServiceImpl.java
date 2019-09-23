@@ -56,12 +56,12 @@ public class FoodayServiceImpl implements FoodayService {
 
 	@Override
 	public List<Immagine> findImmaginiByRistoranteId(Long idRistorante) throws BusinessException {
-		return null;
+		return immagineRepository.findImmaginiByRistoranteId(idRistorante);
 	}
 
 	@Override
 	public List<Orario> findOrariByRistoranteId(Long idRistorante) throws BusinessException {
-		return null;
+		return orarioRepository.findOrariByRistoranteId(idRistorante);
 	}
 
 	@Override

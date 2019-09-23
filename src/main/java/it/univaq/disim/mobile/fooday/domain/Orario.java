@@ -1,5 +1,7 @@
 package it.univaq.disim.mobile.fooday.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,20 +15,21 @@ public class Orario {
     private Long id;
 
     @Column(name = "APERTURA", nullable = false)
-    private Date apertura;
+    private String apertura;
 
     @Column(name = "CHIUSURA", nullable = false)
-    private Date chiusura;
+    private String chiusura;
 
     public Orario() {
     }
 
-    public Orario(Date apertura, Date chiusura, Ristorante ristorante) {
+    public Orario(String apertura, String chiusura, Ristorante ristorante) {
         this.apertura = apertura;
         this.chiusura = chiusura;
         this.ristorante = ristorante;
     }
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "ID_RISTORANTE")
     private Ristorante ristorante;
@@ -39,19 +42,27 @@ public class Orario {
         this.id = id;
     }
 
-    public Date getApertura() {
+    public String getApertura() {
         return apertura;
     }
 
-    public void setApertura(Date apertura) {
+    public void setApertura(String apertura) {
         this.apertura = apertura;
     }
 
-    public Date getChiusura() {
+    public String getChiusura() {
         return chiusura;
     }
 
-    public void setChiusura(Date chiusura) {
+    public void setChiusura(String chiusura) {
         this.chiusura = chiusura;
+    }
+
+    public Ristorante getRistorante() {
+        return ristorante;
+    }
+
+    public void setRistorante(Ristorante ristorante) {
+        this.ristorante = ristorante;
     }
 }

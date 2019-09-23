@@ -1,5 +1,8 @@
 package it.univaq.disim.mobile.fooday.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +18,10 @@ public class Categoria {
 
     @Column(name = "NOME", nullable = false)
     private String nome;
+
+    @JsonBackReference
+    @ManyToMany(mappedBy = "categorie")
+    private Set<Ristorante> ristoranti = new HashSet<Ristorante>();
 
     public Long getId() {
         return id;

@@ -8,8 +8,6 @@ public class UtenteResponse {
 	private String nome;
 	private String cognome;
 	private String email;
-	private String matricola;
-	private String ruolo;
 	private String telefono;
 	
 	public UtenteResponse() {
@@ -21,11 +19,6 @@ public class UtenteResponse {
 		this.username = utente.getUsername();
 		this.email = utente.getEmail();
 		this.telefono = utente.getTelefono();
-		if (utente instanceof Utente) {
-			this.ruolo = "docente";
-		} else {
-			this.ruolo = "studente";
-		}
 	}
 	
 	public String getNome() {
@@ -55,17 +48,9 @@ public class UtenteResponse {
 	public String getTelefono() {
 		return telefono;
 	}
-
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
-	public String getRuolo() {
-		return ruolo;
-	}
-
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
-	}
 
 }

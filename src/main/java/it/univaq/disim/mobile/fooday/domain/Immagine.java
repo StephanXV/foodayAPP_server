@@ -1,5 +1,7 @@
 package it.univaq.disim.mobile.fooday.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class Immagine {
     @Column(name = "SRC", nullable = false)
     private String src;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "ID_RISTORANTE")
     private Ristorante ristorante;

@@ -45,8 +45,11 @@ public class Prenotazione {
     @EmbeddedId
     private PrenotazioneId id;
 
+    @Column(name = "GIORNO", nullable = false)
+    private Date giorno;
+
     @Column(name = "ORARIO", nullable = false)
-    private Date orario;
+    private String orario;
 
     @Column(name = "NUM_POSTI", nullable = false)
     private int posti;
@@ -70,15 +73,24 @@ public class Prenotazione {
     public Prenotazione() {
     }
 
-    public Prenotazione(Date orario, int posti, int scontoApplicato,
+    public Prenotazione(Date giorno, String orario, int posti, int scontoApplicato,
                         Date timestamp, Utente utente, Ristorante ristorante) {
         this.id = new PrenotazioneId(ristorante.getId(), utente.getId());
+        this.giorno = giorno;
         this.orario = orario;
         this.posti = posti;
         this.scontoApplicato = scontoApplicato;
         this.timestamp = timestamp;
         this.utente = utente;
         this.ristorante = ristorante;
+    }
+
+    public Date getGiorno() {
+        return giorno;
+    }
+
+    public void setGiorno(Date giorno) {
+        this.giorno = giorno;
     }
 
     public PrenotazioneId getId() {
@@ -89,11 +101,11 @@ public class Prenotazione {
         this.id = id;
     }
 
-    public Date getOrario() {
+    public String getOrario() {
         return orario;
     }
 
-    public void setOrario(Date orario) {
+    public void setOrario(String orario) {
         this.orario = orario;
     }
 

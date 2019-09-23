@@ -1,5 +1,7 @@
 package it.univaq.disim.mobile.fooday.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +22,7 @@ public class Pietanza {
     @Enumerated(EnumType.STRING)
     private TipologiaPietanza tipologia;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "ID_RISTORANTE")
     private Ristorante ristorante;

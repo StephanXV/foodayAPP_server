@@ -39,14 +39,8 @@ public class FoodayApplication {
                                       RecensioneRepository recensioneRepository, RistoranteRepository ristoranteRepository, CategoriaRepository categoriaRepository) {
         return (args) -> {
 
-            SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.ITALY);
-            Date open1 = format.parse("11:30");
-            Date open2 = format.parse("18:30");
-            Date close1 = format.parse("15:00");
-            Date close2 = format.parse("23:30");
-
             Categoria a = new Categoria();
-            a.setNome("Pizzeria");
+            a.setNome("Fast Food");
             categoriaRepository.save(a);
             Categoria b = new Categoria();
             b.setNome("Sushi");
@@ -77,6 +71,8 @@ public class FoodayApplication {
             ristorante1.setPrezzoMedio(26);
             ristorante1.setSconto(10);
             ristorante1.setCitta(citta1);
+            ristorante1.getCategorie().add(c);
+            ristorante1.getCategorie().add(e);
             ristoranteRepository.save(ristorante1);
 
             Ristorante ristorante2 = new Ristorante();
@@ -88,6 +84,7 @@ public class FoodayApplication {
             ristorante2.setPrezzoMedio(7.5);
             ristorante2.setSconto(15);
             ristorante2.setCitta(citta1);
+            ristorante2.getCategorie().add(a);
             ristoranteRepository.save(ristorante2);
 
             Ristorante ristorante3 = new Ristorante();
@@ -99,6 +96,8 @@ public class FoodayApplication {
             ristorante3.setPrezzoMedio(24);
             ristorante3.setSconto(15);
             ristorante3.setCitta(citta2);
+            ristorante3.getCategorie().add(b);
+            ristorante3.getCategorie().add(d);
             ristoranteRepository.save(ristorante3);
 
             Pietanza pietanza1 = new Pietanza("Spaghetti al pomodoro", 7.5, TipologiaPietanza.primo, ristorante1);
@@ -164,12 +163,12 @@ public class FoodayApplication {
             pietanzaRepository.save(pietanza29);
             pietanzaRepository.save(pietanza30);
 
-            Orario orario1 = new Orario(open1, close1, ristorante1);
-            Orario orario2 = new Orario(open2, close2, ristorante1);
-            Orario orario3 = new Orario(open1, close1, ristorante2);
-            Orario orario4 = new Orario(open2, close2, ristorante2);
-            Orario orario5 = new Orario(open1, close1, ristorante3);
-            Orario orario6 = new Orario(open2, close2, ristorante3);
+            Orario orario1 = new Orario("11:30", "15:00", ristorante1);
+            Orario orario2 = new Orario("18:30", "23:00", ristorante1);
+            Orario orario3 = new Orario("11:30", "15:00", ristorante2);
+            Orario orario4 = new Orario("18:30", "23:00", ristorante2);
+            Orario orario5 = new Orario("11:30", "15:00", ristorante3);
+            Orario orario6 = new Orario("18:30", "23:00", ristorante3);
             orarioRepository.save(orario1);
             orarioRepository.save(orario2);
             orarioRepository.save(orario3);
@@ -196,25 +195,66 @@ public class FoodayApplication {
             Utente ut1 = new Utente("Stefano", "Florio", "steflo",
                     passwordEncoder.encode("stefano"), "stefano@email.com",
                     "M", "3333333336", citta1);
+            ut1.getPreferiti().add(ristorante2);
+            ut1.getPreferiti().add(ristorante3);
             utenteRepository.save(ut1);
 
             Utente ut2 = new Utente("Giuseppe", "Gasbarro", "ggas23",
                     passwordEncoder.encode("giuseppe"), "giuseppe@email.com",
                     "M", "3333333337", citta2);
+            ut2.getPreferiti().add(ristorante1);
             utenteRepository.save(ut2);
 
             Utente ut3 = new Utente("Enrico", "Monte", "enrimon",
                     passwordEncoder.encode("enrico"), "enrico@email.com",
                     "M", "3333333338", citta1);
+            ut3.getPreferiti().add(ristorante1);
+            ut3.getPreferiti().add(ristorante2);
+            ut3.getPreferiti().add(ristorante3);
             utenteRepository.save(ut3);
 
-            Prenotazione pr1 = new Prenotazione(new Date(System.currentTimeMillis() - 81818181), 2, 20,
+            Prenotazione pr1 = new Prenotazione(new Date(System.currentTimeMillis() - 81818181), "20:00", 2, 20,
                     new Date(System.currentTimeMillis()), ut1, ristorante1);
+            Prenotazione.PrenotazioneId id1 = new Prenotazione.PrenotazioneId(ristorante1.getId(), ut1.getId());
+            pr1.setId(id1);
             prenotazioneRepository.save(pr1);
 
-            Prenotazione pr2 = new Prenotazione(new Date(System.currentTimeMillis() - 61818181), 7, 15,
+            Prenotazione pr2 = new Prenotazione(new Date(System.currentTimeMillis() - 61818181), "21:30", 7, 15,
                     new Date(System.currentTimeMillis()), ut1, ristorante2);
+            Prenotazione.PrenotazioneId id2 = new Prenotazione.PrenotazioneId(ristorante2.getId(), ut1.getId());
+            pr1.setId(id2);
             prenotazioneRepository.save(pr2);
+
+            Recensione rec1 = new Recensione(7, 8, 5,
+                    "Ottime le cotture delle carni, tuttavia il conto è salato",
+                    new Date(System.currentTimeMillis()), ut1, ristorante1);
+
+            Recensione rec2 = new Recensione(10, 6, 8,
+                    "Qualità/prezzo eccezionale, ma servizio nella norma",
+                    new Date(System.currentTimeMillis()), ut2, ristorante1);
+
+            Recensione rec3 = new Recensione(6, 5, 7,
+                    "Abbiamo aspettato 2 ore per ricevere da mangiare",
+                    new Date(System.currentTimeMillis()), ut3, ristorante1);
+
+            Recensione rec4 = new Recensione(5, 5, 10,
+                    "Vale quello che si spende",
+                    new Date(System.currentTimeMillis()), ut1, ristorante2);
+
+            Recensione rec5 = new Recensione(7, 9, 4,
+                    "La formula 'all you can eat' costa molto, ma le portate arrivano in fretta",
+                    new Date(System.currentTimeMillis()), ut3, ristorante3);
+
+            Recensione rec6 = new Recensione(8, 6, 7,
+                    "Sushi molto buono e primi ben fatti, ci ritornerò",
+                    new Date(System.currentTimeMillis()), ut2, ristorante3);
+
+            recensioneRepository.save(rec1);
+            recensioneRepository.save(rec2);
+            recensioneRepository.save(rec3);
+            recensioneRepository.save(rec4);
+            recensioneRepository.save(rec5);
+            recensioneRepository.save(rec6);
         };
     }
 }
