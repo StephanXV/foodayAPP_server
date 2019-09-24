@@ -120,8 +120,8 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public List<Ristorante> findRistorantiByCategoryId(Long idCategory) throws BusinessException {
-		return null;
+	public List<Ristorante> findRistorantiByCategoryId(Long idCategoria) throws BusinessException {
+		return ristoranteRepository.findRistorantiByCategorieId(idCategoria);
 	}
 
 	@Override

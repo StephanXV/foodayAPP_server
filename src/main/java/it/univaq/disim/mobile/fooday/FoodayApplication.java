@@ -57,9 +57,11 @@ public class FoodayApplication {
 
             Citta citta1 = new Citta();
             citta1.setNome("Vasto");
+            citta1.setCodicePostale("66054");
             cittaRepository.save(citta1);
             Citta citta2 = new Citta();
             citta2.setNome("Roma");
+            citta2.setCodicePostale("0118");
             cittaRepository.save(citta2);
 
             Ristorante ristorante1 = new Ristorante();
@@ -99,6 +101,19 @@ public class FoodayApplication {
             ristorante3.getCategorie().add(b);
             ristorante3.getCategorie().add(d);
             ristoranteRepository.save(ristorante3);
+
+            Ristorante ristorante4 = new Ristorante();
+            ristorante4.setNome("Da Maurizio");
+            ristorante4.setIndirizzo("Via Tramontana, 312");
+            ristorante4.setDescrizione("Vieni a provare la nostra cucina romana");
+            ristorante4.setPostiTot(67);
+            ristorante4.setPunteggio(9.1);
+            ristorante4.setPrezzoMedio(31);
+            ristorante4.setSconto(8);
+            ristorante4.setCitta(citta2);
+            ristorante4.getCategorie().add(c);
+            ristorante4.getCategorie().add(d);
+            ristoranteRepository.save(ristorante4);
 
             Pietanza pietanza1 = new Pietanza("Spaghetti al pomodoro", 7.5, TipologiaPietanza.primo, ristorante1);
             Pietanza pietanza2 = new Pietanza("Gnocchetti al ragù", 8, TipologiaPietanza.primo, ristorante1);
@@ -163,18 +178,43 @@ public class FoodayApplication {
             pietanzaRepository.save(pietanza29);
             pietanzaRepository.save(pietanza30);
 
+            Pietanza pietanza31 = new Pietanza("Spaghetti al pomodoro", 7.5, TipologiaPietanza.primo, ristorante4);
+            Pietanza pietanza32 = new Pietanza("Gnocchetti al ragù", 8, TipologiaPietanza.primo, ristorante4);
+            Pietanza pietanza33 = new Pietanza("Salumi misti", 10, TipologiaPietanza.antipasto, ristorante4);
+            Pietanza pietanza34 = new Pietanza("Formaggi misti", 9, TipologiaPietanza.antipasto, ristorante4);
+            Pietanza pietanza35 = new Pietanza("Tagliata di maiale", 12, TipologiaPietanza.secondo, ristorante4);
+            Pietanza pietanza36 = new Pietanza("Tagliata di manzo", 14, TipologiaPietanza.secondo, ristorante4);
+            Pietanza pietanza37 = new Pietanza("Macedonia", 4.5, TipologiaPietanza.dessert, ristorante4);
+            Pietanza pietanza38 = new Pietanza("Cheesecake", 4, TipologiaPietanza.dessert, ristorante4);
+            Pietanza pietanza39 = new Pietanza("Coca-Cola", 2.5, TipologiaPietanza.bevanda, ristorante4);
+            Pietanza pietanza40 = new Pietanza("Acqua", 1.5, TipologiaPietanza.bevanda, ristorante4);
+            pietanzaRepository.save(pietanza31);
+            pietanzaRepository.save(pietanza32);
+            pietanzaRepository.save(pietanza33);
+            pietanzaRepository.save(pietanza34);
+            pietanzaRepository.save(pietanza35);
+            pietanzaRepository.save(pietanza36);
+            pietanzaRepository.save(pietanza37);
+            pietanzaRepository.save(pietanza38);
+            pietanzaRepository.save(pietanza39);
+            pietanzaRepository.save(pietanza40);
+
             Orario orario1 = new Orario("11:30", "15:00", ristorante1);
             Orario orario2 = new Orario("18:30", "23:00", ristorante1);
             Orario orario3 = new Orario("11:30", "15:00", ristorante2);
             Orario orario4 = new Orario("18:30", "23:00", ristorante2);
             Orario orario5 = new Orario("11:30", "15:00", ristorante3);
             Orario orario6 = new Orario("18:30", "23:00", ristorante3);
+            Orario orario7 = new Orario("11:30", "15:00", ristorante4);
+            Orario orario8 = new Orario("18:30", "23:00", ristorante4);
             orarioRepository.save(orario1);
             orarioRepository.save(orario2);
             orarioRepository.save(orario3);
             orarioRepository.save(orario4);
             orarioRepository.save(orario5);
             orarioRepository.save(orario6);
+            orarioRepository.save(orario7);
+            orarioRepository.save(orario8);
 
             Immagine imm1 = new Immagine("assets/images/risto1.1.jpg", ristorante1);
             Immagine imm2 = new Immagine("assets/images/risto1.2.jpg", ristorante1);
@@ -183,6 +223,9 @@ public class FoodayApplication {
             Immagine imm5 = new Immagine("assets/images/risto2.2.jpg", ristorante2);
             Immagine imm6 = new Immagine("assets/images/risto3.1.jpg", ristorante3);
             Immagine imm7 = new Immagine("assets/images/risto3.2.jpg", ristorante3);
+            Immagine imm8 = new Immagine("assets/images/risto4.1.jpg", ristorante4);
+            Immagine imm9 = new Immagine("assets/images/risto4.2.jpg", ristorante4);
+            Immagine imm10 = new Immagine("assets/images/risto4.3.jpg", ristorante4);
             immagineRepository.save(imm1);
             immagineRepository.save(imm2);
             immagineRepository.save(imm3);
@@ -190,6 +233,9 @@ public class FoodayApplication {
             immagineRepository.save(imm5);
             immagineRepository.save(imm6);
             immagineRepository.save(imm7);
+            immagineRepository.save(imm8);
+            immagineRepository.save(imm9);
+            immagineRepository.save(imm10);
 
 
             Utente ut1 = new Utente("Stefano", "Florio", "steflo",
@@ -203,6 +249,7 @@ public class FoodayApplication {
                     passwordEncoder.encode("giuseppe"), "giuseppe@email.com",
                     "M", "3333333337", citta2);
             ut2.getPreferiti().add(ristorante1);
+            ut2.getPreferiti().add(ristorante4);
             utenteRepository.save(ut2);
 
             Utente ut3 = new Utente("Enrico", "Monte", "enrimon",
@@ -249,12 +296,22 @@ public class FoodayApplication {
                     "Sushi molto buono e primi ben fatti, ci ritornerò",
                     new Date(System.currentTimeMillis()), ut2, ristorante3);
 
+            Recensione rec7 = new Recensione(9, 9, 6,
+                    "Mi è piaciuto tutto moltissimo",
+                    new Date(System.currentTimeMillis()), ut1, ristorante3);
+
+            Recensione rec8 = new Recensione(8, 7, 7,
+                    "Ottima qualità del pesce ad un ottimo prezzo",
+                    new Date(System.currentTimeMillis()), ut2, ristorante3);
+
             recensioneRepository.save(rec1);
             recensioneRepository.save(rec2);
             recensioneRepository.save(rec3);
             recensioneRepository.save(rec4);
             recensioneRepository.save(rec5);
             recensioneRepository.save(rec6);
+            recensioneRepository.save(rec7);
+            recensioneRepository.save(rec8);
         };
     }
 }
