@@ -14,9 +14,14 @@ public class RESTRistorantiController {
     @Autowired
     private FoodayService foodayService;
 
-    @GetMapping("/citta/{idCitta}")
+    @GetMapping("/byidcitta/{idCitta}")
     public List<Ristorante> getRistorantiByCittaId(@PathVariable long idCitta) {
         return foodayService.findRistorantiByUserCity(idCitta);
+    }
+
+    @GetMapping("/bynomecitta/{nomeCitta}")
+    public List<Ristorante> getRistorantiByCittaNome(@PathVariable String nomeCitta) {
+        return foodayService.findRistorantiByCittaNome(nomeCitta);
     }
 
     @GetMapping("/categoria/{idCategoria}")

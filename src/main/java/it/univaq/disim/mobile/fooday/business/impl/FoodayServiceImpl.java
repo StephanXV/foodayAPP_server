@@ -65,31 +65,6 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public List<Pietanza> findAntipastiByRistoranteId(Long idRistorante) throws BusinessException {
-		return null;
-	}
-
-	@Override
-	public List<Pietanza> findPrimiByRistoranteId(Long idRistorante) throws BusinessException {
-		return null;
-	}
-
-	@Override
-	public List<Pietanza> findSecondiByRistoranteId(Long idRistorante) throws BusinessException {
-		return null;
-	}
-
-	@Override
-	public List<Pietanza> findDessertsByRistoranteId(Long idRistorante) throws BusinessException {
-		return null;
-	}
-
-	@Override
-	public List<Pietanza> findBevandeByRistoranteId(Long idRistorante) throws BusinessException {
-		return null;
-	}
-
-	@Override
 	public List<Prenotazione> findPrenotazioniByUtenteId(Long idUtente) throws BusinessException {
 		return prenotazioneRepository.findPrenotazioniByUtenteId(idUtente);
 	}
@@ -110,8 +85,8 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public List<Ristorante> findRistorantiByStringInput(String input) throws BusinessException {
-		return null;
+	public List<Ristorante> findRistorantiByCittaNome(String nomeCitta) throws BusinessException {
+		return ristoranteRepository.findRistorantiByCitta_Nome(nomeCitta);
 	}
 
 	@Override

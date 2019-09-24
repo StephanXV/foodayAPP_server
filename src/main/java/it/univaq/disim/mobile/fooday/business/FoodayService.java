@@ -13,16 +13,6 @@ public interface FoodayService {
 
 	List<Orario> findOrariByRistoranteId(Long idRistorante) throws BusinessException;
 
-	List<Pietanza> findAntipastiByRistoranteId(Long idRistorante) throws BusinessException;
-
-	List<Pietanza> findPrimiByRistoranteId(Long idRistorante) throws BusinessException;
-
-	List<Pietanza> findSecondiByRistoranteId(Long idRistorante) throws BusinessException;
-
-	List<Pietanza> findDessertsByRistoranteId(Long idRistorante) throws BusinessException;
-
-	List<Pietanza> findBevandeByRistoranteId(Long idRistorante) throws BusinessException;
-
 	List<Prenotazione> findPrenotazioniByUtenteId(Long idUtente) throws BusinessException;
 
 	void createPrenotazione(Prenotazione prenotazione) throws BusinessException;
@@ -31,7 +21,7 @@ public interface FoodayService {
 
 	void createRecensione(Recensione recensione) throws BusinessException;
 
-	List<Ristorante> findRistorantiByStringInput(String input) throws BusinessException;
+	List<Ristorante> findRistorantiByCittaNome(String nomeCitta) throws BusinessException;
 
 	List<Ristorante> findRistorantiByUserCity(Long idCitta) throws BusinessException;
 
