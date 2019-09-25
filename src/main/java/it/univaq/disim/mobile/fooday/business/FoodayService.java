@@ -23,6 +23,8 @@ public interface FoodayService {
 
 	List<Ristorante> findRistorantiByCittaNome(String nomeCitta) throws BusinessException;
 
+	List<Ristorante> findRistorantiByNome(String nomeRisto) throws BusinessException;
+
 	List<Ristorante> findRistorantiByUserCity(Long idCitta) throws BusinessException;
 
 	List<Citta> findCittaByNome() throws BusinessException;

@@ -33,4 +33,9 @@ public class RESTRistorantiController {
     public Ristorante getRistoranteById(@PathVariable long idRistorante) {
         return foodayService.findRistoranteById(idRistorante);
     }
+
+    @GetMapping("/bynome/{nomeRisto}")
+    public List<Ristorante> getRistorantiByNome(@PathVariable String nomeRisto) {
+        return foodayService.findRistorantiByNome(nomeRisto);
+    }
 }

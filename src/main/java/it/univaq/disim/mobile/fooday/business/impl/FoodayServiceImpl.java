@@ -86,7 +86,12 @@ public class FoodayServiceImpl implements FoodayService {
 
 	@Override
 	public List<Ristorante> findRistorantiByCittaNome(String nomeCitta) throws BusinessException {
-		return ristoranteRepository.findRistorantiByCitta_Nome(nomeCitta);
+		return ristoranteRepository.findRistorantiByCittaContaining(nomeCitta);
+	}
+
+	@Override
+	public List<Ristorante> findRistorantiByNome(String nomeRisto) throws BusinessException {
+		return ristoranteRepository.findRistorantiByNomeContaining(nomeRisto);
 	}
 
 	@Override
