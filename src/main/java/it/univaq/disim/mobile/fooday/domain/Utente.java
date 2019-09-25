@@ -2,10 +2,13 @@ package it.univaq.disim.mobile.fooday.domain;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,20 +49,24 @@ public class Utente {
 	@JoinColumn(name = "ID_CITTA", nullable = false)
 	private Citta citta;
 
-	@JsonManagedReference
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name="PREFERITI",
 			joinColumns={@JoinColumn(name="ID_UTENTE")},
 			inverseJoinColumns={@JoinColumn(name="ID_RISTORANTE")})
-	private Set<Ristorante> preferiti = new HashSet<>();
+	private List<Ristorante> preferiti = new ArrayList<>();
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "utente")
-	private Set<Prenotazione> prenotazioni =new HashSet<Prenotazione>();
+	private Set<Prenotazione> prenotazioni;
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "utente")
-	private Set<Recensione> recensioni =new HashSet<Recensione>();
+	private List<Recensione> recensioni = new ArrayList<>();
+
+	@JsonManagedReference
+	@OneToMany(mappedBy = "utente")
+	private List<Ricerca> ricerche = new ArrayList<>();
 
 	public Utente() {
 	}
@@ -81,14 +88,6 @@ public class Utente {
 
 	public void setSesso(String sesso) {
 		this.sesso = sesso;
-	}
-
-	public Set<Ristorante> getPreferiti() {
-		return preferiti;
-	}
-
-	public void setPreferiti(Set<Ristorante> preferiti) {
-		this.preferiti = preferiti;
 	}
 
 	public Long getId() {
@@ -155,6 +154,10 @@ public class Utente {
 		this.citta = citta;
 	}
 
+	public List<Ristorante> getPreferiti() {
+		return preferiti;
+	}
+
 	public Set<Prenotazione> getPrenotazioni() {
 		return prenotazioni;
 	}
@@ -163,11 +166,23 @@ public class Utente {
 		this.prenotazioni = prenotazioni;
 	}
 
-	public Set<Recensione> getRecensioni() {
+	public void setPreferiti(List<Ristorante> preferiti) {
+		this.preferiti = preferiti;
+	}
+
+	public List<Recensione> getRecensioni() {
 		return recensioni;
 	}
 
-	public void setRecensioni(Set<Recensione> recensioni) {
+	public void setRecensioni(List<Recensione> recensioni) {
 		this.recensioni = recensioni;
+	}
+
+	public List<Ricerca> getRicerche() {
+		return ricerche;
+	}
+
+	public void setRicerche(List<Ricerca> ricerche) {
+		this.ricerche = ricerche;
 	}
 }

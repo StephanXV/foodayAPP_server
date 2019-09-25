@@ -12,38 +12,8 @@ import javax.persistence.*;
 @Table(name = "prenotazioni")
 public class Prenotazione {
 
-    @Embeddable
-    public static class PrenotazioneId implements Serializable {
-        @Column(name = "ID_RISTORANTE")
-        private Long ristoranteId;
-        @Column(name = "ID_UTENTE")
-        private Long utenteId;
-
-        public PrenotazioneId() {
-        }
-
-        public PrenotazioneId(Long ristoranteId, Long utenteId) {
-            this.ristoranteId = ristoranteId;
-            this.utenteId = utenteId;
-        }
-
-        public boolean equals(Object o) {
-            if (o != null && o instanceof PrenotazioneId) {
-                PrenotazioneId that = (PrenotazioneId) o;
-                return this.ristoranteId.equals(that.ristoranteId)
-                        && this.utenteId.equals(that.utenteId);
-            } else {
-                return false;
-            }
-        }
-
-        public int hashCode() {
-            return ristoranteId.hashCode() + utenteId.hashCode();
-        }
-    }
-
     @EmbeddedId
-    private PrenotazioneId id;
+    private PrenotazioneId prenotazioneId;
 
     @Column(name = "GIORNO", nullable = false)
     private Date giorno;
@@ -73,16 +43,22 @@ public class Prenotazione {
     public Prenotazione() {
     }
 
-    public Prenotazione(Date giorno, String orario, int posti, int scontoApplicato,
-                        Date timestamp, Utente utente, Ristorante ristorante) {
-        this.id = new PrenotazioneId(ristorante.getId(), utente.getId());
+    public Prenotazione(PrenotazioneId id, Date giorno, String orario, int posti, int scontoApplicato,
+                        Date timestamp) {
+        this.prenotazioneId = id;
         this.giorno = giorno;
         this.orario = orario;
         this.posti = posti;
         this.scontoApplicato = scontoApplicato;
         this.timestamp = timestamp;
-        this.utente = utente;
-        this.ristorante = ristorante;
+    }
+
+    public PrenotazioneId getPrenotazioneId() {
+        return prenotazioneId;
+    }
+
+    public void setPrenotazioneId(PrenotazioneId prenotazioneId) {
+        this.prenotazioneId = prenotazioneId;
     }
 
     public Date getGiorno() {
@@ -91,14 +67,6 @@ public class Prenotazione {
 
     public void setGiorno(Date giorno) {
         this.giorno = giorno;
-    }
-
-    public PrenotazioneId getId() {
-        return id;
-    }
-
-    public void setId(PrenotazioneId id) {
-        this.id = id;
     }
 
     public String getOrario() {

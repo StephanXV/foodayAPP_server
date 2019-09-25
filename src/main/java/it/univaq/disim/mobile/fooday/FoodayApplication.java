@@ -36,7 +36,8 @@ public class FoodayApplication {
     @Bean
     public CommandLineRunner loadData(UtenteRepository utenteRepository, CittaRepository cittaRepository, OrarioRepository orarioRepository,
                                       ImmagineRepository immagineRepository, PietanzaRepository pietanzaRepository, PrenotazioneRepository prenotazioneRepository,
-                                      RecensioneRepository recensioneRepository, RistoranteRepository ristoranteRepository, CategoriaRepository categoriaRepository) {
+                                      RecensioneRepository recensioneRepository, RistoranteRepository ristoranteRepository, CategoriaRepository categoriaRepository,
+                                      RicercaRepository ricercaRepository) {
         return (args) -> {
 
             Categoria a = new Categoria();
@@ -260,16 +261,12 @@ public class FoodayApplication {
             ut3.getPreferiti().add(ristorante3);
             utenteRepository.save(ut3);
 
-            Prenotazione pr1 = new Prenotazione(new Date(System.currentTimeMillis() - 81818181), "20:00", 2, 20,
-                    new Date(System.currentTimeMillis()), ut1, ristorante1);
-            Prenotazione.PrenotazioneId id1 = new Prenotazione.PrenotazioneId(ristorante1.getId(), ut1.getId());
-            pr1.setId(id1);
+            Prenotazione pr1 = new Prenotazione(new PrenotazioneId(ristorante1, ut1), new Date(System.currentTimeMillis() - 81818181), "20:00", 2, 20,
+                    new Date(System.currentTimeMillis()));
             prenotazioneRepository.save(pr1);
 
-            Prenotazione pr2 = new Prenotazione(new Date(System.currentTimeMillis() - 61818181), "21:30", 7, 15,
-                    new Date(System.currentTimeMillis()), ut1, ristorante2);
-            Prenotazione.PrenotazioneId id2 = new Prenotazione.PrenotazioneId(ristorante2.getId(), ut1.getId());
-            pr1.setId(id2);
+            Prenotazione pr2 = new Prenotazione(new PrenotazioneId(ristorante2, ut1), new Date(System.currentTimeMillis() - 61818181), "21:30", 7, 15,
+                    new Date(System.currentTimeMillis()));
             prenotazioneRepository.save(pr2);
 
             Recensione rec1 = new Recensione(7, 8, 5,
@@ -312,6 +309,15 @@ public class FoodayApplication {
             recensioneRepository.save(rec6);
             recensioneRepository.save(rec7);
             recensioneRepository.save(rec8);
+
+            Ricerca ric1 = new Ricerca("lu", 3, ut1);
+            Ricerca ric2 = new Ricerca("vasto", 2, ut1);
+            Ricerca ric3 = new Ricerca("roma", 2, ut1);
+            Ricerca ric4 = new Ricerca("shabu", 3, ut1);
+            ricercaRepository.save(ric1);
+            ricercaRepository.save(ric2);
+            ricercaRepository.save(ric3);
+            ricercaRepository.save(ric4);
         };
     }
 }

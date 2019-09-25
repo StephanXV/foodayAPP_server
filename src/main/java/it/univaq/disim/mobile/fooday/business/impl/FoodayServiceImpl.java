@@ -47,6 +47,9 @@ public class FoodayServiceImpl implements FoodayService {
 	private RistoranteRepository ristoranteRepository;
 
 	@Autowired
+    private RicercaRepository ricercaRepository;
+
+	@Autowired
 	private UtenteRepository utenteRepository;
 
 	@Override
@@ -54,7 +57,13 @@ public class FoodayServiceImpl implements FoodayService {
 		return categoriaRepository.findAll();
 	}
 
-	@Override
+    @Override
+    public List<Ricerca> findRicercheByUtente(Long idUtente) throws BusinessException {
+        return ricercaRepository.findRicercheByUtenteId(idUtente);
+    }
+
+
+    @Override
 	public List<Immagine> findImmaginiByRistoranteId(Long idRistorante) throws BusinessException {
 		return immagineRepository.findImmaginiByRistoranteId(idRistorante);
 	}
@@ -86,7 +95,7 @@ public class FoodayServiceImpl implements FoodayService {
 
 	@Override
 	public List<Ristorante> findRistorantiByCittaNome(String nomeCitta) throws BusinessException {
-		return ristoranteRepository.findRistorantiByCittaContaining(nomeCitta);
+		return ristoranteRepository.findRistorantiByCittaNome(nomeCitta);
 	}
 
 	@Override

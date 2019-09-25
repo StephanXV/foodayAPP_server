@@ -19,7 +19,7 @@ public class Categoria {
     @Column(name = "NOME", nullable = false)
     private String nome;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categorie")
     private Set<Ristorante> ristoranti = new HashSet<Ristorante>();
 
@@ -39,5 +39,11 @@ public class Categoria {
         this.nome = nome;
     }
 
+    public Set<Ristorante> getRistoranti() {
+        return ristoranti;
+    }
 
+    public void setRistoranti(Set<Ristorante> ristoranti) {
+        this.ristoranti = ristoranti;
+    }
 }
