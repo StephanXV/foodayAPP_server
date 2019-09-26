@@ -241,21 +241,21 @@ public class FoodayApplication {
 
             Utente ut1 = new Utente("Stefano", "Florio", "steflo",
                     passwordEncoder.encode("stefano"), "stefano@email.com",
-                    "M", "3333333336", citta1);
+                    "M", "3333333336", new Date(System.currentTimeMillis()), "assets/images/profilo.jpg", citta1);
             ut1.getPreferiti().add(ristorante2);
             ut1.getPreferiti().add(ristorante3);
             utenteRepository.save(ut1);
 
             Utente ut2 = new Utente("Giuseppe", "Gasbarro", "ggas23",
                     passwordEncoder.encode("giuseppe"), "giuseppe@email.com",
-                    "M", "3333333337", citta2);
+                    "M", "3333333337", new Date(System.currentTimeMillis()), "assets/images/profilo.jpg", citta2);
             ut2.getPreferiti().add(ristorante1);
             ut2.getPreferiti().add(ristorante4);
             utenteRepository.save(ut2);
 
             Utente ut3 = new Utente("Enrico", "Monte", "enrimon",
                     passwordEncoder.encode("enrico"), "enrico@email.com",
-                    "M", "3333333338", citta1);
+                    "M", "3333333338", new Date(System.currentTimeMillis()), "assets/images/profilo.jpg", citta1);
             ut3.getPreferiti().add(ristorante1);
             ut3.getPreferiti().add(ristorante2);
             ut3.getPreferiti().add(ristorante3);

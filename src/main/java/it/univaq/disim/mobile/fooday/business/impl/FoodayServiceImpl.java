@@ -122,6 +122,7 @@ public class FoodayServiceImpl implements FoodayService {
 	public Utente findUtenteByUsername(String username) throws BusinessException {
 		return utenteRepository.findByUsername(username);
 	}
+
 	@Override
 	public List<Ristorante> findAllRistoranti() throws BusinessException {
 		return ristoranteRepository.findAll();

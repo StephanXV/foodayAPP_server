@@ -2,6 +2,7 @@ package it.univaq.disim.mobile.fooday.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -35,7 +36,7 @@ public class Prenotazione {
     @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
     private Utente utente;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ID_RISTORANTE", insertable = false, updatable = false)
     private Ristorante ristorante;

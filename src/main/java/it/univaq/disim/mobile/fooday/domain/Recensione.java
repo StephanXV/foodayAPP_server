@@ -1,6 +1,7 @@
 package it.univaq.disim.mobile.fooday.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.io.Serializable;
@@ -30,7 +31,7 @@ public class Recensione {
     @Column(name = "TIMESTAMP", nullable = false)
     private Date timestamp;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
     private Utente utente;

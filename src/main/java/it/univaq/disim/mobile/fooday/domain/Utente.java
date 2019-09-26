@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "utenti")
@@ -42,8 +39,14 @@ public class Utente {
 	@Column(name = "SESSO", nullable = false, length = 1)
 	private String sesso;
 
-	@Column(name = "TELEFONO", nullable = true, length = 20)
+	@Column(name = "TELEFONO", length = 20)
 	private String telefono;
+
+	@Column(name = "DATA_NASCITA")
+	private Date nascita;
+
+	@Column(name = "SRC_IMMAGINE")
+	private String srcImmagineProfilo;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_CITTA", nullable = false)
@@ -54,24 +57,26 @@ public class Utente {
 	@JoinTable(name="PREFERITI",
 			joinColumns={@JoinColumn(name="ID_UTENTE")},
 			inverseJoinColumns={@JoinColumn(name="ID_RISTORANTE")})
-	private List<Ristorante> preferiti = new ArrayList<>();
+	private Set<Ristorante> preferiti = new HashSet<Ristorante>();
 
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(mappedBy = "utente")
-	private Set<Prenotazione> prenotazioni;
+	private Set<Prenotazione> prenotazioni = new HashSet<Prenotazione>();
 
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(mappedBy = "utente")
-	private List<Recensione> recensioni = new ArrayList<>();
+	private Set<Recensione> recensioni = new HashSet<Recensione>();
 
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(mappedBy = "utente")
-	private List<Ricerca> ricerche = new ArrayList<>();
+	private Set<Ricerca> ricerche = new HashSet<Ricerca>();
 
 	public Utente() {
 	}
 
-	public Utente(String nome, String cognome, String username, String password, String email, String sesso, String telefono, Citta citta) {
+	public Utente(String nome, String cognome, String username,
+				  String password, String email, String sesso,
+				  String telefono, Date nascita, String src, Citta citta) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = username;
@@ -80,14 +85,8 @@ public class Utente {
 		this.sesso = sesso;
 		this.telefono = telefono;
 		this.citta = citta;
-	}
-
-	public String getSesso() {
-		return sesso;
-	}
-
-	public void setSesso(String sesso) {
-		this.sesso = sesso;
+		this.srcImmagineProfilo = src;
+		this.nascita = nascita;
 	}
 
 	public Long getId() {
@@ -96,6 +95,22 @@ public class Utente {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getSrcImmagineProfilo() {
+		return srcImmagineProfilo;
+	}
+
+	public Date getNascita() {
+		return nascita;
+	}
+
+	public void setNascita(Date nascita) {
+		this.nascita = nascita;
+	}
+
+	public void setSrcImmagineProfilo(String srcImmagineProfilo) {
+		this.srcImmagineProfilo = srcImmagineProfilo;
 	}
 
 	public String getNome() {
@@ -138,6 +153,14 @@ public class Utente {
 		this.email = email;
 	}
 
+	public String getSesso() {
+		return sesso;
+	}
+
+	public void setSesso(String sesso) {
+		this.sesso = sesso;
+	}
+
 	public String getTelefono() {
 		return telefono;
 	}
@@ -154,8 +177,12 @@ public class Utente {
 		this.citta = citta;
 	}
 
-	public List<Ristorante> getPreferiti() {
+	public Set<Ristorante> getPreferiti() {
 		return preferiti;
+	}
+
+	public void setPreferiti(Set<Ristorante> preferiti) {
+		this.preferiti = preferiti;
 	}
 
 	public Set<Prenotazione> getPrenotazioni() {
@@ -166,23 +193,19 @@ public class Utente {
 		this.prenotazioni = prenotazioni;
 	}
 
-	public void setPreferiti(List<Ristorante> preferiti) {
-		this.preferiti = preferiti;
-	}
-
-	public List<Recensione> getRecensioni() {
+	public Set<Recensione> getRecensioni() {
 		return recensioni;
 	}
 
-	public void setRecensioni(List<Recensione> recensioni) {
+	public void setRecensioni(Set<Recensione> recensioni) {
 		this.recensioni = recensioni;
 	}
 
-	public List<Ricerca> getRicerche() {
+	public Set<Ricerca> getRicerche() {
 		return ricerche;
 	}
 
-	public void setRicerche(List<Ricerca> ricerche) {
+	public void setRicerche(Set<Ricerca> ricerche) {
 		this.ricerche = ricerche;
 	}
 }

@@ -2,6 +2,7 @@ package it.univaq.disim.mobile.fooday.api;
 
 import javax.servlet.http.HttpServletResponse;
 
+import it.univaq.disim.mobile.fooday.domain.Ristorante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,7 +34,7 @@ public class RESTUtenteController {
 	private JWTTokenUtil jwtTokenUtil;
 
 	@Autowired
-	private FoodayService myUnivaqService;
+	private FoodayService foodayService;
 
 	@PostMapping("/login")
 	public UtenteResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException {
@@ -52,7 +53,7 @@ public class RESTUtenteController {
 
 	@PostMapping("/utente/updateprofilo")
 	public UtenteResponse updateProfilo(@RequestBody Utente utente) {
-		Utente nuovoUtente = myUnivaqService.updateProfilo(utente);		
+		Utente nuovoUtente = foodayService.updateProfilo(utente);
 		return new UtenteResponse(nuovoUtente);
 	}
 

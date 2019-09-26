@@ -19,7 +19,7 @@ public class Categoria {
     @Column(name = "NOME", nullable = false)
     private String nome;
 
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToMany(mappedBy = "categorie")
     private Set<Ristorante> ristoranti = new HashSet<Ristorante>();
 
