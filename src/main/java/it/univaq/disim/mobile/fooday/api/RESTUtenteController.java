@@ -2,6 +2,7 @@ package it.univaq.disim.mobile.fooday.api;
 
 import javax.servlet.http.HttpServletResponse;
 
+import it.univaq.disim.mobile.fooday.domain.Ristorante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;

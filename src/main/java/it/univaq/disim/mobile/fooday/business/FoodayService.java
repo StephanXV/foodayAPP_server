@@ -29,6 +29,8 @@ public interface FoodayService {
 
 	List<Citta> findCittaByNome() throws BusinessException;
 
+	List<Ricerca> findRicercheByUtente(Long idUtente) throws BusinessException;
+
 	List<Ristorante> findRistorantiByCategoryId(Long idCategory) throws BusinessException;
 
 	Ristorante findRistoranteById(Long idRistorante) throws BusinessException;

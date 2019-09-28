@@ -47,53 +47,31 @@ public class Ristorante {
     @JoinTable(name="CATEGORIZZAZIONE",
             joinColumns={@JoinColumn(name="ID_RISTORANTE")},
             inverseJoinColumns={@JoinColumn(name="ID_CATEGORIA")})
-    private Set<Categoria> categorie = new HashSet<>();
+    private Set<Categoria> categorie = new HashSet<Categoria>();
 
     @JsonBackReference
     @ManyToMany(mappedBy = "preferiti")
-    private Set<Utente> utenti = new HashSet<Utente>();
+    private Set<Utente> preferiti;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "ristorante")
-    private Set<Prenotazione> prenotazioni =new HashSet<Prenotazione>();
-
-    @OneToMany(mappedBy = "ristorante")
-    private Set<Recensione> recensioni =new HashSet<Recensione>();
+    private Set<Prenotazione> prenotazioni = new HashSet<Prenotazione>();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
-    private List<Orario> orari = new ArrayList<Orario>();
+    private Set<Recensione> recensioni = new HashSet<Recensione>();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
-    private List<Pietanza> pietanze = new ArrayList<Pietanza>();
+    private Set<Orario> orari = new HashSet<Orario>();
 
     @JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
-    private List<Immagine> immagini = new ArrayList<Immagine>();
+    private Set<Pietanza> pietanze = new HashSet<Pietanza>();
 
-    public Set<Categoria> getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(Set<Categoria> categorie) {
-        this.categorie = categorie;
-    }
-
-    public Set<Utente> getUtenti() {
-        return utenti;
-    }
-
-    public void setUtenti(Set<Utente> utenti) {
-        this.utenti = utenti;
-    }
-
-    public void setOrari(List<Orario> orari) {
-        this.orari = orari;
-    }
-
-    public List<Orario> getOrari() {
-        return orari;
-    }
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ristorante")
+    private Set<Immagine> immagini = new HashSet<Immagine>();
 
     public Long getId() {
         return id;
@@ -167,6 +145,21 @@ public class Ristorante {
         this.citta = citta;
     }
 
+    public Set<Categoria> getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Set<Categoria> categorie) {
+        this.categorie = categorie;
+    }
+
+    public Set<Utente> getUtenti() {
+        return preferiti;
+    }
+
+    public void setUtenti(Set<Utente> utenti) {
+        this.preferiti = utenti;
+    }
 
     public Set<Prenotazione> getPrenotazioni() {
         return prenotazioni;
@@ -182,5 +175,29 @@ public class Ristorante {
 
     public void setRecensioni(Set<Recensione> recensioni) {
         this.recensioni = recensioni;
+    }
+
+    public Set<Orario> getOrari() {
+        return orari;
+    }
+
+    public void setOrari(Set<Orario> orari) {
+        this.orari = orari;
+    }
+
+    public Set<Pietanza> getPietanze() {
+        return pietanze;
+    }
+
+    public void setPietanze(Set<Pietanza> pietanze) {
+        this.pietanze = pietanze;
+    }
+
+    public Set<Immagine> getImmagini() {
+        return immagini;
+    }
+
+    public void setImmagini(Set<Immagine> immagini) {
+        this.immagini = immagini;
     }
 }

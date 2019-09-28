@@ -39,5 +39,11 @@ public class Categoria {
         this.nome = nome;
     }
 
+    public Set<Ristorante> getRistoranti() {
+        return ristoranti;
+    }
 
+    public void setRistoranti(Set<Ristorante> ristoranti) {
+        this.ristoranti = ristoranti;
+    }
 }

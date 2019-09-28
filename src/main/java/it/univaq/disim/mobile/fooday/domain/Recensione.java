@@ -1,6 +1,8 @@
 package it.univaq.disim.mobile.fooday.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,36 +12,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "recensioni")
 public class Recensione {
-
-    @Embeddable
-    public static class RecensioneId implements Serializable {
-        @Column(name = "ID_RISTORANTE")
-        private Long ristoranteId;
-        @Column(name = "ID_UTENTE")
-        private Long utenteId;
-
-        public RecensioneId() {
-        }
-
-        public RecensioneId(Long ristoranteId, Long utenteId) {
-            this.ristoranteId = ristoranteId;
-            this.utenteId = utenteId;
-        }
-
-        public boolean equals(Object o) {
-            if (o != null && o instanceof Recensione.RecensioneId) {
-                Recensione.RecensioneId that = (Recensione.RecensioneId) o;
-                return this.ristoranteId.equals(that.ristoranteId)
-                        && this.utenteId.equals(that.utenteId);
-            } else {
-                return false;
-            }
-        }
-
-        public int hashCode() {
-            return ristoranteId.hashCode() + utenteId.hashCode();
-        }
-    }
 
     @EmbeddedId
     private RecensioneId id;
@@ -59,7 +31,7 @@ public class Recensione {
     @Column(name = "TIMESTAMP", nullable = false)
     private Date timestamp;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
     private Utente utente;
