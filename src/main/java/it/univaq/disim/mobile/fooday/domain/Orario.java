@@ -20,13 +20,17 @@ public class Orario {
     @Column(name = "CHIUSURA", nullable = false)
     private String chiusura;
 
+    @Enumerated(EnumType.STRING)
+    private Giorno giorno;
+
     public Orario() {
     }
 
-    public Orario(String apertura, String chiusura, Ristorante ristorante) {
+    public Orario(String apertura, String chiusura, Ristorante ristorante, Giorno giorno) {
         this.apertura = apertura;
         this.chiusura = chiusura;
         this.ristorante = ristorante;
+        this.giorno = giorno;
     }
 
     @JsonBackReference
@@ -64,5 +68,13 @@ public class Orario {
 
     public void setRistorante(Ristorante ristorante) {
         this.ristorante = ristorante;
+    }
+
+    public Giorno getGiorno() {
+        return giorno;
+    }
+
+    public void setGiorno(Giorno giorno) {
+        this.giorno = giorno;
     }
 }
