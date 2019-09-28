@@ -77,9 +77,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and().authorizeRequests()
 				//Specificare le url che sono soggette ad autenticazione ed autorizzazione
 				.antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js", "/api/login/**").permitAll()
-				.antMatchers("/api/notizie/**").authenticated()
-				.antMatchers("/api/insegnamenti/**", "/api/appelli/**").hasAnyRole("docente");
-				//.antMatchers("/api/utente/**").authenticated();
+				.antMatchers("/api/prenotazioni/**").authenticated()
+                                .antMatchers("/api/utente/updateprofilo/**").authenticated()
+                                .antMatchers("/api/orari/**").authenticated();
 			
 
 		// Filtro Custom JWT

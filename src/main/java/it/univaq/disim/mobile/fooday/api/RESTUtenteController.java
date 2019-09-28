@@ -53,7 +53,7 @@ public class RESTUtenteController {
 
 	@PostMapping("/utente/updateprofilo")
 	public UtenteResponse updateProfilo(@RequestBody Utente utente) {
-		Utente nuovoUtente = foodayService.updateProfilo(utente);
+		Utente nuovoUtente = foodayService.updateProfilo(utente);		
 		return new UtenteResponse(nuovoUtente);
 	}
 
