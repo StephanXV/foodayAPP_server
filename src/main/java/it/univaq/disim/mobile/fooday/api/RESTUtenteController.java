@@ -33,7 +33,7 @@ public class RESTUtenteController {
 	private JWTTokenUtil jwtTokenUtil;
 
 	@Autowired
-	private FoodayService myUnivaqService;
+	private FoodayService foodayService;
 
 	@PostMapping("/login")
 	public UtenteResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException {
@@ -52,7 +52,7 @@ public class RESTUtenteController {
 
 	@PostMapping("/utente/updateprofilo")
 	public UtenteResponse updateProfilo(@RequestBody Utente utente) {
-		Utente nuovoUtente = myUnivaqService.updateProfilo(utente);		
+		Utente nuovoUtente = foodayService.updateProfilo(utente);		
 		return new UtenteResponse(nuovoUtente);
 	}
 
