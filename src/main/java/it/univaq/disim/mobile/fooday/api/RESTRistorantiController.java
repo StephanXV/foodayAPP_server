@@ -38,4 +38,14 @@ public class RESTRistorantiController {
     public List<Ristorante> getRistorantiByNome(@PathVariable String nomeRisto) {
         return foodayService.findRistorantiByNome(nomeRisto);
     }
+
+    @GetMapping("/preferiti/{idUtente}")
+    public List<Ristorante> getRistorantiPreferiti(@PathVariable Long idUtente) {
+        return foodayService.findRistorantiPreferiti(idUtente);
+    }
+
+    @DeleteMapping("preferiti/{idRistorante}/{idUtente}")
+    public void deleteRistoranteByPreferiti(@PathVariable long idRistorante, @PathVariable long idUtente) {
+        foodayService.deleteRistoranteByPreferiti(idRistorante, idUtente);
+    }
 }

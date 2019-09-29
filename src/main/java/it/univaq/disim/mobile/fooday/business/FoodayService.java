@@ -40,4 +40,8 @@ public interface FoodayService {
 	Utente updateProfilo(Utente utente) throws BusinessException;
 
 	List<Ristorante> findAllRistoranti() throws BusinessException;
+
+	List<Ristorante> findRistorantiPreferiti(Long idUtente);
+
+	void deleteRistoranteByPreferiti(long idRistorante, long idUtente);
 }

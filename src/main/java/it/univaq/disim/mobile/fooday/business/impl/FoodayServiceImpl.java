@@ -140,4 +140,14 @@ public class FoodayServiceImpl implements FoodayService {
 	public List<Citta> findCittaByNome( ) throws BusinessException {
 		return cittaRepository.findAll();
 	}
+
+	@Override
+	public List<Ristorante> findRistorantiPreferiti(Long idUtente) {
+		return ristoranteRepository.findRistorantiByPreferitiId(idUtente);
+	}
+
+	@Override
+	public void deleteRistoranteByPreferiti(long idRistorante, long idUtente) {
+		utenteRepository.getOne(idUtente).getPreferiti().remove(ristoranteRepository.getOne(idRistorante));
+	}
 }

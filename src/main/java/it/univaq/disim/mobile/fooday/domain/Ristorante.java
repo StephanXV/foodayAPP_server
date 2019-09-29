@@ -51,7 +51,7 @@ public class Ristorante {
 
     @JsonBackReference
     @ManyToMany(mappedBy = "preferiti")
-    private Set<Utente> preferiti;
+    private Set<Utente> preferiti = new HashSet<Utente>();
 
     @JsonBackReference
     @OneToMany(mappedBy = "ristorante")
