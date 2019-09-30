@@ -54,14 +54,9 @@ public class UserDetailsImpl implements UserDetails {
 		List<GrantedAuthority> result = new ArrayList<>();
 
 		if (utente instanceof Utente) {
-			GrantedAuthorityImpl authorityImpl = new GrantedAuthorityImpl("docente");
+			GrantedAuthorityImpl authorityImpl = new GrantedAuthorityImpl("utente");
 			result.add(authorityImpl);
-		} else {
-			if (utente instanceof Utente) {
-				GrantedAuthorityImpl authorityImpl = new GrantedAuthorityImpl("studente");
-				result.add(authorityImpl);
-			}
-		}
+		} 
 		return result;
 	}
 

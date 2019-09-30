@@ -76,8 +76,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().cors()
 				.and().authorizeRequests()
 				//Specificare le url che sono soggette ad autenticazione ed autorizzazione
-				.antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js", "/api/login/**").permitAll()
+				.antMatchers("/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js", "/api/login/**", "/api/categorie/**",
+                                 "/api/citta/**", "/api/immagini/**", "/api/orari/**", "/api/ricerche/**").permitAll()
 				.antMatchers("/api/prenotazioni/**").authenticated()
+                                .antMatchers("/api/ristoranti/preferiti/**").authenticated()
 				.antMatchers("/api/utente/updateprofilo/**").authenticated();
 
 			
