@@ -11,6 +11,7 @@ import it.univaq.disim.mobile.fooday.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.JpaSort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,9 @@ import javax.persistence.Id;
 @Service
 @Transactional
 public class FoodayServiceImpl implements FoodayService {
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -149,5 +153,18 @@ public class FoodayServiceImpl implements FoodayService {
 	@Override
 	public void deleteRistoranteByPreferiti(long idRistorante, long idUtente) {
 		utenteRepository.getOne(idUtente).getPreferiti().remove(ristoranteRepository.getOne(idRistorante));
+	}
+
+	@Override
+	public Utente registerUtente(Utente nuovoUtente) {
+		Citta citta = new Citta();
+		citta.setNome(nuovoUtente.getCitta().getNome());
+		cittaRepository.save(citta);
+		Utente utente = new Utente(nuovoUtente.getNome(), nuovoUtente.getCognome(),
+				nuovoUtente.getUsername(), passwordEncoder.encode(nuovoUtente.getPassword()), nuovoUtente.getEmail(),
+				nuovoUtente.getSesso(),	nuovoUtente.getTelefono(), nuovoUtente.getNascita(),
+				nuovoUtente.getSrcImmagineProfilo(), citta, 0);
+		utenteRepository.save(utente);
+		return utente;
 	}
 }

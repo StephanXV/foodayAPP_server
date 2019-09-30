@@ -93,12 +93,36 @@ public class Utente {
 		this.punti = punti;
 	}
 
+	public int getPunti() {
+		return punti;
+	}
+
+	public void setPunti(int punti) {
+		this.punti = punti;
+	}
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getSrcImmagineProfilo() {
+		return srcImmagineProfilo;
+	}
+
+	public Date getNascita() {
+		return nascita;
+	}
+
+	public void setNascita(Date nascita) {
+		this.nascita = nascita;
+	}
+
+	public void setSrcImmagineProfilo(String srcImmagineProfilo) {
+		this.srcImmagineProfilo = srcImmagineProfilo;
 	}
 
 	public String getNome() {
@@ -155,30 +179,6 @@ public class Utente {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-
-	public Date getNascita() {
-		return nascita;
-	}
-
-	public void setNascita(Date nascita) {
-		this.nascita = nascita;
-	}
-
-	public String getSrcImmagineProfilo() {
-		return srcImmagineProfilo;
-	}
-
-	public void setSrcImmagineProfilo(String srcImmagineProfilo) {
-		this.srcImmagineProfilo = srcImmagineProfilo;
-	}
-
-	public int getPunti() {
-		return punti;
-	}
-
-	public void setPunti(int punti) {
-		this.punti = punti;
 	}
 
 	public Citta getCitta() {

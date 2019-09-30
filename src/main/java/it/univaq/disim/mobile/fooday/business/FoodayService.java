@@ -44,4 +44,6 @@ public interface FoodayService {
 	List<Ristorante> findRistorantiPreferiti(Long idUtente);
 
 	void deleteRistoranteByPreferiti(long idRistorante, long idUtente);
+
+	Utente registerUtente(Utente nuovoUtente);
 }
