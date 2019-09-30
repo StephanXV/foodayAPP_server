@@ -48,6 +48,9 @@ public class Utente {
 	@Column(name = "SRC_IMMAGINE")
 	private String srcImmagineProfilo;
 
+	@Column(name = "PUNTI")
+	private int punti;
+
 	@ManyToOne
 	@JoinColumn(name = "ID_CITTA", nullable = false)
 	private Citta citta;
@@ -76,7 +79,7 @@ public class Utente {
 
 	public Utente(String nome, String cognome, String username,
 				  String password, String email, String sesso,
-				  String telefono, Date nascita, String src, Citta citta) {
+				  String telefono, Date nascita, String src, Citta citta, int punti) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = username;
@@ -87,6 +90,7 @@ public class Utente {
 		this.citta = citta;
 		this.srcImmagineProfilo = src;
 		this.nascita = nascita;
+		this.punti = punti;
 	}
 
 	public Long getId() {
@@ -95,22 +99,6 @@ public class Utente {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getSrcImmagineProfilo() {
-		return srcImmagineProfilo;
-	}
-
-	public Date getNascita() {
-		return nascita;
-	}
-
-	public void setNascita(Date nascita) {
-		this.nascita = nascita;
-	}
-
-	public void setSrcImmagineProfilo(String srcImmagineProfilo) {
-		this.srcImmagineProfilo = srcImmagineProfilo;
 	}
 
 	public String getNome() {
@@ -167,6 +155,30 @@ public class Utente {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public Date getNascita() {
+		return nascita;
+	}
+
+	public void setNascita(Date nascita) {
+		this.nascita = nascita;
+	}
+
+	public String getSrcImmagineProfilo() {
+		return srcImmagineProfilo;
+	}
+
+	public void setSrcImmagineProfilo(String srcImmagineProfilo) {
+		this.srcImmagineProfilo = srcImmagineProfilo;
+	}
+
+	public int getPunti() {
+		return punti;
+	}
+
+	public void setPunti(int punti) {
+		this.punti = punti;
 	}
 
 	public Citta getCitta() {
