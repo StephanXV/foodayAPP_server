@@ -141,8 +141,8 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public List<Citta> findCittaByNome( ) throws BusinessException {
-		return cittaRepository.findAll();
+	public Citta findCitta(String nome) {
+		return cittaRepository.findByNome(nome);
 	}
 
 	@Override
@@ -158,12 +158,16 @@ public class FoodayServiceImpl implements FoodayService {
 	@Override
 	public Utente registerUtente(Utente nuovoUtente) {
 		Citta citta = new Citta();
-		citta.setNome(nuovoUtente.getCitta().getNome());
-		cittaRepository.save(citta);
+		if (cittaRepository.findByNome(nuovoUtente.getCitta().getNome()) != null)
+			citta = cittaRepository.findByNome(nuovoUtente.getCitta().getNome());
+		else {
+			citta.setNome(nuovoUtente.getCitta().getNome());
+			cittaRepository.save(citta);
+		}
 		Utente utente = new Utente(nuovoUtente.getNome(), nuovoUtente.getCognome(),
 				nuovoUtente.getUsername(), passwordEncoder.encode(nuovoUtente.getPassword()), nuovoUtente.getEmail(),
 				nuovoUtente.getSesso(),	nuovoUtente.getTelefono(), nuovoUtente.getNascita(),
-				nuovoUtente.getSrcImmagineProfilo(), citta, 0);
+				"assets/images/profilo.jpg", citta, 0);
 		utenteRepository.save(utente);
 		return utente;
 	}

@@ -27,8 +27,6 @@ public interface FoodayService {
 
 	List<Ristorante> findRistorantiByUserCity(Long idCitta) throws BusinessException;
 
-	List<Citta> findCittaByNome() throws BusinessException;
-
 	List<Ricerca> findRicercheByUtente(Long idUtente) throws BusinessException;
 
 	List<Ristorante> findRistorantiByCategoryId(Long idCategory) throws BusinessException;
@@ -46,4 +44,6 @@ public interface FoodayService {
 	void deleteRistoranteByPreferiti(long idRistorante, long idUtente);
 
 	Utente registerUtente(Utente nuovoUtente);
+
+	Citta findCitta(String nome);
 }

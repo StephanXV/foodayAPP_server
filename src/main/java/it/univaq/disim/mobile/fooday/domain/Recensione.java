@@ -31,7 +31,7 @@ public class Recensione {
     @Column(name = "TIMESTAMP", nullable = false)
     private Date timestamp;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
     private Utente utente;

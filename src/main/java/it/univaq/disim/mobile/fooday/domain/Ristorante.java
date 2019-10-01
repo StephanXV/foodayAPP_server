@@ -42,34 +42,34 @@ public class Ristorante {
     @JoinColumn(name = "ID_CITTA")
     private Citta citta;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @ManyToMany
     @JoinTable(name="CATEGORIZZAZIONE",
             joinColumns={@JoinColumn(name="ID_RISTORANTE")},
             inverseJoinColumns={@JoinColumn(name="ID_CATEGORIA")})
     private Set<Categoria> categorie = new HashSet<Categoria>();
 
-    @JsonBackReference
+    @JsonBackReference(value = "ristoPreferiti")
     @ManyToMany(mappedBy = "preferiti")
     private Set<Utente> preferiti = new HashSet<Utente>();
 
-    @JsonBackReference
+    @JsonBackReference(value = "ristoPrenotazioni")
     @OneToMany(mappedBy = "ristorante")
     private Set<Prenotazione> prenotazioni = new HashSet<Prenotazione>();
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Recensione> recensioni = new HashSet<Recensione>();
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Orario> orari = new HashSet<Orario>();
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Pietanza> pietanze = new HashSet<Pietanza>();
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Immagine> immagini = new HashSet<Immagine>();
 

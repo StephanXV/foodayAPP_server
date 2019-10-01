@@ -59,7 +59,9 @@ public class RESTUtenteController {
 
 	@PostMapping("/utente/registrazione")
 	public UtenteResponse registerUtente(@RequestBody Utente utente){
+		System.out.println(utente.toString());
 		Utente nuovoUtente = foodayService.registerUtente(utente);
+
 		return new UtenteResponse(nuovoUtente);
 	}
 
