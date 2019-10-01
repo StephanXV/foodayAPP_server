@@ -119,4 +119,18 @@ public class Recensione {
     public void setRistorante(Ristorante ristorante) {
         this.ristorante = ristorante;
     }
+
+    @Override
+    public String toString() {
+        return "Recensione{" +
+                "id=" + id +
+                ", votoCucina=" + votoCucina +
+                ", votoServizio=" + votoServizio +
+                ", votoPrezzo=" + votoPrezzo +
+                ", descrizione='" + descrizione + '\'' +
+                ", timestamp=" + timestamp +
+                ", utente=" + utente +
+                ", ristorante=" + ristorante +
+                '}';
+    }
 }

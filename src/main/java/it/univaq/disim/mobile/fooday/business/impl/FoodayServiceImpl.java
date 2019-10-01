@@ -1,7 +1,7 @@
 package it.univaq.disim.mobile.fooday.business.impl;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import it.univaq.disim.mobile.fooday.business.BusinessException;
 import it.univaq.disim.mobile.fooday.business.FoodayService;
@@ -9,14 +9,9 @@ import it.univaq.disim.mobile.fooday.business.impl.repositories.*;
 import it.univaq.disim.mobile.fooday.domain.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 
 @Service
@@ -93,8 +88,17 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public void createRecensione(Recensione recensione) throws BusinessException {
-
+	public Recensione createRecensione(Recensione recensione) throws BusinessException {
+		Recensione newRecensione = new Recensione();
+		RecensioneId recensioneId = new RecensioneId(recensione.getUtente().getId(), recensione.getRistorante().getId());
+		newRecensione.setId(recensioneId);
+		newRecensione.setVotoCucina(recensione.getVotoCucina());
+		newRecensione.setVotoServizio(recensione.getVotoServizio());
+		newRecensione.setVotoPrezzo(recensione.getVotoPrezzo());
+		newRecensione.setDescrizione(recensione.getDescrizione());
+		newRecensione.setTimestamp(new Date(System.currentTimeMillis()));
+		recensioneRepository.save(newRecensione);
+		return newRecensione;
 	}
 
 	@Override

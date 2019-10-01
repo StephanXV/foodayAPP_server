@@ -200,4 +200,26 @@ public class Ristorante {
     public void setImmagini(Set<Immagine> immagini) {
         this.immagini = immagini;
     }
+
+    @Override
+    public String toString() {
+        return "Ristorante{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", indirizzo='" + indirizzo + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", postiTot=" + postiTot +
+                ", punteggio=" + punteggio +
+                ", prezzoMedio=" + prezzoMedio +
+                ", sconto=" + sconto +
+                ", citta=" + citta +
+                ", categorie=" + categorie +
+                ", preferiti=" + preferiti +
+                ", prenotazioni=" + prenotazioni +
+                ", recensioni=" + recensioni +
+                ", orari=" + orari +
+                ", pietanze=" + pietanze +
+                ", immagini=" + immagini +
+                '}';
+    }
 }

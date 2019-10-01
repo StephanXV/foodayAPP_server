@@ -1,7 +1,6 @@
 package it.univaq.disim.mobile.fooday.business;
 
 import java.util.List;
-import java.util.Set;
 
 import it.univaq.disim.mobile.fooday.domain.*;
 
@@ -19,7 +18,7 @@ public interface FoodayService {
 
 	List<Recensione> findRecensioniByRistoranteId(Long idRistorante) throws BusinessException;
 
-	void createRecensione(Recensione recensione) throws BusinessException;
+	Recensione createRecensione(Recensione recensione) throws BusinessException;
 
 	List<Ristorante> findRistorantiByCittaNome(String nomeCitta) throws BusinessException;
 
