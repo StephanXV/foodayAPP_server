@@ -134,9 +134,24 @@ public class FoodayServiceImpl implements FoodayService {
 
 	@Override
 	public Utente updateProfilo(Utente profilo) throws BusinessException {
+		Citta citta = new Citta();
+		if (cittaRepository.findByNome(profilo.getCitta().getNome()) != null)
+			citta = cittaRepository.findByNome(profilo.getCitta().getNome());
+		else {
+			citta.setNome(profilo.getCitta().getNome());
+			cittaRepository.save(citta);
+		}
 		Utente utente = utenteRepository.findByUsername(profilo.getUsername());
+		utente.setNome(profilo.getNome());
+		utente.setCognome(profilo.getCognome());
+		utente.setUsername(profilo.getUsername());
 		utente.setEmail(profilo.getEmail());
+		if (profilo.getPassword() != null)
+			utente.setPassword(passwordEncoder.encode(profilo.getPassword()));
 		utente.setTelefono(profilo.getTelefono());
+		utente.setNascita(profilo.getNascita());
+		utente.setCitta(citta);
+		utente.setSesso(profilo.getSesso());
 		return utente;
 	}
 

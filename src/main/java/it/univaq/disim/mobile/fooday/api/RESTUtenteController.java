@@ -53,6 +53,7 @@ public class RESTUtenteController {
 
 	@PostMapping("/utente/updateprofilo")
 	public UtenteResponse updateProfilo(@RequestBody Utente utente) {
+		System.out.println(utente.toString());
 		Utente nuovoUtente = foodayService.updateProfilo(utente);		
 		return new UtenteResponse(nuovoUtente);
 	}
@@ -61,7 +62,6 @@ public class RESTUtenteController {
 	public UtenteResponse registerUtente(@RequestBody Utente utente){
 		System.out.println(utente.toString());
 		Utente nuovoUtente = foodayService.registerUtente(utente);
-
 		return new UtenteResponse(nuovoUtente);
 	}
 
