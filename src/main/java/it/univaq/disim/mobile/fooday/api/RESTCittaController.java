@@ -13,10 +13,4 @@ public class RESTCittaController {
 
     @Autowired
     private FoodayService foodayService;
-
-    @GetMapping
-    public List<Citta> cittaInput() {
-        return foodayService.findCittaByNome();
-    }
-
 }

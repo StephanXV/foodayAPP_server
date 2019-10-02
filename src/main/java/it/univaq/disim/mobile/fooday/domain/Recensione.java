@@ -31,7 +31,7 @@ public class Recensione {
     @Column(name = "TIMESTAMP", nullable = false)
     private Date timestamp;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
     private Utente utente;
@@ -118,5 +118,19 @@ public class Recensione {
 
     public void setRistorante(Ristorante ristorante) {
         this.ristorante = ristorante;
+    }
+
+    @Override
+    public String toString() {
+        return "Recensione{" +
+                "id=" + id +
+                ", votoCucina=" + votoCucina +
+                ", votoServizio=" + votoServizio +
+                ", votoPrezzo=" + votoPrezzo +
+                ", descrizione='" + descrizione + '\'' +
+                ", timestamp=" + timestamp +
+                ", utente=" + utente +
+                ", ristorante=" + ristorante +
+                '}';
     }
 }

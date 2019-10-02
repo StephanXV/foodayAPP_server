@@ -36,7 +36,7 @@ public class Prenotazione {
     @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
     private Utente utente;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ID_RISTORANTE", insertable = false, updatable = false)
     private Ristorante ristorante;

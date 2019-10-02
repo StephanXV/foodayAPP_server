@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.*;
@@ -11,8 +12,6 @@ import java.util.*;
 @Entity
 @Table(name = "utenti")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TIPOLOGIA_UTENTE", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("utente")
 public class Utente {
 
 	@Id
@@ -29,14 +28,13 @@ public class Utente {
 	@Column(name = "USERNAME", nullable = false, length = 16, updatable = false, unique = true)
 	private String username;
 
-	@JsonIgnore
 	@Column(name = "PASSWORD", nullable = false, length = 255)
 	private String password;
 	
 	@Column(name = "EMAIL", nullable = false, length = 255)
 	private String email;
 
-	@Column(name = "SESSO", nullable = false, length = 1)
+	@Column(name = "SESSO", nullable = false, length = 30)
 	private String sesso;
 
 	@Column(name = "TELEFONO", length = 20)
@@ -55,22 +53,22 @@ public class Utente {
 	@JoinColumn(name = "ID_CITTA", nullable = false)
 	private Citta citta;
 
-	@JsonBackReference
+	@JsonBackReference(value = "utentePreferiti")
 	@ManyToMany
 	@JoinTable(name="PREFERITI",
 			joinColumns={@JoinColumn(name="ID_UTENTE")},
 			inverseJoinColumns={@JoinColumn(name="ID_RISTORANTE")})
 	private Set<Ristorante> preferiti = new HashSet<Ristorante>();
 
-	@JsonBackReference
+	@JsonBackReference(value = "utentePrenotazioni")
 	@OneToMany(mappedBy = "utente")
 	private Set<Prenotazione> prenotazioni = new HashSet<Prenotazione>();
 
-	@JsonBackReference
+	@JsonBackReference(value = "utenteRecensioni")
 	@OneToMany(mappedBy = "utente")
 	private Set<Recensione> recensioni = new HashSet<Recensione>();
 
-	@JsonBackReference
+	@JsonBackReference(value = "utenteRicerche")
 	@OneToMany(mappedBy = "utente")
 	private Set<Ricerca> ricerche = new HashSet<Ricerca>();
 
@@ -219,5 +217,27 @@ public class Utente {
 
 	public void setRicerche(Set<Ricerca> ricerche) {
 		this.ricerche = ricerche;
+	}
+
+	@Override
+	public String toString() {
+		return "Utente{" +
+				"id=" + id +
+				", nome='" + nome + '\'' +
+				", cognome='" + cognome + '\'' +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", email='" + email + '\'' +
+				", sesso='" + sesso + '\'' +
+				", telefono='" + telefono + '\'' +
+				", nascita=" + nascita +
+				", srcImmagineProfilo='" + srcImmagineProfilo + '\'' +
+				", punti=" + punti +
+				", citta=" + citta +
+				", preferiti=" + preferiti +
+				", prenotazioni=" + prenotazioni +
+				", recensioni=" + recensioni +
+				", ricerche=" + ricerche +
+				'}';
 	}
 }

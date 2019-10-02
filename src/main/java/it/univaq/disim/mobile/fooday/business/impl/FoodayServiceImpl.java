@@ -1,7 +1,7 @@
 package it.univaq.disim.mobile.fooday.business.impl;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import it.univaq.disim.mobile.fooday.business.BusinessException;
 import it.univaq.disim.mobile.fooday.business.FoodayService;
@@ -9,14 +9,9 @@ import it.univaq.disim.mobile.fooday.business.impl.repositories.*;
 import it.univaq.disim.mobile.fooday.domain.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 
 @Service
@@ -93,8 +88,17 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public void createRecensione(Recensione recensione) throws BusinessException {
-
+	public Recensione createRecensione(Recensione recensione) throws BusinessException {
+		Recensione newRecensione = new Recensione();
+		RecensioneId recensioneId = new RecensioneId(recensione.getUtente().getId(), recensione.getRistorante().getId());
+		newRecensione.setId(recensioneId);
+		newRecensione.setVotoCucina(recensione.getVotoCucina());
+		newRecensione.setVotoServizio(recensione.getVotoServizio());
+		newRecensione.setVotoPrezzo(recensione.getVotoPrezzo());
+		newRecensione.setDescrizione(recensione.getDescrizione());
+		newRecensione.setTimestamp(new Date(System.currentTimeMillis()));
+		recensioneRepository.save(newRecensione);
+		return newRecensione;
 	}
 
 	@Override
@@ -134,15 +138,30 @@ public class FoodayServiceImpl implements FoodayService {
 
 	@Override
 	public Utente updateProfilo(Utente profilo) throws BusinessException {
+		Citta citta = new Citta();
+		if (cittaRepository.findByNome(profilo.getCitta().getNome()) != null)
+			citta = cittaRepository.findByNome(profilo.getCitta().getNome());
+		else {
+			citta.setNome(profilo.getCitta().getNome());
+			cittaRepository.save(citta);
+		}
 		Utente utente = utenteRepository.findByUsername(profilo.getUsername());
+		utente.setNome(profilo.getNome());
+		utente.setCognome(profilo.getCognome());
+		utente.setUsername(profilo.getUsername());
 		utente.setEmail(profilo.getEmail());
+		if (profilo.getPassword() != null)
+			utente.setPassword(passwordEncoder.encode(profilo.getPassword()));
 		utente.setTelefono(profilo.getTelefono());
+		utente.setNascita(profilo.getNascita());
+		utente.setCitta(citta);
+		utente.setSesso(profilo.getSesso());
 		return utente;
 	}
 
 	@Override
-	public List<Citta> findCittaByNome( ) throws BusinessException {
-		return cittaRepository.findAll();
+	public Citta findCitta(String nome) {
+		return cittaRepository.findByNome(nome);
 	}
 
 	@Override
@@ -158,12 +177,16 @@ public class FoodayServiceImpl implements FoodayService {
 	@Override
 	public Utente registerUtente(Utente nuovoUtente) {
 		Citta citta = new Citta();
-		citta.setNome(nuovoUtente.getCitta().getNome());
-		cittaRepository.save(citta);
+		if (cittaRepository.findByNome(nuovoUtente.getCitta().getNome()) != null)
+			citta = cittaRepository.findByNome(nuovoUtente.getCitta().getNome());
+		else {
+			citta.setNome(nuovoUtente.getCitta().getNome());
+			cittaRepository.save(citta);
+		}
 		Utente utente = new Utente(nuovoUtente.getNome(), nuovoUtente.getCognome(),
 				nuovoUtente.getUsername(), passwordEncoder.encode(nuovoUtente.getPassword()), nuovoUtente.getEmail(),
 				nuovoUtente.getSesso(),	nuovoUtente.getTelefono(), nuovoUtente.getNascita(),
-				nuovoUtente.getSrcImmagineProfilo(), citta, 0);
+				"assets/images/profilo.jpg", citta, 0);
 		utenteRepository.save(utente);
 		return utente;
 	}

@@ -10,6 +10,7 @@ public class UtenteResponse {
 	private String nome;
 	private String cognome;
 	private String username;
+	private String password;
 	private String email;
 	private String sesso;
 	private String telefono;
@@ -27,6 +28,7 @@ public class UtenteResponse {
 		this.nome = utente.getNome();
 		this.cognome = utente.getCognome();
 		this.username = utente.getUsername();
+		this.password = utente.getPassword();
 		this.email = utente.getEmail();
 		this.sesso = utente.getSesso();
 		this.telefono = utente.getTelefono();
@@ -54,6 +56,14 @@ public class UtenteResponse {
 
 	public String getCognome() {
 		return cognome;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setCognome(String cognome) {

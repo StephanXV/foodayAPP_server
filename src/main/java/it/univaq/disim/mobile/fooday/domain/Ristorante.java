@@ -42,34 +42,34 @@ public class Ristorante {
     @JoinColumn(name = "ID_CITTA")
     private Citta citta;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @ManyToMany
     @JoinTable(name="CATEGORIZZAZIONE",
             joinColumns={@JoinColumn(name="ID_RISTORANTE")},
             inverseJoinColumns={@JoinColumn(name="ID_CATEGORIA")})
     private Set<Categoria> categorie = new HashSet<Categoria>();
 
-    @JsonBackReference
+    @JsonBackReference(value = "ristoPreferiti")
     @ManyToMany(mappedBy = "preferiti")
     private Set<Utente> preferiti = new HashSet<Utente>();
 
-    @JsonBackReference
+    @JsonBackReference(value = "ristoPrenotazioni")
     @OneToMany(mappedBy = "ristorante")
     private Set<Prenotazione> prenotazioni = new HashSet<Prenotazione>();
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Recensione> recensioni = new HashSet<Recensione>();
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Orario> orari = new HashSet<Orario>();
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Pietanza> pietanze = new HashSet<Pietanza>();
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Immagine> immagini = new HashSet<Immagine>();
 
@@ -199,5 +199,27 @@ public class Ristorante {
 
     public void setImmagini(Set<Immagine> immagini) {
         this.immagini = immagini;
+    }
+
+    @Override
+    public String toString() {
+        return "Ristorante{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", indirizzo='" + indirizzo + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", postiTot=" + postiTot +
+                ", punteggio=" + punteggio +
+                ", prezzoMedio=" + prezzoMedio +
+                ", sconto=" + sconto +
+                ", citta=" + citta +
+                ", categorie=" + categorie +
+                ", preferiti=" + preferiti +
+                ", prenotazioni=" + prenotazioni +
+                ", recensioni=" + recensioni +
+                ", orari=" + orari +
+                ", pietanze=" + pietanze +
+                ", immagini=" + immagini +
+                '}';
     }
 }
