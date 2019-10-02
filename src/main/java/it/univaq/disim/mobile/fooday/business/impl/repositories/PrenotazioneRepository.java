@@ -2,6 +2,7 @@ package it.univaq.disim.mobile.fooday.business.impl.repositories;
 
 import it.univaq.disim.mobile.fooday.domain.Prenotazione;
 import it.univaq.disim.mobile.fooday.domain.PrenotazioneId;
+import org.hibernate.Session;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
