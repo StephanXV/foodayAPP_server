@@ -28,9 +28,6 @@ public class Prenotazione {
     @Column(name = "SCONTO_APPLICATO", nullable = false)
     private int scontoApplicato;
 
-    @Column(name = "TIMESTAMP", nullable = false)
-    private Date timestamp;
-
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
@@ -41,17 +38,16 @@ public class Prenotazione {
     @JoinColumn(name = "ID_RISTORANTE", insertable = false, updatable = false)
     private Ristorante ristorante;
 
+
     public Prenotazione() {
     }
 
-    public Prenotazione(PrenotazioneId id, Date giorno, String orario, int posti, int scontoApplicato,
-                        Date timestamp) {
+    public Prenotazione(PrenotazioneId id, Date giorno, String orario, int posti, int scontoApplicato) {
         this.prenotazioneId = id;
         this.giorno = giorno;
         this.orario = orario;
         this.posti = posti;
         this.scontoApplicato = scontoApplicato;
-        this.timestamp = timestamp;
     }
 
     public PrenotazioneId getPrenotazioneId() {
@@ -94,14 +90,6 @@ public class Prenotazione {
         this.scontoApplicato = scontoApplicato;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public Utente getUtente() {
         return utente;
     }
@@ -116,5 +104,10 @@ public class Prenotazione {
 
     public void setRistorante(Ristorante ristorante) {
         this.ristorante = ristorante;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

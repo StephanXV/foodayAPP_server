@@ -45,4 +45,6 @@ public interface FoodayService {
 	Utente registerUtente(Utente nuovoUtente);
 
 	Citta findCitta(String nome);
+
+	int deletePrenotazione(long idr, long idu);
 }

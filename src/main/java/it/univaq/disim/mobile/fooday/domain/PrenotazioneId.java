@@ -3,6 +3,7 @@ package it.univaq.disim.mobile.fooday.domain;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.util.Date;
 
 @Embeddable
 public class PrenotazioneId implements Serializable {
@@ -10,12 +11,15 @@ public class PrenotazioneId implements Serializable {
     private Long ristoranteId;
     @Column(name = "ID_UTENTE")
     private Long utenteId;
+    @Column(name = "TIMESTAMP", nullable = false)
+    private Date timestamp;
 
     public PrenotazioneId(){}
 
-    public PrenotazioneId(Ristorante ristorante, Utente utente) {
+    public PrenotazioneId(Ristorante ristorante, Utente utente, Date timestamp) {
         this.ristoranteId = ristorante.getId();
         this.utenteId = utente.getId();
+        this.timestamp = timestamp;
     }
 
     public boolean equals(Object o) {
@@ -46,5 +50,18 @@ public class PrenotazioneId implements Serializable {
 
     public void setUtenteId(Long utenteId) {
         this.utenteId = utenteId;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

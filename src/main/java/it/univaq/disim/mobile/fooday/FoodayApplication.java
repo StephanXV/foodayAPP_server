@@ -325,13 +325,14 @@ public class FoodayApplication {
             ut3.getPreferiti().add(ristorante3);
             utenteRepository.save(ut3);
 
-            Prenotazione pr1 = new Prenotazione(new PrenotazioneId(ristorante1, ut1), new Date(System.currentTimeMillis() - 81818181), "20:00", 2, 20,
-                    new Date(System.currentTimeMillis()));
+            Date data = new Date(1570047977);
+
+            Prenotazione pr1 = new Prenotazione(new PrenotazioneId(ristorante1, ut1, data), new Date(System.currentTimeMillis() - 81818181), "20:00", 2, 20);
             prenotazioneRepository.save(pr1);
 
-            Prenotazione pr2 = new Prenotazione(new PrenotazioneId(ristorante2, ut1), new Date(System.currentTimeMillis() - 61818181), "21:30", 7, 15,
-                    new Date(System.currentTimeMillis()));
+            Prenotazione pr2 = new Prenotazione(new PrenotazioneId(ristorante2, ut1, new Date(System.currentTimeMillis())), new Date(System.currentTimeMillis() - 61818181), "21:30", 7, 15);
             prenotazioneRepository.save(pr2);
+
 
             Recensione rec1 = new Recensione(7, 8, 5,
                     "Ottime le cotture delle carni, tuttavia il conto è salato",

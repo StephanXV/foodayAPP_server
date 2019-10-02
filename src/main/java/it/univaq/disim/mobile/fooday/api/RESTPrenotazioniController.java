@@ -21,4 +21,11 @@ public class RESTPrenotazioniController {
     public List<Prenotazione> list(@PathVariable long idUtente) {
         return foodayService.findPrenotazioniByUtenteId(idUtente);
     }
+
+    @DeleteMapping("/delete/{idUtente}/{idRistorante}")
+    public int prova(@PathVariable long idUtente, @PathVariable long idRistorante){
+        return foodayService.deletePrenotazione(idUtente, idRistorante);
+    }
+
+
 }

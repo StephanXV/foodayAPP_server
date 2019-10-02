@@ -191,4 +191,9 @@ public class FoodayServiceImpl implements FoodayService {
 		return utente;
 	}
 
+	@Override
+	public int deletePrenotazione(long idUtente, long idRistorante) {
+		int i = prenotazioneRepository.deletePrenotazione(idRistorante, idUtente);
+		return i;
+	}
 }
