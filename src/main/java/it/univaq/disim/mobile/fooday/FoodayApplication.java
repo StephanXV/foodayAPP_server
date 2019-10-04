@@ -325,46 +325,40 @@ public class FoodayApplication {
             ut3.getPreferiti().add(ristorante3);
             utenteRepository.save(ut3);
 
-            Date data = new Date(1570047977);
-
-            Prenotazione pr1 = new Prenotazione(new PrenotazioneId(ristorante1, ut1, data), new Date(System.currentTimeMillis() - 81818181), "20:00", 2, 20);
+            Prenotazione pr1 = new Prenotazione(new PrenotazioneId(ristorante1, ut1,
+                    System.currentTimeMillis()), new Date(System.currentTimeMillis() + 81818181),
+                    "20:00", 2, 20, "Stefano", true);
             prenotazioneRepository.save(pr1);
 
-            Prenotazione pr2 = new Prenotazione(new PrenotazioneId(ristorante2, ut1, new Date(System.currentTimeMillis())), new Date(System.currentTimeMillis() - 61818181), "21:30", 7, 15);
+            Prenotazione pr2 = new Prenotazione(new PrenotazioneId(ristorante2, ut1,
+                    System.currentTimeMillis()), new Date(System.currentTimeMillis() + 61818181),
+                    "21:30", 7, 15, "Stefano", true);
             prenotazioneRepository.save(pr2);
 
 
-            Recensione rec1 = new Recensione(7, 8, 5,
-                    "Ottime le cotture delle carni, tuttavia il conto è salato",
-                    new Date(System.currentTimeMillis()), ut1, ristorante1);
+            Recensione rec1 = new Recensione(new RecensioneId(ristorante1, ut1, System.currentTimeMillis()), 7, 8, 5,
+                    "Ottime le cotture delle carni, tuttavia il conto è salato");
 
-            Recensione rec2 = new Recensione(10, 6, 8,
-                    "Qualità/prezzo eccezionale, ma servizio nella norma",
-                    new Date(System.currentTimeMillis()), ut2, ristorante1);
+            Recensione rec2 = new Recensione(new RecensioneId(ristorante1, ut2, System.currentTimeMillis()),10, 6, 8,
+                    "Qualità/prezzo eccezionale, ma servizio nella norma");
 
-            Recensione rec3 = new Recensione(6, 5, 7,
-                    "Abbiamo aspettato 2 ore per ricevere da mangiare",
-                    new Date(System.currentTimeMillis()), ut3, ristorante1);
+            Recensione rec3 = new Recensione(new RecensioneId(ristorante1, ut3, System.currentTimeMillis()),6, 5, 7,
+                    "Abbiamo aspettato 2 ore per ricevere da mangiare");
 
-            Recensione rec4 = new Recensione(5, 5, 10,
-                    "Vale quello che si spende",
-                    new Date(System.currentTimeMillis()), ut1, ristorante2);
+            Recensione rec4 = new Recensione(new RecensioneId(ristorante2, ut1, System.currentTimeMillis()),5, 5, 10,
+                    "Vale quello che si spende");
 
-            Recensione rec5 = new Recensione(7, 9, 4,
-                    "La formula 'all you can eat' costa molto, ma le portate arrivano in fretta",
-                    new Date(System.currentTimeMillis()), ut3, ristorante3);
+            Recensione rec5 = new Recensione(new RecensioneId(ristorante3, ut3, System.currentTimeMillis()),7, 9, 4,
+                    "La formula 'all you can eat' costa molto, ma le portate arrivano in fretta");
 
-            Recensione rec6 = new Recensione(8, 6, 7,
-                    "Sushi molto buono e primi ben fatti, ci ritornerò",
-                    new Date(System.currentTimeMillis()), ut2, ristorante3);
+            Recensione rec6 = new Recensione(new RecensioneId(ristorante3, ut2, System.currentTimeMillis()),8, 6, 7,
+                    "Sushi molto buono e primi ben fatti, ci ritornerò");
 
-            Recensione rec7 = new Recensione(9, 9, 6,
-                    "Mi è piaciuto tutto moltissimo",
-                    new Date(System.currentTimeMillis()), ut1, ristorante3);
+            Recensione rec7 = new Recensione(new RecensioneId(ristorante3, ut1, System.currentTimeMillis()),9, 9, 6,
+                    "Mi è piaciuto tutto moltissimo");
 
-            Recensione rec8 = new Recensione(8, 7, 7,
-                    "Ottima qualità del pesce ad un ottimo prezzo",
-                    new Date(System.currentTimeMillis()), ut2, ristorante3);
+            Recensione rec8 = new Recensione(new RecensioneId(ristorante3, ut2, System.currentTimeMillis()),8, 7, 7,
+                    "Ottima qualità del pesce ad un ottimo prezzo");
 
             recensioneRepository.save(rec1);
             recensioneRepository.save(rec2);

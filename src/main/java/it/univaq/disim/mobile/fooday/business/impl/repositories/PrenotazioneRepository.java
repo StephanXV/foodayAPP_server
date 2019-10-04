@@ -17,8 +17,8 @@ public interface PrenotazioneRepository extends JpaRepository<Prenotazione, Pren
     List<Prenotazione> findPrenotazioniByUtenteId(long idUtente);
 
     @Modifying
-    @Query(value = "delete from prenotazioni where id_ristorante = ?1 and id_utente = ?2",
-            nativeQuery=true)
-    int deletePrenotazione(long idRistorante, long idUtente);
+    @Query(value = "delete from prenotazioni where id_ristorante = ?1 and id_utente = ?2 and tms_inserimento = ?3",
+            nativeQuery = true)
+    int deletePrenotazione(long idRistorante, long idUtente, long timestamp);
 
 }

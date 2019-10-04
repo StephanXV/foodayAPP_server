@@ -78,8 +78,19 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public void createPrenotazione(Prenotazione prenotazione) throws BusinessException {
-
+	public Prenotazione createPrenotazione(Prenotazione prenotazione) throws BusinessException {
+		Prenotazione newPrenotazione = new Prenotazione();
+		PrenotazioneId prenotazioneId = new PrenotazioneId(prenotazione.getRistorante(), prenotazione.getUtente(),
+				System.currentTimeMillis());
+		newPrenotazione.setPrenotazioneId(prenotazioneId);
+		newPrenotazione.setPosti(prenotazione.getPosti());
+		newPrenotazione.setGiorno(prenotazione.getGiorno());
+		newPrenotazione.setOrario(prenotazione.getOrario());
+		newPrenotazione.setScontoApplicato(prenotazione.getScontoApplicato());
+		newPrenotazione.setNome(prenotazione.getNome());
+		newPrenotazione.setUsaPunti(prenotazione.isUsaPunti());
+		prenotazioneRepository.save(newPrenotazione);
+		return  newPrenotazione;
 	}
 
 	@Override
@@ -90,13 +101,12 @@ public class FoodayServiceImpl implements FoodayService {
 	@Override
 	public Recensione createRecensione(Recensione recensione) throws BusinessException {
 		Recensione newRecensione = new Recensione();
-		RecensioneId recensioneId = new RecensioneId(recensione.getUtente().getId(), recensione.getRistorante().getId());
-		newRecensione.setId(recensioneId);
+		RecensioneId recensioneId = new RecensioneId(recensione.getRistorante(), recensione.getUtente(), System.currentTimeMillis());
+		newRecensione.setRecensioneId(recensioneId);
 		newRecensione.setVotoCucina(recensione.getVotoCucina());
 		newRecensione.setVotoServizio(recensione.getVotoServizio());
 		newRecensione.setVotoPrezzo(recensione.getVotoPrezzo());
 		newRecensione.setDescrizione(recensione.getDescrizione());
-		newRecensione.setTimestamp(new Date(System.currentTimeMillis()));
 		recensioneRepository.save(newRecensione);
 		return newRecensione;
 	}
@@ -192,8 +202,8 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public int deletePrenotazione(long idUtente, long idRistorante) {
-		int i = prenotazioneRepository.deletePrenotazione(idRistorante, idUtente);
+	public int deletePrenotazione(long idUtente, long idRistorante, long timestamp) {
+		int i = prenotazioneRepository.deletePrenotazione(idRistorante, idUtente, timestamp);
 		return i;
 	}
 }

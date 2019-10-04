@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Recensione {
 
     @EmbeddedId
-    private RecensioneId id;
+    private RecensioneId recensioneId;
 
     @Column(name = "VOTO_CUCINA", nullable = false)
     private int votoCucina;
@@ -27,9 +27,6 @@ public class Recensione {
 
     @Column(name = "DESCRIZIONE", nullable = false)
     private String descrizione;
-
-    @Column(name = "TIMESTAMP", nullable = false)
-    private Date timestamp;
 
     //@JsonManagedReference
     @ManyToOne
@@ -44,24 +41,23 @@ public class Recensione {
     public Recensione() {
     }
 
-    public Recensione(int votoCucina, int votoServizio, int votoPrezzo,
-                      String descrizione, Date timestamp, Utente utente, Ristorante ristorante) {
-        this.id = new RecensioneId(ristorante.getId(), utente.getId());
+    public Recensione(RecensioneId recensioneId, int votoCucina, int votoServizio, int votoPrezzo,
+                      String descrizione) {
+        this.recensioneId = recensioneId;
         this.votoCucina = votoCucina;
         this.votoServizio = votoServizio;
         this.votoPrezzo = votoPrezzo;
         this.descrizione = descrizione;
-        this.timestamp = timestamp;
         this.utente = utente;
         this.ristorante = ristorante;
     }
 
-    public RecensioneId getId() {
-        return id;
+    public RecensioneId getRecensioneId() {
+        return recensioneId;
     }
 
-    public void setId(RecensioneId id) {
-        this.id = id;
+    public void setRecensioneId(RecensioneId id) {
+        this.recensioneId = id;
     }
 
     public int getVotoCucina() {
@@ -96,14 +92,6 @@ public class Recensione {
         this.descrizione = descrizione;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public Utente getUtente() {
         return utente;
     }
@@ -123,12 +111,11 @@ public class Recensione {
     @Override
     public String toString() {
         return "Recensione{" +
-                "id=" + id +
+                "recensioneId=" + recensioneId +
                 ", votoCucina=" + votoCucina +
                 ", votoServizio=" + votoServizio +
                 ", votoPrezzo=" + votoPrezzo +
                 ", descrizione='" + descrizione + '\'' +
-                ", timestamp=" + timestamp +
                 ", utente=" + utente +
                 ", ristorante=" + ristorante +
                 '}';

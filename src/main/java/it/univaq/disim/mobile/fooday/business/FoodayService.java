@@ -14,7 +14,7 @@ public interface FoodayService {
 
 	List<Prenotazione> findPrenotazioniByUtenteId(Long idUtente) throws BusinessException;
 
-	void createPrenotazione(Prenotazione prenotazione) throws BusinessException;
+	Prenotazione createPrenotazione(Prenotazione prenotazione) throws BusinessException;
 
 	List<Recensione> findRecensioniByRistoranteId(Long idRistorante) throws BusinessException;
 
@@ -46,5 +46,5 @@ public interface FoodayService {
 
 	Citta findCitta(String nome);
 
-	int deletePrenotazione(long idr, long idu);
+	int deletePrenotazione(long ristoranteId, long utenteId, long timestamp);
 }

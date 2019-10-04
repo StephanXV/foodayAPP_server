@@ -2,6 +2,8 @@ package it.univaq.disim.mobile.fooday.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,12 +13,12 @@ public class PrenotazioneId implements Serializable {
     private Long ristoranteId;
     @Column(name = "ID_UTENTE")
     private Long utenteId;
-    @Column(name = "TIMESTAMP", nullable = false)
-    private Date timestamp;
+    @Column(name = "TMS_INSERIMENTO")
+    private long timestamp;
 
     public PrenotazioneId(){}
 
-    public PrenotazioneId(Ristorante ristorante, Utente utente, Date timestamp) {
+    public PrenotazioneId(Ristorante ristorante, Utente utente, long timestamp) {
         this.ristoranteId = ristorante.getId();
         this.utenteId = utente.getId();
         this.timestamp = timestamp;
@@ -52,11 +54,11 @@ public class PrenotazioneId implements Serializable {
         this.utenteId = utenteId;
     }
 
-    public Date getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
