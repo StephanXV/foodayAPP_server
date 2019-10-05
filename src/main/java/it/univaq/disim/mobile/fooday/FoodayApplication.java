@@ -326,12 +326,12 @@ public class FoodayApplication {
             utenteRepository.save(ut3);
 
             Prenotazione pr1 = new Prenotazione(new PrenotazioneId(ristorante1, ut1,
-                    System.currentTimeMillis()), new Date(System.currentTimeMillis() + 81818181),
+                    System.currentTimeMillis()), System.currentTimeMillis() + 81818181,
                     "20:00", 2, 20, "Stefano", true);
             prenotazioneRepository.save(pr1);
 
             Prenotazione pr2 = new Prenotazione(new PrenotazioneId(ristorante2, ut1,
-                    System.currentTimeMillis()), new Date(System.currentTimeMillis() + 61818181),
+                    System.currentTimeMillis()), System.currentTimeMillis() + 61818181,
                     "21:30", 7, 15, "Stefano", true);
             prenotazioneRepository.save(pr2);
 
