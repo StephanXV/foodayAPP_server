@@ -20,4 +20,9 @@ public class RESTCategorieController {
     public List<Categoria> list() {
         return foodayService.findAllCategorie();
     }
+
+    @GetMapping("/{idCategoria}")
+    public Categoria getCategoria(@PathVariable long idCategoria) {
+        return foodayService.findCategoriaById(idCategoria);
+    }
 }

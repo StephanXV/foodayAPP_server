@@ -142,6 +142,11 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
+    public Categoria findCategoriaById(long categoriaId) throws  BusinessException {
+	    return categoriaRepository.findById(categoriaId).get();
+    }
+
+	@Override
 	public List<Ristorante> findAllRistoranti() throws BusinessException {
 		return ristoranteRepository.findAll();
 	}
@@ -206,4 +211,14 @@ public class FoodayServiceImpl implements FoodayService {
 		int i = prenotazioneRepository.deletePrenotazione(idRistorante, idUtente, timestamp);
 		return i;
 	}
+
+    @Override
+    public int prenotazioneValutata(long idUtente, long idRistorante, long timestamp) {
+	    Utente utente = utenteRepository.findById(idUtente).get();
+	    Ristorante ristorante = ristoranteRepository.findById(idRistorante).get();
+        Prenotazione prenotazione = this.prenotazioneRepository.findById(new PrenotazioneId(ristorante, utente, timestamp)).get();
+        prenotazione.setValutata(true);
+        return 1;
+    }
 }
+

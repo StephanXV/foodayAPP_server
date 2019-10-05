@@ -35,7 +35,7 @@ public class Prenotazione {
     private boolean usaPunti;
 
     @Column(name = "IS_VALUTATA", nullable = false)
-    private boolean isValutata;
+    private boolean valutata;
 
     @JsonBackReference
     @ManyToOne
@@ -60,7 +60,7 @@ public class Prenotazione {
         this.scontoApplicato = scontoApplicato;
         this.nome = nomePrenotazione;
         this.usaPunti = usaPunti;
-        this.isValutata = false;
+        this.valutata = false;
     }
 
     public PrenotazioneId getPrenotazioneId() {
@@ -112,11 +112,11 @@ public class Prenotazione {
     }
 
     public boolean isValutata() {
-        return isValutata;
+        return valutata;
     }
 
     public void setValutata(boolean valutata) {
-        isValutata = valutata;
+        this.valutata = valutata;
     }
 
     public int getScontoApplicato() {
