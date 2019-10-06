@@ -57,13 +57,25 @@ public class FoodayApplication {
             categoriaRepository.save(e);
 
             Citta citta1 = new Citta();
-            citta1.setNome("Vasto");
-            citta1.setCodicePostale("66054");
+            citta1.setNome("L'Aquila");
+            citta1.setCodicePostale("67100");
             cittaRepository.save(citta1);
             Citta citta2 = new Citta();
-            citta2.setNome("Roma");
-            citta2.setCodicePostale("0118");
+            citta2.setNome("Pizzoli");
+            citta2.setCodicePostale("3421");
             cittaRepository.save(citta2);
+            Citta citta3 = new Citta();
+            citta3.setNome("Vasto");
+            citta3.setCodicePostale("66054");
+            cittaRepository.save(citta3);
+            Citta citta4 = new Citta();
+            citta4.setNome("Roma");
+            citta4.setCodicePostale("0118");
+            cittaRepository.save(citta4);
+            Citta citta5 = new Citta();
+            citta5.setNome("Lucoli");
+            citta5.setCodicePostale("6684");
+            cittaRepository.save(citta5);
 
             Ristorante ristorante1 = new Ristorante();
             ristorante1.setNome("Lu Barrott");
@@ -73,7 +85,7 @@ public class FoodayApplication {
             ristorante1.setPunteggio(8.1);
             ristorante1.setPrezzoMedio(26);
             ristorante1.setSconto(10);
-            ristorante1.setCitta(citta1);
+            ristorante1.setCitta(citta3);
             ristorante1.getCategorie().add(c);
             ristorante1.getCategorie().add(e);
             ristoranteRepository.save(ristorante1);
@@ -111,10 +123,23 @@ public class FoodayApplication {
             ristorante4.setPunteggio(9.1);
             ristorante4.setPrezzoMedio(31);
             ristorante4.setSconto(8);
-            ristorante4.setCitta(citta2);
+            ristorante4.setCitta(citta5);
             ristorante4.getCategorie().add(c);
             ristorante4.getCategorie().add(d);
             ristoranteRepository.save(ristorante4);
+
+            /*Ristorante ristorante5 = new Ristorante();
+            ristorante5.setNome("La Monachina");
+            ristorante5.setIndirizzo("Via colli, 3");
+            ristorante5.setDescrizione("La pinsa romana più buona del mondo");
+            ristorante5.setPostiTot(67);
+            ristorante5.setPunteggio(8.4);
+            ristorante5.setPrezzoMedio(15);
+            ristorante5.setSconto(20);
+            ristorante5.setCitta(citta4);
+            ristorante5.getCategorie().add(c);
+            ristorante5.getCategorie().add(d);
+            ristoranteRepository.save(ristorante5);*/
 
             Pietanza pietanza1 = new Pietanza("Spaghetti al pomodoro", 7.5, TipologiaPietanza.primo, ristorante1);
             Pietanza pietanza2 = new Pietanza("Gnocchetti al ragù", 8, TipologiaPietanza.primo, ristorante1);

@@ -1,5 +1,6 @@
 package it.univaq.disim.mobile.fooday.business;
 
+import java.io.IOException;
 import java.util.List;
 
 import it.univaq.disim.mobile.fooday.domain.*;
@@ -51,4 +52,6 @@ public interface FoodayService {
 	int prenotazioneValutata(long utenteId, long ristoranteId, long timestamp);
 
 	Categoria findCategoriaById(long categoriaId);
+
+	List<Ristorante> findRistorantiAroundUser(String lat, String lon) throws IOException;
 }

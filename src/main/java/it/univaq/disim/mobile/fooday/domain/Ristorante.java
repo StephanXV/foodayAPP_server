@@ -222,4 +222,16 @@ public class Ristorante {
                 ", immagini=" + immagini +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null) return false;
+        if (object == this) return true;
+        if (!(object instanceof Ristorante))return false;
+        if (this.getNome().equals(((Ristorante)object).getNome())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

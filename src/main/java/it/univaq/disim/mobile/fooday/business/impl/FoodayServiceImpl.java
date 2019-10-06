@@ -1,5 +1,10 @@
 package it.univaq.disim.mobile.fooday.business.impl;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ProtocolException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,10 +13,17 @@ import it.univaq.disim.mobile.fooday.business.FoodayService;
 import it.univaq.disim.mobile.fooday.business.impl.repositories.*;
 import it.univaq.disim.mobile.fooday.domain.*;
 
+import it.univaq.disim.mobile.fooday.utilities.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 @Service
@@ -228,5 +240,41 @@ public class FoodayServiceImpl implements FoodayService {
         prenotazione.setValutata(true);
         return 1;
     }
+
+    @Override
+    public List<Ristorante> findRistorantiAroundUser(String lat, String lon) throws IOException {
+		List<Ristorante> lista = new ArrayList<>();
+
+		URL url = new URL("https://api.openweathermap.org/data/2.5/find?lat=" + lat + "&lon=" + lon + "&cnt=10&appid=73f45256d96f6980fc804cca915873ea&units=metric&lang=it");
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		int responseCode = con.getResponseCode();
+		System.out.println(responseCode);
+
+		BufferedReader in = new BufferedReader(
+				new InputStreamReader(con.getInputStream()));
+		String inputLine;
+		StringBuffer content = new StringBuffer();
+		while ((inputLine = in.readLine()) != null) {
+			content.append(inputLine);
+		}
+		in.close();
+
+		String response = content.toString();
+		con.disconnect();
+
+		List<String> cities = JsonParser.parseCityAroundUser(response);
+
+		for (String city : cities){
+			List<Ristorante> temp = findRistorantiByCittaNome(city);
+			for (Ristorante r: temp){
+				if (!lista.contains(r)){
+					lista.add(r);
+				}
+			}
+		}
+
+		return lista;
+	}
 }
 
