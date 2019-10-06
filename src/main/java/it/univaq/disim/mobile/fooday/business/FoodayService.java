@@ -47,4 +47,8 @@ public interface FoodayService {
 	Citta findCitta(String nome);
 
 	int deletePrenotazione(long ristoranteId, long utenteId, long timestamp);
+
+	int prenotazioneValutata(long utenteId, long ristoranteId, long timestamp);
+
+	Categoria findCategoriaById(long categoriaId);
 }

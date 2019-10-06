@@ -34,5 +34,10 @@ public class RESTPrenotazioniController {
         return foodayService.createPrenotazione(prenotazione);
     }
 
+    @GetMapping("/valutata/{idUtente}/{idRistorante}/{timestamp}")
+    public int prenotazioneValutata(@PathVariable long idUtente, @PathVariable long idRistorante, @PathVariable long timestamp){
+        return foodayService.prenotazioneValutata(idUtente, idRistorante, timestamp);
+    }
+
 
 }

@@ -16,9 +16,8 @@ public class Prenotazione {
     @EmbeddedId
     private PrenotazioneId prenotazioneId;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "GIORNO", nullable = false)
-    private Date giorno;
+    private long giorno;
 
     @Column(name = "ORARIO", nullable = false)
     private String orario;
@@ -35,6 +34,9 @@ public class Prenotazione {
     @Column(name = "USA_PUNTI", nullable = false)
     private boolean usaPunti;
 
+    @Column(name = "IS_VALUTATA", nullable = false)
+    private boolean valutata;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "ID_UTENTE", insertable = false, updatable = false)
@@ -49,7 +51,7 @@ public class Prenotazione {
     public Prenotazione() {
     }
 
-    public Prenotazione(PrenotazioneId id, Date giorno, String orario, int posti, int scontoApplicato,
+    public Prenotazione(PrenotazioneId id, long giorno, String orario, int posti, int scontoApplicato,
                         String nomePrenotazione, Boolean usaPunti) {
         this.prenotazioneId = id;
         this.giorno = giorno;
@@ -58,6 +60,7 @@ public class Prenotazione {
         this.scontoApplicato = scontoApplicato;
         this.nome = nomePrenotazione;
         this.usaPunti = usaPunti;
+        this.valutata = false;
     }
 
     public PrenotazioneId getPrenotazioneId() {
@@ -68,11 +71,11 @@ public class Prenotazione {
         this.prenotazioneId = prenotazioneId;
     }
 
-    public Date getGiorno() {
+    public long getGiorno() {
         return giorno;
     }
 
-    public void setGiorno(Date giorno) {
+    public void setGiorno(long giorno) {
         this.giorno = giorno;
     }
 
@@ -106,6 +109,14 @@ public class Prenotazione {
 
     public void setUsaPunti(boolean usaPunti) {
         this.usaPunti = usaPunti;
+    }
+
+    public boolean isValutata() {
+        return valutata;
+    }
+
+    public void setValutata(boolean valutata) {
+        this.valutata = valutata;
     }
 
     public int getScontoApplicato() {
