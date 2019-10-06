@@ -228,5 +228,19 @@ public class FoodayServiceImpl implements FoodayService {
         prenotazione.setValutata(true);
         return 1;
     }
+
+    @Override
+    public boolean containsPreferito(long idUtente, long idRistorante) {
+		Utente utente = utenteRepository.findById(idUtente).get();
+		Ristorante ristorante = ristoranteRepository.findById(idRistorante).get();
+		return utente.getPreferiti().contains(ristorante);
+	}
+
+	@Override
+	public boolean addPreferito(long idRistorante, long idUtente) {
+		Utente utente = utenteRepository.findById(idUtente).get();
+		Ristorante ristorante = ristoranteRepository.findById(idRistorante).get();
+		return utente.getPreferiti().add(ristorante);
+	}
 }
 

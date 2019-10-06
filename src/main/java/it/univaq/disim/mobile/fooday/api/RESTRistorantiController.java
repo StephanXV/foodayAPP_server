@@ -48,4 +48,9 @@ public class RESTRistorantiController {
     public void deleteRistoranteByPreferiti(@PathVariable long idRistorante, @PathVariable long idUtente) {
         foodayService.deleteRistoranteByPreferiti(idRistorante, idUtente);
     }
+
+    @GetMapping("preferiti/aggiungi/{idRistorante}/{idUtente}")
+    public boolean addPreferito(@PathVariable long idRistorante, @PathVariable long idUtente) {
+        return foodayService.addPreferito(idRistorante, idUtente);
+    }
 }

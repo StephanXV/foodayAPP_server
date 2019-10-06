@@ -51,4 +51,8 @@ public interface FoodayService {
 	int prenotazioneValutata(long utenteId, long ristoranteId, long timestamp);
 
 	Categoria findCategoriaById(long categoriaId);
+
+	boolean containsPreferito(long idUtente, long idRistorante);
+
+	boolean addPreferito(long idRistorante, long idUtente);
 }
