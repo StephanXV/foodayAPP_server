@@ -51,16 +51,15 @@ public class RESTUtenteController {
 		return new UtenteResponse(((UserDetailsImpl) userDetails).getUtente());
 	}
 
-	@PostMapping("/utente/updateprofilo")
-	public UtenteResponse updateProfilo(@RequestBody Utente utente) {
+	@PostMapping("/utente/updateprofilo/{vecchioUser}")
+	public UtenteResponse updateProfilo(@RequestBody Utente utente, @PathVariable String vecchioUser) {
 		System.out.println(utente.toString());
-		Utente nuovoUtente = foodayService.updateProfilo(utente);		
+		Utente nuovoUtente = foodayService.updateProfilo(utente, vecchioUser);
 		return new UtenteResponse(nuovoUtente);
 	}
 
 	@PostMapping("/utente/registrazione")
 	public UtenteResponse registerUtente(@RequestBody Utente utente){
-		System.out.println(utente.toString());
 		Utente nuovoUtente = foodayService.registerUtente(utente);
 		return new UtenteResponse(nuovoUtente);
 	}

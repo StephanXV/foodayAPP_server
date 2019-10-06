@@ -34,7 +34,7 @@ public interface FoodayService {
 
 	Utente findUtenteByUsername(String username) throws BusinessException;
 
-	Utente updateProfilo(Utente utente) throws BusinessException;
+	Utente updateProfilo(Utente utente, String vecchioUser) throws BusinessException;
 
 	List<Ristorante> findAllRistoranti() throws BusinessException;
 

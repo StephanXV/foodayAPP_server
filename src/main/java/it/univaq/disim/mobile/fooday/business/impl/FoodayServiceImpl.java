@@ -147,7 +147,7 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public Utente updateProfilo(Utente profilo) throws BusinessException {
+	public Utente updateProfilo(Utente profilo, String vecchioUser) throws BusinessException {
 		Citta citta = new Citta();
 		if (cittaRepository.findByNome(profilo.getCitta().getNome()) != null)
 			citta = cittaRepository.findByNome(profilo.getCitta().getNome());
@@ -155,13 +155,21 @@ public class FoodayServiceImpl implements FoodayService {
 			citta.setNome(profilo.getCitta().getNome());
 			cittaRepository.save(citta);
 		}
-		Utente utente = utenteRepository.findByUsername(profilo.getUsername());
+		System.out.println("vecchio: " + vecchioUser);
+		Utente utente = utenteRepository.findByUsername(vecchioUser);
+		//Utente utente = utenteRepository.findByUsername(profilo.getUsername());
+		if (profilo.getPassword() == null || profilo.getPassword().length() == 0) {
+			System.out.println("prima: password ins nulla " + utenteRepository.findByUsername(utente.getUsername()).getPassword());
+			utente.setPassword(utenteRepository.findByUsername(utente.getUsername()).getPassword());
+			System.out.println("dopo: " + utente.getPassword());
+		} else {
+			utente.setPassword(passwordEncoder.encode(profilo.getPassword()));
+		}
 		utente.setNome(profilo.getNome());
 		utente.setCognome(profilo.getCognome());
+		System.out.println("nuovo: " + profilo.getUsername());
 		utente.setUsername(profilo.getUsername());
 		utente.setEmail(profilo.getEmail());
-		if (profilo.getPassword() != null)
-			utente.setPassword(passwordEncoder.encode(profilo.getPassword()));
 		utente.setTelefono(profilo.getTelefono());
 		utente.setNascita(profilo.getNascita());
 		utente.setCitta(citta);
