@@ -53,5 +53,11 @@ public interface FoodayService {
 
 	Categoria findCategoriaById(long categoriaId);
 
+
 	List<Ristorante> findRistorantiAroundUser(String lat, String lon) throws IOException;
+
+	boolean containsPreferito(long idUtente, long idRistorante);
+
+	boolean addPreferito(long idRistorante, long idUtente);
+
 }

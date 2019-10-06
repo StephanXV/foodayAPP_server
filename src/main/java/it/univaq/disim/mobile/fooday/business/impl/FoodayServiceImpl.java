@@ -265,16 +265,29 @@ public class FoodayServiceImpl implements FoodayService {
 
 		List<String> cities = JsonParser.parseCityAroundUser(response);
 
-		for (String city : cities){
+		for (String city : cities) {
 			List<Ristorante> temp = findRistorantiByCittaNome(city);
-			for (Ristorante r: temp){
-				if (!lista.contains(r)){
+			for (Ristorante r : temp) {
+				if (!lista.contains(r)) {
 					lista.add(r);
 				}
 			}
 		}
 
 		return lista;
+	}
+
+    public boolean containsPreferito(long idUtente, long idRistorante) {
+		Utente utente = utenteRepository.findById(idUtente).get();
+		Ristorante ristorante = ristoranteRepository.findById(idRistorante).get();
+		return utente.getPreferiti().contains(ristorante);
+	}
+
+	@Override
+	public boolean addPreferito(long idRistorante, long idUtente) {
+		Utente utente = utenteRepository.findById(idUtente).get();
+		Ristorante ristorante = ristoranteRepository.findById(idRistorante).get();
+		return utente.getPreferiti().add(ristorante);
 	}
 }
 

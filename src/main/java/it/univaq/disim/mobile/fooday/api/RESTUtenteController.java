@@ -64,4 +64,9 @@ public class RESTUtenteController {
 		return new UtenteResponse(nuovoUtente);
 	}
 
+	@GetMapping("/utente/preferiti/{idUtente}/{idRistorante}")
+	public boolean containsPreferito ( @PathVariable long idUtente, @PathVariable long idRistorante) {
+		return foodayService.containsPreferito(idUtente, idRistorante);
+	}
+
 }

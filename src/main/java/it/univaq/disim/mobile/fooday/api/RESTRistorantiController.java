@@ -52,6 +52,11 @@ public class RESTRistorantiController {
 
     @GetMapping("/around/{lat}/{lon}")
     public List<Ristorante> getRistorantiAroundUser(@PathVariable String lat, @PathVariable String lon) throws IOException {
-         return foodayService.findRistorantiAroundUser(lat, lon);
+        return foodayService.findRistorantiAroundUser(lat, lon);
+    }
+
+    @GetMapping("preferiti/aggiungi/{idRistorante}/{idUtente}")
+    public boolean addPreferito(@PathVariable long idRistorante, @PathVariable long idUtente) {
+        return foodayService.addPreferito(idRistorante, idUtente);
     }
 }
