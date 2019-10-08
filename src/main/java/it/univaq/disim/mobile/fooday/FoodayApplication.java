@@ -85,6 +85,8 @@ public class FoodayApplication {
             ristorante1.setPunteggio(8.1);
             ristorante1.setPrezzoMedio(26);
             ristorante1.setSconto(10);
+            ristorante1.setLatitudine(42.1253);
+            ristorante1.setLongitudine(14.7068);
             ristorante1.setCitta(citta3);
             ristorante1.getCategorie().add(c);
             ristorante1.getCategorie().add(e);
@@ -98,6 +100,8 @@ public class FoodayApplication {
             ristorante2.setPunteggio(7.6);
             ristorante2.setPrezzoMedio(7.5);
             ristorante2.setSconto(15);
+            ristorante2.setLatitudine(42.366);
+            ristorante2.setLongitudine(13.3944);
             ristorante2.setCitta(citta1);
             ristorante2.getCategorie().add(a);
             ristoranteRepository.save(ristorante2);
@@ -110,6 +114,8 @@ public class FoodayApplication {
             ristorante3.setPunteggio(6.9);
             ristorante3.setPrezzoMedio(24);
             ristorante3.setSconto(15);
+            ristorante3.setLatitudine(42.4331);
+            ristorante3.setLongitudine(13.3126);
             ristorante3.setCitta(citta2);
             ristorante3.getCategorie().add(b);
             ristorante3.getCategorie().add(d);
@@ -123,6 +129,8 @@ public class FoodayApplication {
             ristorante4.setPunteggio(9.1);
             ristorante4.setPrezzoMedio(31);
             ristorante4.setSconto(8);
+            ristorante4.setLatitudine(41.8919);
+            ristorante4.setLongitudine(12.5113);
             ristorante4.setCitta(citta5);
             ristorante4.getCategorie().add(c);
             ristorante4.getCategorie().add(d);

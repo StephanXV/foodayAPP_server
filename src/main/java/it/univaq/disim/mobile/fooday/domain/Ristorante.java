@@ -38,6 +38,12 @@ public class Ristorante {
     @Column(name = "SCONTO")
     private int sconto;
 
+    @Column(name = "LATITUDINE")
+    private double latitudine;
+
+    @Column(name = "LONGITUDINE")
+    private double longitudine;
+
     @ManyToOne
     @JoinColumn(name = "ID_CITTA")
     private Citta citta;
@@ -199,6 +205,22 @@ public class Ristorante {
 
     public void setImmagini(Set<Immagine> immagini) {
         this.immagini = immagini;
+    }
+
+    public double getLatitudine() {
+        return latitudine;
+    }
+
+    public void setLatitudine(double latitudine) {
+        this.latitudine = latitudine;
+    }
+
+    public double getLongitudine() {
+        return longitudine;
+    }
+
+    public void setLongitudine(double longitudine) {
+        this.longitudine = longitudine;
     }
 
     @Override
