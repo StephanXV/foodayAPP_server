@@ -1,7 +1,9 @@
 package it.univaq.disim.mobile.fooday.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -68,11 +70,11 @@ public class Immagine {
         Path filePath = Paths.get(filePathStr);
         // get byte array with file contents
         byte[] fileContent = Files.readAllBytes(filePath);
-        return fileContent;
+        return fileContent;        
     }
     
-    public byte[] getFile() {
-        return Base64.encodeBase64(file);
+    public String getFile() throws UnsupportedEncodingException {
+        return new String(Base64.encodeBase64(file), "UTF-8");
     }
 
     public void setFile(byte[] file) {
