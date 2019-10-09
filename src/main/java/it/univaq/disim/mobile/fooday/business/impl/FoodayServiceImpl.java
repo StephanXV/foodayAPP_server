@@ -25,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 @Service
@@ -221,10 +223,15 @@ public class FoodayServiceImpl implements FoodayService {
 			citta.setNome(nuovoUtente.getCitta().getNome());
 			cittaRepository.save(citta);
 		}
-		Utente utente = new Utente(nuovoUtente.getNome(), nuovoUtente.getCognome(),
-				nuovoUtente.getUsername(), passwordEncoder.encode(nuovoUtente.getPassword()), nuovoUtente.getEmail(),
-				nuovoUtente.getSesso(),	nuovoUtente.getTelefono(), nuovoUtente.getNascita(),
-				"assets/images/profilo.jpg", citta, 0);
+		Utente utente=null;
+            try {
+                utente = new Utente(nuovoUtente.getNome(), nuovoUtente.getCognome(),
+                        nuovoUtente.getUsername(), passwordEncoder.encode(nuovoUtente.getPassword()), nuovoUtente.getEmail(),
+                        nuovoUtente.getSesso(),	nuovoUtente.getTelefono(), nuovoUtente.getNascita(),
+                        "assets/images/profilo.jpg", citta, 0);
+            } catch (IOException ex) {
+                Logger.getLogger(FoodayServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
 		utenteRepository.save(utente);
 		return utente;
 	}

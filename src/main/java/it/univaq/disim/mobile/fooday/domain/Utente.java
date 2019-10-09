@@ -6,6 +6,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.util.*;
 
@@ -45,6 +50,10 @@ public class Utente {
 
 	@Column(name = "SRC_IMMAGINE")
 	private String srcImmagineProfilo;
+        
+        @Column(name = "IMMAGINE")
+        @Lob
+        private byte[] immagine;
 
 	@Column(name = "PUNTI")
 	private int punti;
@@ -77,7 +86,7 @@ public class Utente {
 
 	public Utente(String nome, String cognome, String username,
 				  String password, String email, String sesso,
-				  String telefono, Date nascita, String src, Citta citta, int punti) {
+				  String telefono, Date nascita, String src, Citta citta, int punti) throws IOException {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = username;
@@ -89,6 +98,7 @@ public class Utente {
 		this.srcImmagineProfilo = src;
 		this.nascita = nascita;
 		this.punti = punti;
+                this.immagine = getImmagineBlob(src); 
 	}
 
 	public int getPunti() {
@@ -218,6 +228,23 @@ public class Utente {
 	public void setRicerche(Set<Ricerca> ricerche) {
 		this.ricerche = ricerche;
 	}
+        
+        
+        public String getImmagine() throws UnsupportedEncodingException {
+            return new String(org.apache.tomcat.util.codec.binary.Base64.encodeBase64(immagine), "UTF-8");
+        }
+
+        public void setImmagine(byte[] immagine) {
+            this.immagine = immagine;
+        }
+        
+        public byte[] getImmagineBlob(String filePathStr) throws IOException {
+            // get path object pointing to fil
+            Path filePath = Paths.get(filePathStr);
+            // get byte array with file contents
+            byte[] fileContent = Files.readAllBytes(filePath);
+            return fileContent;        
+        }
 
 	@Override
 	public String toString() {
