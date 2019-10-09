@@ -281,16 +281,16 @@ public class FoodayApplication {
             orarioRepository.save(orario38);
             orarioRepository.save(orario39);
 
-            Immagine imm1 = new Immagine("assets/images/risto1.1.jpg", ristorante1);
-            Immagine imm2 = new Immagine("assets/images/risto1.2.jpg", ristorante1);
-            Immagine imm3 = new Immagine("assets/images/risto1.3.jpg", ristorante1);
-            Immagine imm4 = new Immagine("assets/images/risto2.1.jpg", ristorante2);
-            Immagine imm5 = new Immagine("assets/images/risto2.2.jpg", ristorante2);
-            Immagine imm6 = new Immagine("assets/images/risto3.1.jpg", ristorante3);
-            Immagine imm7 = new Immagine("assets/images/risto3.2.jpg", ristorante3);
-            Immagine imm8 = new Immagine("assets/images/risto4.1.jpg", ristorante4);
-            Immagine imm9 = new Immagine("assets/images/risto4.2.jpg", ristorante4);
-            Immagine imm10 = new Immagine("assets/images/risto4.3.jpg", ristorante4);
+            Immagine imm1 = new Immagine("C:\\Users\\giuse\\foodayAPP_server\\src\\main\\java\\it\\univaq\\disim\\mobile\\fooday\\immagini\\risto1.1.jpg", ristorante1);
+            Immagine imm2 = new Immagine("C:\\Users\\giuse\\foodayAPP_server\\src\\main\\java\\it\\univaq\\disim\\mobile\\fooday\\immagini\\risto1.2.jpg", ristorante1);
+            Immagine imm3 = new Immagine("C:\\Users\\giuse\\foodayAPP_server\\src\\main\\java\\it\\univaq\\disim\\mobile\\fooday\\immagini\\risto1.3.jpg", ristorante1);
+            Immagine imm4 = new Immagine("C:\\Users\\giuse\\foodayAPP_server\\src\\main\\java\\it\\univaq\\disim\\mobile\\fooday\\immagini\\risto2.1.jpg", ristorante2);
+            Immagine imm5 = new Immagine("C:\\Users\\giuse\\foodayAPP_server\\src\\main\\java\\it\\univaq\\disim\\mobile\\fooday\\immagini\\risto2.2.jpg", ristorante2);
+            Immagine imm6 = new Immagine("C:\\Users\\giuse\\foodayAPP_server\\src\\main\\java\\it\\univaq\\disim\\mobile\\fooday\\immagini\\risto3.1.jpg", ristorante3);
+            Immagine imm7 = new Immagine("C:\\Users\\giuse\\foodayAPP_server\\src\\main\\java\\it\\univaq\\disim\\mobile\\fooday\\immagini\\risto3.2.jpg", ristorante3);
+            Immagine imm8 = new Immagine("C:\\Users\\giuse\\foodayAPP_server\\src\\main\\java\\it\\univaq\\disim\\mobile\\fooday\\immagini\\risto4.1.jpg", ristorante4);
+            Immagine imm9 = new Immagine("C:\\Users\\giuse\\foodayAPP_server\\src\\main\\java\\it\\univaq\\disim\\mobile\\fooday\\immagini\\risto4.2.jpg", ristorante4);
+            Immagine imm10 = new Immagine("C:\\Users\\giuse\\foodayAPP_server\\src\\main\\java\\it\\univaq\\disim\\mobile\\fooday\\immagini\\risto4.3.jpg", ristorante4);
             immagineRepository.save(imm1);
             immagineRepository.save(imm2);
             immagineRepository.save(imm3);
@@ -305,21 +305,21 @@ public class FoodayApplication {
 
             Utente ut1 = new Utente("Stefano", "Florio", "steflo",
                     passwordEncoder.encode("stefano"), "stefano@email.com",
-                    "M", "3333333336", new Date(System.currentTimeMillis()), "assets/images/profilo.jpg", citta1, 435);
+                    "M", "3333333336", new Date(System.currentTimeMillis()), "immagini/profilo.jpg", citta1, 435);
             ut1.getPreferiti().add(ristorante2);
             ut1.getPreferiti().add(ristorante3);
             utenteRepository.save(ut1);
 
             Utente ut2 = new Utente("Giuseppe", "Gasbarro", "ggas23",
                     passwordEncoder.encode("giuseppe"), "giuseppe@email.com",
-                    "M", "3333333337", new Date(System.currentTimeMillis()), "assets/images/profilo.jpg", citta2, 617);
+                    "M", "3333333337", new Date(System.currentTimeMillis()), "immagini/profilo.jpg", citta2, 617);
             ut2.getPreferiti().add(ristorante1);
             ut2.getPreferiti().add(ristorante4);
             utenteRepository.save(ut2);
 
             Utente ut3 = new Utente("Enrico", "Monte", "enrimon",
                     passwordEncoder.encode("enrico"), "enrico@email.com",
-                    "M", "3333333338", new Date(System.currentTimeMillis()), "assets/images/profilo.jpg", citta1, 9);
+                    "M", "3333333338", new Date(System.currentTimeMillis()), "immagini/profilo.jpg", citta1, 9);
             ut3.getPreferiti().add(ristorante1);
             ut3.getPreferiti().add(ristorante2);
             ut3.getPreferiti().add(ristorante3);

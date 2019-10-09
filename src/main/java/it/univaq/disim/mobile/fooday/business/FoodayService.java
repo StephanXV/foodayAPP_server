@@ -3,6 +3,7 @@ package it.univaq.disim.mobile.fooday.business;
 import java.util.List;
 
 import it.univaq.disim.mobile.fooday.domain.*;
+import java.io.IOException;
 
 public interface FoodayService {
 
