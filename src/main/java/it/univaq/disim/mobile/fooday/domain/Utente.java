@@ -25,7 +25,7 @@ public class Utente {
 	@Column(name = "COGNOME", nullable = false, length = 255)
 	private String cognome;
 
-	@Column(name = "USERNAME", nullable = false, length = 16, updatable = false, unique = true)
+	@Column(name = "USERNAME", nullable = false, length = 16, unique = true)
 	private String username;
 
 	@Column(name = "PASSWORD", nullable = false, length = 255)

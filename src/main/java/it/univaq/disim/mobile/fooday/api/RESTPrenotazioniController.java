@@ -2,6 +2,7 @@ package it.univaq.disim.mobile.fooday.api;
 
 import it.univaq.disim.mobile.fooday.business.FoodayService;
 import it.univaq.disim.mobile.fooday.domain.Prenotazione;
+import it.univaq.disim.mobile.fooday.domain.Recensione;
 import it.univaq.disim.mobile.fooday.domain.Ristorante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,4 +22,22 @@ public class RESTPrenotazioniController {
     public List<Prenotazione> list(@PathVariable long idUtente) {
         return foodayService.findPrenotazioniByUtenteId(idUtente);
     }
+
+    @DeleteMapping("/delete/{idUtente}/{idRistorante}/{timestamp}")
+    public int prova(@PathVariable long idUtente, @PathVariable long idRistorante, @PathVariable long timestamp){
+        return foodayService.deletePrenotazione(idUtente, idRistorante, timestamp);
+    }
+
+    @PostMapping
+    public Prenotazione createPrenotazione(@RequestBody Prenotazione prenotazione){
+        System.out.println(prenotazione.toString());
+        return foodayService.createPrenotazione(prenotazione);
+    }
+
+    @GetMapping("/valutata/{idUtente}/{idRistorante}/{timestamp}")
+    public int prenotazioneValutata(@PathVariable long idUtente, @PathVariable long idRistorante, @PathVariable long timestamp){
+        return foodayService.prenotazioneValutata(idUtente, idRistorante, timestamp);
+    }
+
+
 }

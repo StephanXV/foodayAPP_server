@@ -1,5 +1,6 @@
 package it.univaq.disim.mobile.fooday.business;
 
+import java.io.IOException;
 import java.util.List;
 
 import it.univaq.disim.mobile.fooday.domain.*;
@@ -15,9 +16,7 @@ public interface FoodayService {
 
 	List<Prenotazione> findPrenotazioniByUtenteId(Long idUtente) throws BusinessException;
 
-	void createPrenotazione(Prenotazione prenotazione) throws BusinessException;
-
-	List<Recensione> findRecensioniByRistoranteId(Long idRistorante) throws BusinessException;
+	Prenotazione createPrenotazione(Prenotazione prenotazione) throws BusinessException;
 
 	Recensione createRecensione(Recensione recensione) throws BusinessException;
 
@@ -35,9 +34,7 @@ public interface FoodayService {
 
 	Utente findUtenteByUsername(String username) throws BusinessException;
 
-	Utente updateProfilo(Utente utente) throws BusinessException;
-
-	List<Ristorante> findAllRistoranti() throws BusinessException;
+	Utente updateProfilo(Utente utente, String vecchioUser) throws BusinessException;
 
 	List<Ristorante> findRistorantiPreferiti(Long idUtente);
 
@@ -45,5 +42,20 @@ public interface FoodayService {
 
 	Utente registerUtente(Utente nuovoUtente);
 
-	Citta findCitta(String nome);
+	int deletePrenotazione(long ristoranteId, long utenteId, long timestamp);
+
+	int prenotazioneValutata(long utenteId, long ristoranteId, long timestamp);
+
+	Categoria findCategoriaById(long categoriaId);
+
+	List<Ristorante> findRistorantiAroundUser(String lat, String lon) throws IOException;
+
+	boolean containsPreferito(long idUtente, long idRistorante);
+
+	boolean addPreferito(long idRistorante, long idUtente);
+
+	Ricerca createRicerca(Ricerca ricerca);
+
+	Ricerca deleteRicerca(long idRicerca);
+
 }

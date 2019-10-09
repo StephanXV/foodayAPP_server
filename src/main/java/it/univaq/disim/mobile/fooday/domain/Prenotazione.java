@@ -17,7 +17,7 @@ public class Prenotazione {
     private PrenotazioneId prenotazioneId;
 
     @Column(name = "GIORNO", nullable = false)
-    private Date giorno;
+    private long giorno;
 
     @Column(name = "ORARIO", nullable = false)
     private String orario;
@@ -28,8 +28,14 @@ public class Prenotazione {
     @Column(name = "SCONTO_APPLICATO", nullable = false)
     private int scontoApplicato;
 
-    @Column(name = "TIMESTAMP", nullable = false)
-    private Date timestamp;
+    @Column(name = "NOME_PRENOTAZIONE", nullable = false)
+    private String nome;
+
+    @Column(name = "USA_PUNTI", nullable = false)
+    private boolean usaPunti;
+
+    @Column(name = "IS_VALUTATA", nullable = false)
+    private boolean valutata;
 
     @JsonBackReference
     @ManyToOne
@@ -41,17 +47,20 @@ public class Prenotazione {
     @JoinColumn(name = "ID_RISTORANTE", insertable = false, updatable = false)
     private Ristorante ristorante;
 
+
     public Prenotazione() {
     }
 
-    public Prenotazione(PrenotazioneId id, Date giorno, String orario, int posti, int scontoApplicato,
-                        Date timestamp) {
+    public Prenotazione(PrenotazioneId id, long giorno, String orario, int posti, int scontoApplicato,
+                        String nomePrenotazione, Boolean usaPunti) {
         this.prenotazioneId = id;
         this.giorno = giorno;
         this.orario = orario;
         this.posti = posti;
         this.scontoApplicato = scontoApplicato;
-        this.timestamp = timestamp;
+        this.nome = nomePrenotazione;
+        this.usaPunti = usaPunti;
+        this.valutata = false;
     }
 
     public PrenotazioneId getPrenotazioneId() {
@@ -62,11 +71,11 @@ public class Prenotazione {
         this.prenotazioneId = prenotazioneId;
     }
 
-    public Date getGiorno() {
+    public long getGiorno() {
         return giorno;
     }
 
-    public void setGiorno(Date giorno) {
+    public void setGiorno(long giorno) {
         this.giorno = giorno;
     }
 
@@ -86,20 +95,36 @@ public class Prenotazione {
         this.posti = posti;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public boolean isUsaPunti() {
+        return usaPunti;
+    }
+
+    public void setUsaPunti(boolean usaPunti) {
+        this.usaPunti = usaPunti;
+    }
+
+    public boolean isValutata() {
+        return valutata;
+    }
+
+    public void setValutata(boolean valutata) {
+        this.valutata = valutata;
+    }
+
     public int getScontoApplicato() {
         return scontoApplicato;
     }
 
     public void setScontoApplicato(int scontoApplicato) {
         this.scontoApplicato = scontoApplicato;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
     }
 
     public Utente getUtente() {
@@ -116,5 +141,10 @@ public class Prenotazione {
 
     public void setRistorante(Ristorante ristorante) {
         this.ristorante = ristorante;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

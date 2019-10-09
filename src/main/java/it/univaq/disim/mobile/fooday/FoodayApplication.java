@@ -57,13 +57,25 @@ public class FoodayApplication {
             categoriaRepository.save(e);
 
             Citta citta1 = new Citta();
-            citta1.setNome("Vasto");
-            citta1.setCodicePostale("66054");
+            citta1.setNome("L'Aquila");
+            citta1.setCodicePostale("67100");
             cittaRepository.save(citta1);
             Citta citta2 = new Citta();
-            citta2.setNome("Roma");
-            citta2.setCodicePostale("0118");
+            citta2.setNome("Pizzoli");
+            citta2.setCodicePostale("3421");
             cittaRepository.save(citta2);
+            Citta citta3 = new Citta();
+            citta3.setNome("Vasto");
+            citta3.setCodicePostale("66054");
+            cittaRepository.save(citta3);
+            Citta citta4 = new Citta();
+            citta4.setNome("Roma");
+            citta4.setCodicePostale("0118");
+            cittaRepository.save(citta4);
+            Citta citta5 = new Citta();
+            citta5.setNome("Lucoli");
+            citta5.setCodicePostale("6684");
+            cittaRepository.save(citta5);
 
             Ristorante ristorante1 = new Ristorante();
             ristorante1.setNome("Lu Barrott");
@@ -73,7 +85,7 @@ public class FoodayApplication {
             ristorante1.setPunteggio(8.1);
             ristorante1.setPrezzoMedio(26);
             ristorante1.setSconto(10);
-            ristorante1.setCitta(citta1);
+            ristorante1.setCitta(citta3);
             ristorante1.getCategorie().add(c);
             ristorante1.getCategorie().add(e);
             ristoranteRepository.save(ristorante1);
@@ -111,10 +123,23 @@ public class FoodayApplication {
             ristorante4.setPunteggio(9.1);
             ristorante4.setPrezzoMedio(31);
             ristorante4.setSconto(8);
-            ristorante4.setCitta(citta2);
+            ristorante4.setCitta(citta5);
             ristorante4.getCategorie().add(c);
             ristorante4.getCategorie().add(d);
             ristoranteRepository.save(ristorante4);
+
+            /*Ristorante ristorante5 = new Ristorante();
+            ristorante5.setNome("La Monachina");
+            ristorante5.setIndirizzo("Via colli, 3");
+            ristorante5.setDescrizione("La pinsa romana più buona del mondo");
+            ristorante5.setPostiTot(67);
+            ristorante5.setPunteggio(8.4);
+            ristorante5.setPrezzoMedio(15);
+            ristorante5.setSconto(20);
+            ristorante5.setCitta(citta4);
+            ristorante5.getCategorie().add(c);
+            ristorante5.getCategorie().add(d);
+            ristoranteRepository.save(ristorante5);*/
 
             Pietanza pietanza1 = new Pietanza("Spaghetti al pomodoro", 7.5, TipologiaPietanza.primo, ristorante1);
             Pietanza pietanza2 = new Pietanza("Gnocchetti al ragù", 8, TipologiaPietanza.primo, ristorante1);
@@ -325,45 +350,40 @@ public class FoodayApplication {
             ut3.getPreferiti().add(ristorante3);
             utenteRepository.save(ut3);
 
-            Prenotazione pr1 = new Prenotazione(new PrenotazioneId(ristorante1, ut1), new Date(System.currentTimeMillis() - 81818181), "20:00", 2, 20,
-                    new Date(System.currentTimeMillis()));
+            Prenotazione pr1 = new Prenotazione(new PrenotazioneId(ristorante1, ut1,
+                    System.currentTimeMillis()), System.currentTimeMillis() + 81818181,
+                    "20:00", 2, 20, "Stefano", true);
             prenotazioneRepository.save(pr1);
 
-            Prenotazione pr2 = new Prenotazione(new PrenotazioneId(ristorante2, ut1), new Date(System.currentTimeMillis() - 61818181), "21:30", 7, 15,
-                    new Date(System.currentTimeMillis()));
+            Prenotazione pr2 = new Prenotazione(new PrenotazioneId(ristorante2, ut1,
+                    System.currentTimeMillis()), System.currentTimeMillis() + 61818181,
+                    "21:30", 7, 15, "Stefano", true);
             prenotazioneRepository.save(pr2);
 
-            Recensione rec1 = new Recensione(7, 8, 5,
-                    "Ottime le cotture delle carni, tuttavia il conto è salato",
-                    new Date(System.currentTimeMillis()), ut1, ristorante1);
 
-            Recensione rec2 = new Recensione(10, 6, 8,
-                    "Qualità/prezzo eccezionale, ma servizio nella norma",
-                    new Date(System.currentTimeMillis()), ut2, ristorante1);
+            Recensione rec1 = new Recensione(new RecensioneId(ristorante1, ut1, System.currentTimeMillis()), 7, 8, 5,
+                    "Ottime le cotture delle carni, tuttavia il conto è salato");
 
-            Recensione rec3 = new Recensione(6, 5, 7,
-                    "Abbiamo aspettato 2 ore per ricevere da mangiare",
-                    new Date(System.currentTimeMillis()), ut3, ristorante1);
+            Recensione rec2 = new Recensione(new RecensioneId(ristorante1, ut2, System.currentTimeMillis()),10, 6, 8,
+                    "Qualità/prezzo eccezionale, ma servizio nella norma");
 
-            Recensione rec4 = new Recensione(5, 5, 10,
-                    "Vale quello che si spende",
-                    new Date(System.currentTimeMillis()), ut1, ristorante2);
+            Recensione rec3 = new Recensione(new RecensioneId(ristorante1, ut3, System.currentTimeMillis()),6, 5, 7,
+                    "Abbiamo aspettato 2 ore per ricevere da mangiare");
 
-            Recensione rec5 = new Recensione(7, 9, 4,
-                    "La formula 'all you can eat' costa molto, ma le portate arrivano in fretta",
-                    new Date(System.currentTimeMillis()), ut3, ristorante3);
+            Recensione rec4 = new Recensione(new RecensioneId(ristorante2, ut1, System.currentTimeMillis()),5, 5, 10,
+                    "Vale quello che si spende");
 
-            Recensione rec6 = new Recensione(8, 6, 7,
-                    "Sushi molto buono e primi ben fatti, ci ritornerò",
-                    new Date(System.currentTimeMillis()), ut2, ristorante3);
+            Recensione rec5 = new Recensione(new RecensioneId(ristorante3, ut3, System.currentTimeMillis()),7, 9, 4,
+                    "La formula 'all you can eat' costa molto, ma le portate arrivano in fretta");
 
-            Recensione rec7 = new Recensione(9, 9, 6,
-                    "Mi è piaciuto tutto moltissimo",
-                    new Date(System.currentTimeMillis()), ut1, ristorante3);
+            Recensione rec6 = new Recensione(new RecensioneId(ristorante3, ut2, System.currentTimeMillis()),8, 6, 7,
+                    "Sushi molto buono e primi ben fatti, ci ritornerò");
 
-            Recensione rec8 = new Recensione(8, 7, 7,
-                    "Ottima qualità del pesce ad un ottimo prezzo",
-                    new Date(System.currentTimeMillis()), ut2, ristorante3);
+            Recensione rec7 = new Recensione(new RecensioneId(ristorante3, ut1, System.currentTimeMillis()),9, 9, 6,
+                    "Mi è piaciuto tutto moltissimo");
+
+            Recensione rec8 = new Recensione(new RecensioneId(ristorante3, ut2, System.currentTimeMillis()),8, 7, 7,
+                    "Ottima qualità del pesce ad un ottimo prezzo");
 
             recensioneRepository.save(rec1);
             recensioneRepository.save(rec2);
@@ -376,8 +396,8 @@ public class FoodayApplication {
 
             Ricerca ric1 = new Ricerca("lu", 3, ut1);
             Ricerca ric2 = new Ricerca("vasto", 2, ut1);
-            Ricerca ric3 = new Ricerca("roma", 2, ut1);
-            Ricerca ric4 = new Ricerca("shabu", 3, ut1);
+            Ricerca ric3 = new Ricerca("roma", 2, ut2);
+            Ricerca ric4 = new Ricerca("shabu", 3, ut3);
             ricercaRepository.save(ric1);
             ricercaRepository.save(ric2);
             ricercaRepository.save(ric3);

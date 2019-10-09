@@ -5,6 +5,7 @@ import it.univaq.disim.mobile.fooday.domain.Ristorante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -47,5 +48,15 @@ public class RESTRistorantiController {
     @DeleteMapping("preferiti/{idRistorante}/{idUtente}")
     public void deleteRistoranteByPreferiti(@PathVariable long idRistorante, @PathVariable long idUtente) {
         foodayService.deleteRistoranteByPreferiti(idRistorante, idUtente);
+    }
+
+    @GetMapping("/around/{lat}/{lon}")
+    public List<Ristorante> getRistorantiAroundUser(@PathVariable String lat, @PathVariable String lon) throws IOException {
+        return foodayService.findRistorantiAroundUser(lat, lon);
+    }
+
+    @GetMapping("preferiti/aggiungi/{idRistorante}/{idUtente}")
+    public boolean addPreferito(@PathVariable long idRistorante, @PathVariable long idUtente) {
+        return foodayService.addPreferito(idRistorante, idUtente);
     }
 }
