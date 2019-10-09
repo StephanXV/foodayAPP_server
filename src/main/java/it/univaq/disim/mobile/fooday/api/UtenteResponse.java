@@ -2,6 +2,7 @@ package it.univaq.disim.mobile.fooday.api;
 
 import it.univaq.disim.mobile.fooday.domain.Citta;
 import it.univaq.disim.mobile.fooday.domain.Utente;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 public class UtenteResponse {
@@ -15,7 +16,7 @@ public class UtenteResponse {
 	private String sesso;
 	private String telefono;
 	private Date nascita;
-	private String srcImmagineProfilo;
+	private String immagine;
 	private Citta citta;
 	private int punti;
 
@@ -23,7 +24,7 @@ public class UtenteResponse {
 	public UtenteResponse() {
 	}
 	
-	public UtenteResponse(Utente utente) {
+	public UtenteResponse(Utente utente) throws UnsupportedEncodingException {
 		this.id = utente.getId();
 		this.nome = utente.getNome();
 		this.cognome = utente.getCognome();
@@ -33,7 +34,7 @@ public class UtenteResponse {
 		this.sesso = utente.getSesso();
 		this.telefono = utente.getTelefono();
 		this.nascita = utente.getNascita();
-		this.srcImmagineProfilo = utente.getSrcImmagineProfilo();
+		this.immagine = utente.getImmagine();
 		this.citta = utente.getCitta();
 		this.punti = utente.getPunti();
 	}
@@ -110,12 +111,12 @@ public class UtenteResponse {
 		this.nascita = nascita;
 	}
 
-	public String getSrcImmagineProfilo() {
-		return srcImmagineProfilo;
+	public String getImmagine() {
+		return immagine;
 	}
 
-	public void setSrcImmagineProfilo(String srcImmagineProfilo) {
-		this.srcImmagineProfilo = srcImmagineProfilo;
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
 	}
 
 	public Citta getCitta() {

@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+import org.apache.tomcat.util.codec.binary.Base64;
 import java.util.*;
 
 @Entity
@@ -231,7 +231,7 @@ public class Utente {
         
         
         public String getImmagine() throws UnsupportedEncodingException {
-            return new String(org.apache.tomcat.util.codec.binary.Base64.encodeBase64(immagine), "UTF-8");
+            return new String(Base64.encodeBase64(immagine), "UTF-8");
         }
 
         public void setImmagine(byte[] immagine) {
