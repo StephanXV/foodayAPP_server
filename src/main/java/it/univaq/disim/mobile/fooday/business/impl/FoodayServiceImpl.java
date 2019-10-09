@@ -106,8 +106,20 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public List<Recensione> findRecensioniByRistoranteId(Long idRistorante) throws BusinessException {
-		return null;
+	public Ricerca createRicerca(Ricerca ricerca) throws BusinessException {
+		Ricerca newRicerca = new Ricerca();
+		Utente utente = utenteRepository.findById(ricerca.getUtente().getId()).get();
+		newRicerca.setUtente(utente);
+		newRicerca.setInput(ricerca.getInput());
+		newRicerca.setTipoRichiesta(ricerca.getTipoRichiesta());
+		return ricercaRepository.save(newRicerca);
+	}
+
+	@Override
+	public Ricerca deleteRicerca(long idRicerca) throws BusinessException {
+		Ricerca ricerca = ricercaRepository.findById(idRicerca).get();
+		ricercaRepository.delete(ricerca);
+		return ricerca;
 	}
 
 	@Override
@@ -159,11 +171,6 @@ public class FoodayServiceImpl implements FoodayService {
     }
 
 	@Override
-	public List<Ristorante> findAllRistoranti() throws BusinessException {
-		return ristoranteRepository.findAll();
-	}
-
-	@Override
 	public Utente updateProfilo(Utente profilo, String vecchioUser) throws BusinessException {
 		Citta citta = new Citta();
 		if (cittaRepository.findByNome(profilo.getCitta().getNome()) != null)
@@ -192,11 +199,6 @@ public class FoodayServiceImpl implements FoodayService {
 		utente.setCitta(citta);
 		utente.setSesso(profilo.getSesso());
 		return utente;
-	}
-
-	@Override
-	public Citta findCitta(String nome) {
-		return cittaRepository.findByNome(nome);
 	}
 
 	@Override

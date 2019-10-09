@@ -396,8 +396,8 @@ public class FoodayApplication {
 
             Ricerca ric1 = new Ricerca("lu", 3, ut1);
             Ricerca ric2 = new Ricerca("vasto", 2, ut1);
-            Ricerca ric3 = new Ricerca("roma", 2, ut1);
-            Ricerca ric4 = new Ricerca("shabu", 3, ut1);
+            Ricerca ric3 = new Ricerca("roma", 2, ut2);
+            Ricerca ric4 = new Ricerca("shabu", 3, ut3);
             ricercaRepository.save(ric1);
             ricercaRepository.save(ric2);
             ricercaRepository.save(ric3);
