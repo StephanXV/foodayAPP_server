@@ -19,6 +19,7 @@ import it.univaq.disim.mobile.fooday.common.spring.security.UserDetailsImpl;
 import it.univaq.disim.mobile.fooday.domain.Utente;
 import java.io.UnsupportedEncodingException;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController

@@ -34,7 +34,7 @@ public class Prenotazione {
     @Column(name = "USA_PUNTI", nullable = false)
     private boolean usaPunti;
 
-    @Column(name = "IS_VALUTATA", nullable = false)
+    @Column(name = "IS_VALUTATA")
     private boolean valutata;
 
     @JsonBackReference

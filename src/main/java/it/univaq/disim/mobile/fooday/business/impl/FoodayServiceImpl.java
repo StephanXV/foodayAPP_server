@@ -238,8 +238,7 @@ public class FoodayServiceImpl implements FoodayService {
 
 	@Override
 	public int deletePrenotazione(long idUtente, long idRistorante, long timestamp) {
-		int i = prenotazioneRepository.deletePrenotazione(idRistorante, idUtente, timestamp);
-		return i;
+		return prenotazioneRepository.deletePrenotazione(idRistorante, idUtente, timestamp);
 	}
 
     @Override
