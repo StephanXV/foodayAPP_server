@@ -364,7 +364,7 @@ public class FoodayApplication {
             Prenotazione pr3 = new Prenotazione(new PrenotazioneId(ristorante4, ut1,
                     System.currentTimeMillis()), System.currentTimeMillis() - 61818181,
                     "21:30", 9, ristorante4.getSconto(), "Florio", true);
-            prenotazioneRepository.save(pr2);
+            prenotazioneRepository.save(pr3);
 
             Recensione rec1 = new Recensione(new RecensioneId(ristorante1, ut1, System.currentTimeMillis()), 7, 8, 5,
                     "Ottime le cotture delle carni, tuttavia il conto è salato");
