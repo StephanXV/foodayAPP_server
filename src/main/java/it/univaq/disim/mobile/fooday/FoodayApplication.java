@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.io.File;
 import java.util.Date;
+import java.util.Random;
 
 @Configuration
 @EnableAutoConfiguration
@@ -123,18 +124,18 @@ public class FoodayApplication {
             ristorante4.getCategorie().add(d);
             ristoranteRepository.save(ristorante4);
 
-            /*Ristorante ristorante5 = new Ristorante();
+            Ristorante ristorante5 = new Ristorante();
             ristorante5.setNome("La Monachina");
             ristorante5.setIndirizzo("Via colli, 3");
             ristorante5.setDescrizione("La pinsa romana più buona del mondo");
             ristorante5.setPostiTot(67);
             ristorante5.setPunteggio(8.4);
             ristorante5.setPrezzoMedio(15);
-            ristorante5.setSconto(20);
+            ristorante5.setSconto(0);
             ristorante5.setCitta(citta4);
             ristorante5.getCategorie().add(c);
             ristorante5.getCategorie().add(d);
-            ristoranteRepository.save(ristorante5);*/
+            ristoranteRepository.save(ristorante5);
 
             Pietanza pietanza1 = new Pietanza("Spaghetti al pomodoro", 7.5, TipologiaPietanza.primo, ristorante1);
             Pietanza pietanza2 = new Pietanza("Gnocchetti al ragù", 8, TipologiaPietanza.primo, ristorante1);
@@ -325,7 +326,6 @@ public class FoodayApplication {
             immagineRepository.save(imm9);
             immagineRepository.save(imm10);
 
-
             Utente ut1 = new Utente("Stefano", "Florio", "steflo",
                     passwordEncoder.encode("stefano"), "stefano@email.com",
                     "M", "3333333336", new Date(System.currentTimeMillis()),
@@ -350,6 +350,100 @@ public class FoodayApplication {
             ut3.getPreferiti().add(ristorante2);
             ut3.getPreferiti().add(ristorante3);
             utenteRepository.save(ut3);
+
+            for(int i = 0; i < 100; i++) {
+                Ristorante ristorante = new Ristorante();
+                ristorante.setNome("Ristorante " + i);
+                ristorante.setIndirizzo("Via del ristorante " + i);
+                ristorante.setDescrizione("Questo è il ristorante " + i);
+                ristorante.setPrezzoMedio(new Random().nextInt(20) + 10);
+                ristorante.setSconto(new Random().nextInt(31));
+                ristorante.setPunteggio(new Random().nextInt(6) + 5);
+                ristorante.setCitta(citta1);
+                ristorante.setPostiTot(new Random().nextInt(100) + 50);
+                ristorante.getCategorie().add(c);
+                ristorante.getCategorie().add(d);
+                ristorante.getCategorie().add(e);
+                ristoranteRepository.save(ristorante);
+                Immagine immagine1 = new Immagine(path + "/src/main/resources/images/risto1.1.jpg", ristorante);
+                Immagine immagine2 = new Immagine(path + "/src/main/resources/images/risto1.2.jpg", ristorante);
+                Immagine immagine3 = new Immagine(path + "/src/main/resources/images/risto1.3.jpg", ristorante);
+                immagineRepository.save(immagine1);
+                immagineRepository.save(immagine2);
+                immagineRepository.save(immagine3);
+                Orario orario50 = new Orario("Chiuso", "", ristorante, Giorno.lunedi);
+                Orario orario51 = new Orario("11:30", "15:00", ristorante, Giorno.martedi);
+                Orario orario52 = new Orario("18:30", "23:00", ristorante, Giorno.martedi);
+                Orario orario53 = new Orario("11:30", "15:00", ristorante, Giorno.mercoledi);
+                Orario orario54 = new Orario("18:30", "23:00", ristorante, Giorno.mercoledi);
+                Orario orario55 = new Orario("11:30", "15:00", ristorante, Giorno.giovedi);
+                Orario orario56 = new Orario("18:30", "23:00", ristorante, Giorno.giovedi);
+                Orario orario57 = new Orario("11:30", "15:00", ristorante, Giorno.venerdi);
+                Orario orario58 = new Orario("18:30", "23:00", ristorante, Giorno.venerdi);
+                Orario orario59 = new Orario("11:30", "15:00", ristorante, Giorno.sabato);
+                Orario orario60 = new Orario("18:30", "23:00", ristorante, Giorno.sabato);
+                Orario orario61 = new Orario("11:30", "15:00", ristorante, Giorno.domenica);
+                Orario orario62 = new Orario("18:30", "23:00", ristorante, Giorno.domenica);
+                orarioRepository.save(orario50);
+                orarioRepository.save(orario51);
+                orarioRepository.save(orario52);
+                orarioRepository.save(orario53);
+                orarioRepository.save(orario54);
+                orarioRepository.save(orario55);
+                orarioRepository.save(orario56);
+                orarioRepository.save(orario57);
+                orarioRepository.save(orario58);
+                orarioRepository.save(orario59);
+                orarioRepository.save(orario60);
+                orarioRepository.save(orario61);
+                orarioRepository.save(orario62);
+                Pietanza pietanza41 = new Pietanza("Spaghetti al pomodoro", 7.5, TipologiaPietanza.primo, ristorante);
+                Pietanza pietanza42 = new Pietanza("Gnocchetti al ragù", 8, TipologiaPietanza.primo, ristorante);
+                Pietanza pietanza43 = new Pietanza("Salumi misti", 10, TipologiaPietanza.antipasto, ristorante);
+                Pietanza pietanza44 = new Pietanza("Formaggi misti", 9, TipologiaPietanza.antipasto, ristorante);
+                Pietanza pietanza45 = new Pietanza("Tagliata di maiale", 12, TipologiaPietanza.secondo, ristorante);
+                Pietanza pietanza46 = new Pietanza("Tagliata di manzo", 14, TipologiaPietanza.secondo, ristorante);
+                Pietanza pietanza47 = new Pietanza("Macedonia", 4.5, TipologiaPietanza.dessert, ristorante);
+                Pietanza pietanza48 = new Pietanza("Cheesecake", 4, TipologiaPietanza.dessert, ristorante);
+                Pietanza pietanza49 = new Pietanza("Coca-Cola", 2.5, TipologiaPietanza.bevanda, ristorante);
+                Pietanza pietanza50 = new Pietanza("Acqua", 1.5, TipologiaPietanza.bevanda, ristorante);
+                pietanzaRepository.save(pietanza41);
+                pietanzaRepository.save(pietanza42);
+                pietanzaRepository.save(pietanza43);
+                pietanzaRepository.save(pietanza44);
+                pietanzaRepository.save(pietanza45);
+                pietanzaRepository.save(pietanza46);
+                pietanzaRepository.save(pietanza47);
+                pietanzaRepository.save(pietanza48);
+                pietanzaRepository.save(pietanza49);
+                pietanzaRepository.save(pietanza50);
+                Prenotazione pr10 = new Prenotazione(new PrenotazioneId(ristorante, ut1,
+                        System.currentTimeMillis()), System.currentTimeMillis() + 81818181,
+                        "20:00", 2, ristorante.getSconto(), "Stefano", false);
+                prenotazioneRepository.save(pr10);
+
+                Prenotazione pr11 = new Prenotazione(new PrenotazioneId(ristorante, ut2,
+                        System.currentTimeMillis()), System.currentTimeMillis() + 61818181,
+                        "21:30", 7, ristorante.getSconto(), "Stefano", false);
+                prenotazioneRepository.save(pr11);
+
+                Prenotazione pr12 = new Prenotazione(new PrenotazioneId(ristorante, ut3,
+                        System.currentTimeMillis()), System.currentTimeMillis() - 61818181,
+                        "21:30", 9, ristorante.getSconto(), "Florio", true);
+                prenotazioneRepository.save(pr12);
+
+                Recensione rec10 = new Recensione(new RecensioneId(ristorante, ut1, System.currentTimeMillis()), 7, 8, 5,
+                        "Ottime le cotture delle carni, tuttavia il conto è salato");
+
+                Recensione rec11 = new Recensione(new RecensioneId(ristorante, ut2, System.currentTimeMillis()),10, 6, 8,
+                        "Qualità/prezzo eccezionale, ma servizio nella norma");
+
+                Recensione rec12 = new Recensione(new RecensioneId(ristorante, ut3, System.currentTimeMillis()),6, 5, 7,
+                        "Abbiamo aspettato 2 ore per ricevere da mangiare");
+                recensioneRepository.save(rec10);
+                recensioneRepository.save(rec11);
+                recensioneRepository.save(rec12);
+            }
 
             Prenotazione pr1 = new Prenotazione(new PrenotazioneId(ristorante1, ut1,
                     System.currentTimeMillis()), System.currentTimeMillis() + 81818181,
