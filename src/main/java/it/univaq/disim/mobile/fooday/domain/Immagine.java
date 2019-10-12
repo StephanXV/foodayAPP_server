@@ -1,8 +1,15 @@
 package it.univaq.disim.mobile.fooday.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.persistence.*;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 @Entity
 @Table(name = "immagini")
@@ -15,6 +22,10 @@ public class Immagine {
 
     @Column(name = "SRC", nullable = false)
     private String src;
+    
+    @Column(name = "FILE")
+    @Lob
+    private byte[] file;
 
     @JsonBackReference
     @ManyToOne
@@ -24,9 +35,10 @@ public class Immagine {
     public Immagine() {
     }
 
-    public Immagine(String src, Ristorante ristorante) {
+    public Immagine(String src, Ristorante ristorante) throws IOException {
         this.src = src;
         this.ristorante = ristorante;
+        this.file = getImmagine(src);
     }
 
     public Ristorante getRistorante() {
@@ -51,5 +63,21 @@ public class Immagine {
 
     public void setSrc(String nome) {
         this.src = nome;
+    }
+
+    public byte[] getImmagine(String filePathStr) throws IOException {
+        // get path object pointing to fil
+        Path filePath = Paths.get(filePathStr);
+        // get byte array with file contents
+        byte[] fileContent = Files.readAllBytes(filePath);
+        return fileContent;        
+    }
+    
+    public String getFile() throws UnsupportedEncodingException {
+        return new String(Base64.encodeBase64(file), "UTF-8");
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
     }
 }

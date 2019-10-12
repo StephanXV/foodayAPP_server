@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import it.univaq.disim.mobile.fooday.domain.*;
+import java.io.IOException;
 
 public interface FoodayService {
 
@@ -16,8 +17,6 @@ public interface FoodayService {
 	List<Prenotazione> findPrenotazioniByUtenteId(Long idUtente) throws BusinessException;
 
 	Prenotazione createPrenotazione(Prenotazione prenotazione) throws BusinessException;
-
-	List<Recensione> findRecensioniByRistoranteId(Long idRistorante) throws BusinessException;
 
 	Recensione createRecensione(Recensione recensione) throws BusinessException;
 
@@ -37,15 +36,11 @@ public interface FoodayService {
 
 	Utente updateProfilo(Utente utente, String vecchioUser) throws BusinessException;
 
-	List<Ristorante> findAllRistoranti() throws BusinessException;
-
 	List<Ristorante> findRistorantiPreferiti(Long idUtente);
 
 	void deleteRistoranteByPreferiti(long idRistorante, long idUtente);
 
 	Utente registerUtente(Utente nuovoUtente);
-
-	Citta findCitta(String nome);
 
 	int deletePrenotazione(long ristoranteId, long utenteId, long timestamp);
 
@@ -53,11 +48,14 @@ public interface FoodayService {
 
 	Categoria findCategoriaById(long categoriaId);
 
-
 	List<Ristorante> findRistorantiAroundUser(String lat, String lon) throws IOException;
 
 	boolean containsPreferito(long idUtente, long idRistorante);
 
 	boolean addPreferito(long idRistorante, long idUtente);
+
+	Ricerca createRicerca(Ricerca ricerca);
+
+	Ricerca deleteRicerca(long idRicerca);
 
 }

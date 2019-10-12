@@ -1,8 +1,6 @@
 package it.univaq.disim.mobile.fooday.business.impl;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ProtocolException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +10,10 @@ import it.univaq.disim.mobile.fooday.business.BusinessException;
 import it.univaq.disim.mobile.fooday.business.FoodayService;
 import it.univaq.disim.mobile.fooday.business.impl.repositories.*;
 import it.univaq.disim.mobile.fooday.domain.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import it.univaq.disim.mobile.fooday.utilities.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 @Service
@@ -106,8 +107,20 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public List<Recensione> findRecensioniByRistoranteId(Long idRistorante) throws BusinessException {
-		return null;
+	public Ricerca createRicerca(Ricerca ricerca) throws BusinessException {
+		Ricerca newRicerca = new Ricerca();
+		Utente utente = utenteRepository.findById(ricerca.getUtente().getId()).get();
+		newRicerca.setUtente(utente);
+		newRicerca.setInput(ricerca.getInput());
+		newRicerca.setTipoRichiesta(ricerca.getTipoRichiesta());
+		return ricercaRepository.save(newRicerca);
+	}
+
+	@Override
+	public Ricerca deleteRicerca(long idRicerca) throws BusinessException {
+		Ricerca ricerca = ricercaRepository.findById(idRicerca).get();
+		ricercaRepository.delete(ricerca);
+		return ricerca;
 	}
 
 	@Override
@@ -159,11 +172,6 @@ public class FoodayServiceImpl implements FoodayService {
     }
 
 	@Override
-	public List<Ristorante> findAllRistoranti() throws BusinessException {
-		return ristoranteRepository.findAll();
-	}
-
-	@Override
 	public Utente updateProfilo(Utente profilo, String vecchioUser) throws BusinessException {
 		Citta citta = new Citta();
 		if (cittaRepository.findByNome(profilo.getCitta().getNome()) != null)
@@ -195,11 +203,6 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
-	public Citta findCitta(String nome) {
-		return cittaRepository.findByNome(nome);
-	}
-
-	@Override
 	public List<Ristorante> findRistorantiPreferiti(Long idUtente) {
 		return ristoranteRepository.findRistorantiByPreferitiId(idUtente);
 	}
@@ -208,6 +211,9 @@ public class FoodayServiceImpl implements FoodayService {
 	public void deleteRistoranteByPreferiti(long idRistorante, long idUtente) {
 		utenteRepository.getOne(idUtente).getPreferiti().remove(ristoranteRepository.getOne(idRistorante));
 	}
+
+	String path = new File("")
+			.getAbsolutePath();
 
 	@Override
 	public Utente registerUtente(Utente nuovoUtente) {
@@ -218,18 +224,22 @@ public class FoodayServiceImpl implements FoodayService {
 			citta.setNome(nuovoUtente.getCitta().getNome());
 			cittaRepository.save(citta);
 		}
-		Utente utente = new Utente(nuovoUtente.getNome(), nuovoUtente.getCognome(),
-				nuovoUtente.getUsername(), passwordEncoder.encode(nuovoUtente.getPassword()), nuovoUtente.getEmail(),
-				nuovoUtente.getSesso(),	nuovoUtente.getTelefono(), nuovoUtente.getNascita(),
-				"assets/images/profilo.jpg", citta, 0);
+		Utente utente=null;
+            try {
+                utente = new Utente(nuovoUtente.getNome(), nuovoUtente.getCognome(),
+                        nuovoUtente.getUsername(), passwordEncoder.encode(nuovoUtente.getPassword()), nuovoUtente.getEmail(),
+                        nuovoUtente.getSesso(),	nuovoUtente.getTelefono(), nuovoUtente.getNascita(),
+						path + "/src/main/resources/images/profilo.jpg", citta, 0);
+            } catch (IOException ex) {
+                Logger.getLogger(FoodayServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
 		utenteRepository.save(utente);
 		return utente;
 	}
 
 	@Override
 	public int deletePrenotazione(long idUtente, long idRistorante, long timestamp) {
-		int i = prenotazioneRepository.deletePrenotazione(idRistorante, idUtente, timestamp);
-		return i;
+		return prenotazioneRepository.deletePrenotazione(idRistorante, idUtente, timestamp);
 	}
 
     @Override

@@ -17,7 +17,9 @@ import it.univaq.disim.mobile.fooday.business.FoodayService;
 import it.univaq.disim.mobile.fooday.common.spring.security.JWTTokenUtil;
 import it.univaq.disim.mobile.fooday.common.spring.security.UserDetailsImpl;
 import it.univaq.disim.mobile.fooday.domain.Utente;
+import java.io.UnsupportedEncodingException;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
@@ -37,7 +39,7 @@ public class RESTUtenteController {
 	private FoodayService foodayService;
 
 	@PostMapping("/login")
-	public UtenteResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException {
+	public UtenteResponse login(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException, UnsupportedEncodingException {
 		// Effettuo l'autenticazione
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -52,14 +54,14 @@ public class RESTUtenteController {
 	}
 
 	@PostMapping("/utente/updateprofilo/{vecchioUser}")
-	public UtenteResponse updateProfilo(@RequestBody Utente utente, @PathVariable String vecchioUser) {
+	public UtenteResponse updateProfilo(@RequestBody Utente utente, @PathVariable String vecchioUser) throws UnsupportedEncodingException {
 		System.out.println(utente.toString());
 		Utente nuovoUtente = foodayService.updateProfilo(utente, vecchioUser);
 		return new UtenteResponse(nuovoUtente);
 	}
 
 	@PostMapping("/utente/registrazione")
-	public UtenteResponse registerUtente(@RequestBody Utente utente){
+	public UtenteResponse registerUtente(@RequestBody Utente utente) throws UnsupportedEncodingException{
 		Utente nuovoUtente = foodayService.registerUtente(utente);
 		return new UtenteResponse(nuovoUtente);
 	}

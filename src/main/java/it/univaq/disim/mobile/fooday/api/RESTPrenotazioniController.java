@@ -24,7 +24,7 @@ public class RESTPrenotazioniController {
     }
 
     @DeleteMapping("/delete/{idUtente}/{idRistorante}/{timestamp}")
-    public int prova(@PathVariable long idUtente, @PathVariable long idRistorante, @PathVariable long timestamp){
+    public int deletePrenotazioni(@PathVariable long idUtente, @PathVariable long idRistorante, @PathVariable long timestamp){
         return foodayService.deletePrenotazione(idUtente, idRistorante, timestamp);
     }
 
