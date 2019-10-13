@@ -359,7 +359,7 @@ public class FoodayApplication {
             ut3.getPreferiti().add(ristorante3);
             utenteRepository.save(ut3);
 
-            for(int i = 0; i < 100; i++) {
+            for(int i = 0; i < 5; i++) {
                 Ristorante ristorante = new Ristorante();
                 ristorante.setNome("Ristorante " + i);
                 ristorante.setIndirizzo("Via del ristorante " + i);
