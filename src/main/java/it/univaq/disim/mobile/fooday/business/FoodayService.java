@@ -18,6 +18,8 @@ public interface FoodayService {
 
 	Prenotazione createPrenotazione(Prenotazione prenotazione) throws BusinessException;
 
+	Utente updatePunti(Utente utente, boolean usaPunti) throws BusinessException;
+
 	Recensione createRecensione(Recensione recensione) throws BusinessException;
 
 	List<Ristorante> findRistorantiByCittaNome(String nomeCitta) throws BusinessException;
