@@ -104,7 +104,21 @@ public class FoodayServiceImpl implements FoodayService {
 		newPrenotazione.setNome(prenotazione.getNome());
 		newPrenotazione.setUsaPunti(prenotazione.isUsaPunti());
 		prenotazioneRepository.save(newPrenotazione);
+
+
 		return  newPrenotazione;
+	}
+
+	@Override
+	public Utente updatePunti(Utente utente, boolean usaPunti) throws BusinessException {
+		Utente newUtente = utenteRepository.findByUsername(utente.getUsername());
+		if (usaPunti) {
+			// sottrai punti utente
+			System.out.println("entrato");
+			newUtente.setPunti(utente.getPunti() - 1000);
+		}
+		newUtente.setPunti(newUtente.getPunti() + 100);
+		return newUtente;
 	}
 
 	@Override
