@@ -63,19 +63,15 @@ public class Ristorante {
     @OneToMany(mappedBy = "ristorante")
     private Set<Prenotazione> prenotazioni = new HashSet<Prenotazione>();
 
-    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Recensione> recensioni = new HashSet<Recensione>();
 
-    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Orario> orari = new HashSet<Orario>();
 
-    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Pietanza> pietanze = new HashSet<Pietanza>();
 
-    //@JsonManagedReference
     @OneToMany(mappedBy = "ristorante")
     private Set<Immagine> immagini = new HashSet<Immagine>();
 

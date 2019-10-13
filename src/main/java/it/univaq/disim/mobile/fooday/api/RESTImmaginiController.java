@@ -21,4 +21,9 @@ public class RESTImmaginiController {
     public List<Immagine> getImmaginiByRistoranteId(@PathVariable long idRistorante) {
         return foodayService.findImmaginiByRistoranteId(idRistorante);
     }
+
+    @GetMapping("/principale/{idRistorante}")
+    public Immagine getImmaginePrincipaleByRistoranteId(@PathVariable long idRistorante) {
+        return foodayService.findImmaginiByRistoranteId(idRistorante).get(0);
+    }
 }

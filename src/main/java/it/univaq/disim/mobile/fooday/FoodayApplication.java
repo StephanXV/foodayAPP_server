@@ -333,6 +333,8 @@ public class FoodayApplication {
             Immagine imm8 = new Immagine(path + "/src/main/resources/images/risto4.1.jpg", ristorante4);
             Immagine imm9 = new Immagine(path + "/src/main/resources/images/risto4.2.jpg", ristorante4);
             Immagine imm10 = new Immagine(path + "/src/main/resources/images/risto4.3.jpg", ristorante4);
+            Immagine imm11 = new Immagine(path + "/src/main/resources/images/risto3.1.jpg", ristorante5);
+            Immagine imm12 = new Immagine(path + "/src/main/resources/images/risto3.2.jpg", ristorante5);
             immagineRepository.save(imm1);
             immagineRepository.save(imm2);
             immagineRepository.save(imm3);
@@ -343,6 +345,8 @@ public class FoodayApplication {
             immagineRepository.save(imm8);
             immagineRepository.save(imm9);
             immagineRepository.save(imm10);
+            immagineRepository.save(imm11);
+            immagineRepository.save(imm12);
 
             Utente ut1 = new Utente("Stefano", "Florio", "steflo",
                     passwordEncoder.encode("stefano"), "stefano@email.com",
