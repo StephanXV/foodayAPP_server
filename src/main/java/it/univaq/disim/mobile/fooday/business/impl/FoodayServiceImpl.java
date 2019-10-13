@@ -18,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import it.univaq.disim.mobile.fooday.utilities.JsonParser;
+import java.io.UnsupportedEncodingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -201,6 +202,11 @@ public class FoodayServiceImpl implements FoodayService {
 		utente.setNascita(profilo.getNascita());
 		utente.setCitta(citta);
 		utente.setSesso(profilo.getSesso());
+            try {
+                utente.setImmagine(profilo.getImmagine());
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(FoodayServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
 		return utente;
 	}
 
@@ -228,7 +234,7 @@ public class FoodayServiceImpl implements FoodayService {
                 utente = new Utente(nuovoUtente.getNome(), nuovoUtente.getCognome(),
                         nuovoUtente.getUsername(), passwordEncoder.encode(nuovoUtente.getPassword()), nuovoUtente.getEmail(),
                         nuovoUtente.getSesso(),	nuovoUtente.getTelefono(), nuovoUtente.getNascita(),
-                        "assets/images/profilo.jpg", citta, 0);
+                        nuovoUtente.getImmagine(), citta, 0);
             } catch (IOException ex) {
                 Logger.getLogger(FoodayServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }

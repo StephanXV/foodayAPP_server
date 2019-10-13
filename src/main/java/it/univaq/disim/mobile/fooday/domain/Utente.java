@@ -47,13 +47,10 @@ public class Utente {
 
 	@Column(name = "DATA_NASCITA")
 	private Date nascita;
-
-	@Column(name = "SRC_IMMAGINE")
-	private String srcImmagineProfilo;
         
         @Column(name = "IMMAGINE")
         @Lob
-        private byte[] immagine;
+        private String immagine;
 
 	@Column(name = "PUNTI")
 	private int punti;
@@ -86,7 +83,7 @@ public class Utente {
 
 	public Utente(String nome, String cognome, String username,
 				  String password, String email, String sesso,
-				  String telefono, Date nascita, String src, Citta citta, int punti) throws IOException {
+				  String telefono, Date nascita, String immagine, Citta citta, int punti) throws IOException {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = username;
@@ -95,10 +92,9 @@ public class Utente {
 		this.sesso = sesso;
 		this.telefono = telefono;
 		this.citta = citta;
-		this.srcImmagineProfilo = src;
 		this.nascita = nascita;
 		this.punti = punti;
-                this.immagine = getImmagineBlob(src); 
+                this.immagine = immagine; 
 	}
 
 	public int getPunti() {
@@ -117,20 +113,12 @@ public class Utente {
 		this.id = id;
 	}
 
-	public String getSrcImmagineProfilo() {
-		return srcImmagineProfilo;
-	}
-
 	public Date getNascita() {
 		return nascita;
 	}
 
 	public void setNascita(Date nascita) {
 		this.nascita = nascita;
-	}
-
-	public void setSrcImmagineProfilo(String srcImmagineProfilo) {
-		this.srcImmagineProfilo = srcImmagineProfilo;
 	}
 
 	public String getNome() {
@@ -231,20 +219,20 @@ public class Utente {
         
         
         public String getImmagine() throws UnsupportedEncodingException {
-            return new String(Base64.encodeBase64(immagine), "UTF-8");
+            return immagine;
         }
 
-        public void setImmagine(byte[] immagine) {
+        public void setImmagine(String immagine) {
             this.immagine = immagine;
         }
         
-        public byte[] getImmagineBlob(String filePathStr) throws IOException {
+        /*public String getImmagineBlob(String filePathStr) throws IOException {
             // get path object pointing to fil
             Path filePath = Paths.get(filePathStr);
             // get byte array with file contents
             byte[] fileContent = Files.readAllBytes(filePath);
-            return fileContent;        
-        }
+            return new String(Base64.encodeBase64(fileContent), "UTF-8");        
+        }*/
 
 	@Override
 	public String toString() {
@@ -258,7 +246,6 @@ public class Utente {
 				", sesso='" + sesso + '\'' +
 				", telefono='" + telefono + '\'' +
 				", nascita=" + nascita +
-				", srcImmagineProfilo='" + srcImmagineProfilo + '\'' +
 				", punti=" + punti +
 				", citta=" + citta +
 				", preferiti=" + preferiti +

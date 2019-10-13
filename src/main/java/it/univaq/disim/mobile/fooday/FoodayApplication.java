@@ -12,7 +12,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 @Configuration
 @EnableAutoConfiguration
@@ -329,7 +334,7 @@ public class FoodayApplication {
             Utente ut1 = new Utente("Stefano", "Florio", "steflo",
                     passwordEncoder.encode("stefano"), "stefano@email.com",
                     "M", "3333333336", new Date(System.currentTimeMillis()),
-                    path + "/src/main/resources/images/profilo.jpg", citta1, 435);
+                    getImmagineBlob(path + "/src/main/resources/images/profilo.jpg"), citta1, 435);
             ut1.getPreferiti().add(ristorante2);
             ut1.getPreferiti().add(ristorante3);
             utenteRepository.save(ut1);
@@ -337,7 +342,7 @@ public class FoodayApplication {
             Utente ut2 = new Utente("Giuseppe", "Gasbarro", "ggas23",
                     passwordEncoder.encode("giuseppe"), "giuseppe@email.com",
                     "M", "3333333337", new Date(System.currentTimeMillis()),
-                    path + "/src/main/resources/images/profilo.jpg", citta2, 617);
+                    getImmagineBlob(path + "/src/main/resources/images/profilo.jpg"), citta2, 617);
             ut2.getPreferiti().add(ristorante1);
             ut2.getPreferiti().add(ristorante4);
             utenteRepository.save(ut2);
@@ -345,7 +350,7 @@ public class FoodayApplication {
             Utente ut3 = new Utente("Enrico", "Monte", "enrimon",
                     passwordEncoder.encode("enrico"), "enrico@email.com",
                     "M", "3333333338", new Date(System.currentTimeMillis()),
-                    path + "/src/main/resources/images/profilo.jpg", citta1, 9);
+                    getImmagineBlob(path + "/src/main/resources/images/profilo.jpg"), citta1, 9);
             ut3.getPreferiti().add(ristorante1);
             ut3.getPreferiti().add(ristorante2);
             ut3.getPreferiti().add(ristorante3);
@@ -409,4 +414,12 @@ public class FoodayApplication {
             ricercaRepository.save(ric4);
         };
     }
+    
+            public String getImmagineBlob(String filePathStr) throws IOException {
+            // get path object pointing to fil
+            Path filePath = Paths.get(filePathStr);
+            // get byte array with file contents
+            byte[] fileContent = Files.readAllBytes(filePath);
+            return new String(Base64.encodeBase64(fileContent), "UTF-8");        
+        }
 }
