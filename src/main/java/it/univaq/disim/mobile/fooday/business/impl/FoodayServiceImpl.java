@@ -1,8 +1,6 @@
 package it.univaq.disim.mobile.fooday.business.impl;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ProtocolException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -219,6 +217,9 @@ public class FoodayServiceImpl implements FoodayService {
 	public void deleteRistoranteByPreferiti(long idRistorante, long idUtente) {
 		utenteRepository.getOne(idUtente).getPreferiti().remove(ristoranteRepository.getOne(idRistorante));
 	}
+
+	String path = new File("")
+			.getAbsolutePath();
 
 	@Override
 	public Utente registerUtente(Utente nuovoUtente) {
