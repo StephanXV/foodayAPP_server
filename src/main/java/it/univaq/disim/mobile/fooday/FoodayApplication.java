@@ -147,6 +147,8 @@ public class FoodayApplication {
             ristorante5.setPostiTot(67);
             ristorante5.setPunteggio(8.4);
             ristorante5.setPrezzoMedio(15);
+            ristorante5.setLatitudine(41.8919);
+            ristorante5.setLongitudine(12.5113);
             ristorante5.setSconto(0);
             ristorante5.setCitta(citta4);
             ristorante5.getCategorie().add(c);
@@ -377,6 +379,8 @@ public class FoodayApplication {
                 ristorante.setSconto(new Random().nextInt(31));
                 ristorante.setPunteggio(new Random().nextInt(6) + 5);
                 ristorante.setCitta(citta1);
+                ristorante.setLatitudine(42.1253);
+                ristorante.setLongitudine(14.7068);
                 ristorante.setPostiTot(new Random().nextInt(100) + 50);
                 ristorante.getCategorie().add(b);
                 ristorante.getCategorie().add(d);
@@ -471,6 +475,8 @@ public class FoodayApplication {
                 ristorante.setSconto(new Random().nextInt(31));
                 ristorante.setPunteggio(new Random().nextInt(6) + 5);
                 ristorante.setCitta(citta2);
+                ristorante.setLatitudine(42.366);
+                ristorante.setLongitudine(13.3944);
                 ristorante.setPostiTot(new Random().nextInt(100) + 50);
                 ristorante.getCategorie().add(c);
                 ristorante.getCategorie().add(d);
@@ -568,6 +574,8 @@ public class FoodayApplication {
                 ristorante.setSconto(new Random().nextInt(31));
                 ristorante.setPunteggio(new Random().nextInt(6) + 5);
                 ristorante.setCitta(citta3);
+                ristorante.setLatitudine(42.1253);
+                ristorante.setLongitudine(14.7068);
                 ristorante.setPostiTot(new Random().nextInt(100) + 50);
                 ristorante.getCategorie().add(a);
                 ristoranteRepository.save(ristorante);
@@ -661,6 +669,8 @@ public class FoodayApplication {
                 ristorante.setSconto(new Random().nextInt(31));
                 ristorante.setPunteggio(new Random().nextInt(6) + 5);
                 ristorante.setCitta(citta4);
+                ristorante.setLatitudine(42.4331);
+                ristorante.setLongitudine(13.3126);
                 ristorante.setPostiTot(new Random().nextInt(100) + 50);
                 ristorante.getCategorie().add(e);
                 ristorante.getCategorie().add(f);
@@ -755,6 +765,8 @@ public class FoodayApplication {
                 ristorante.setSconto(new Random().nextInt(31));
                 ristorante.setPunteggio(new Random().nextInt(6) + 5);
                 ristorante.setCitta(citta5);
+                ristorante.setLatitudine(42.4331);
+                ristorante.setLongitudine(13.3126);
                 ristorante.setPostiTot(new Random().nextInt(100) + 50);
                 ristorante.getCategorie().add(f);
                 ristoranteRepository.save(ristorante);
