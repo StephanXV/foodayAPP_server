@@ -60,4 +60,6 @@ public interface FoodayService {
 
 	Ricerca deleteRicerca(long idRicerca);
 
+	List<Recensione> findRecensioniByRistoranteId(long idRistorante);
+
 }

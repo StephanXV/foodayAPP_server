@@ -86,7 +86,6 @@ public class FoodayApplication {
             ristorante1.setIndirizzo("Corso Mazzini, 44");
             ristorante1.setDescrizione("Le vuoi le rostelle?");
             ristorante1.setPostiTot(40);
-            ristorante1.setPunteggio(8.1);
             ristorante1.setPrezzoMedio(26);
             ristorante1.setSconto(10);
             ristorante1.setLatitudine(42.1253);
@@ -101,7 +100,6 @@ public class FoodayApplication {
             ristorante2.setIndirizzo("Via Giulio Cesare, 15");
             ristorante2.setDescrizione("Un tipico fast-food");
             ristorante2.setPostiTot(120);
-            ristorante2.setPunteggio(7.6);
             ristorante2.setPrezzoMedio(7.5);
             ristorante2.setSconto(15);
             ristorante2.setLatitudine(42.366);
@@ -115,7 +113,6 @@ public class FoodayApplication {
             ristorante3.setIndirizzo("Corso Umberto I, 175");
             ristorante3.setDescrizione("Pesce fresco e di qualità");
             ristorante3.setPostiTot(70);
-            ristorante3.setPunteggio(6.9);
             ristorante3.setPrezzoMedio(24);
             ristorante3.setSconto(15);
             ristorante3.setLatitudine(42.4331);
@@ -130,7 +127,6 @@ public class FoodayApplication {
             ristorante4.setIndirizzo("Via Tramontana, 312");
             ristorante4.setDescrizione("Vieni a provare la nostra cucina romana");
             ristorante4.setPostiTot(67);
-            ristorante4.setPunteggio(9.1);
             ristorante4.setPrezzoMedio(31);
             ristorante4.setSconto(8);
             ristorante4.setLatitudine(41.8919);
@@ -145,7 +141,6 @@ public class FoodayApplication {
             ristorante5.setIndirizzo("Via colli, 3");
             ristorante5.setDescrizione("La pinsa romana più buona del mondo");
             ristorante5.setPostiTot(67);
-            ristorante5.setPunteggio(8.4);
             ristorante5.setPrezzoMedio(15);
             ristorante5.setLatitudine(41.8919);
             ristorante5.setLongitudine(12.5113);
@@ -239,6 +234,27 @@ public class FoodayApplication {
             pietanzaRepository.save(pietanza39);
             pietanzaRepository.save(pietanza40);
 
+            Pietanza pietanza61 = new Pietanza("Spaghetti al pomodoro", 7.5, TipologiaPietanza.primo, ristorante5);
+            Pietanza pietanza62 = new Pietanza("Gnocchetti al ragù", 8, TipologiaPietanza.primo, ristorante5);
+            Pietanza pietanza63 = new Pietanza("Salumi misti", 10, TipologiaPietanza.antipasto, ristorante5);
+            Pietanza pietanza64 = new Pietanza("Formaggi misti", 9, TipologiaPietanza.antipasto, ristorante5);
+            Pietanza pietanza65 = new Pietanza("Tagliata di maiale", 12, TipologiaPietanza.secondo, ristorante5);
+            Pietanza pietanza66 = new Pietanza("Tagliata di manzo", 14, TipologiaPietanza.secondo, ristorante5);
+            Pietanza pietanza67 = new Pietanza("Macedonia", 4.5, TipologiaPietanza.dessert, ristorante5);
+            Pietanza pietanza68 = new Pietanza("Cheesecake", 4, TipologiaPietanza.dessert, ristorante5);
+            Pietanza pietanza69 = new Pietanza("Coca-Cola", 2.5, TipologiaPietanza.bevanda, ristorante5);
+            Pietanza pietanza70 = new Pietanza("Acqua", 1.5, TipologiaPietanza.bevanda, ristorante5);
+            pietanzaRepository.save(pietanza61);
+            pietanzaRepository.save(pietanza62);
+            pietanzaRepository.save(pietanza63);
+            pietanzaRepository.save(pietanza64);
+            pietanzaRepository.save(pietanza65);
+            pietanzaRepository.save(pietanza66);
+            pietanzaRepository.save(pietanza67);
+            pietanzaRepository.save(pietanza68);
+            pietanzaRepository.save(pietanza69);
+            pietanzaRepository.save(pietanza70);
+
             Orario orario37 = new Orario("Chiuso", "", ristorante1, Giorno.lunedi);
             Orario orario1 = new Orario("11:30", "15:00", ristorante1, Giorno.martedi);
             Orario orario2 = new Orario("18:30", "23:00", ristorante1, Giorno.martedi);
@@ -266,6 +282,20 @@ public class FoodayApplication {
             Orario orario22 = new Orario("18:30", "23:00", ristorante2, Giorno.sabato);
             Orario orario23 = new Orario("11:30", "15:00", ristorante2, Giorno.domenica);
             Orario orario24 = new Orario("18:30", "23:00", ristorante2, Giorno.domenica);
+
+            Orario orario80 = new Orario("Chiuso", "", ristorante5, Giorno.lunedi);
+            Orario orario81 = new Orario("11:30", "15:00", ristorante5, Giorno.martedi);
+            Orario orario82= new Orario("18:30", "23:00", ristorante5, Giorno.martedi);
+            Orario orario83 = new Orario("11:30", "15:00", ristorante5, Giorno.mercoledi);
+            Orario orario84= new Orario("18:30", "23:00", ristorante5, Giorno.mercoledi);
+            Orario orario85 = new Orario("11:30", "15:00", ristorante5, Giorno.giovedi);
+            Orario orario86 = new Orario("18:30", "23:00", ristorante5, Giorno.giovedi);
+            Orario orario87 = new Orario("11:30", "15:00", ristorante5, Giorno.venerdi);
+            Orario orario88 = new Orario("18:30", "23:00", ristorante5, Giorno.venerdi);
+            Orario orario89 = new Orario("11:30", "15:00", ristorante5, Giorno.sabato);
+            Orario orario90 = new Orario("18:30", "23:00", ristorante5, Giorno.sabato);
+            Orario orario91 = new Orario("11:30", "15:00", ristorante5, Giorno.domenica);
+            Orario orario92 = new Orario("18:30", "23:00", ristorante5, Giorno.domenica);
 
             Orario orario38 = new Orario("Chiuso", "", ristorante3, Giorno.lunedi);
             Orario orario25 = new Orario("11:30", "15:00", ristorante3, Giorno.martedi);

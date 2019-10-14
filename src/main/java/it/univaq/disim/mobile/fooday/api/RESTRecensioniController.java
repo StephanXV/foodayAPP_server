@@ -16,6 +16,11 @@ public class RESTRecensioniController {
     @Autowired
     private FoodayService foodayService;
 
+    @GetMapping("/{idRistorante}")
+    public List<Recensione> list(@PathVariable long idRistorante) {
+        return foodayService.findRecensioniByRistoranteId(idRistorante);
+    }
+
     @PostMapping
     public Recensione createRecensione(@RequestBody Recensione recensione){
         System.out.println(recensione.toString());

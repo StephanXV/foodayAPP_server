@@ -92,6 +92,11 @@ public class FoodayServiceImpl implements FoodayService {
 	}
 
 	@Override
+	public List<Recensione> findRecensioniByRistoranteId(long idRistorante) throws BusinessException {
+		return recensioneRepository.findRecensioniByRistoranteId(idRistorante);
+	}
+
+	@Override
 	public Prenotazione createPrenotazione(Prenotazione prenotazione) throws BusinessException {
 		Prenotazione newPrenotazione = new Prenotazione();
 		PrenotazioneId prenotazioneId = new PrenotazioneId(prenotazione.getRistorante(), prenotazione.getUtente(),
