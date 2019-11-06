@@ -566,7 +566,7 @@ public class FoodayApplication {
                 prenotazioneRepository.save(pr10);
 
                 Prenotazione pr11 = new Prenotazione(new PrenotazioneId(ristorante, ut2,
-                        System.currentTimeMillis()), System.currentTimeMillis() + 61818181,
+                        System.currentTimeMillis()), System.currentTimeMillis() - 61818181,
                         "21:30", 7, ristorante.getSconto(), "Stefano", false);
                 prenotazioneRepository.save(pr11);
 
@@ -656,7 +656,7 @@ public class FoodayApplication {
                 pietanzaRepository.save(pietanza49);
                 pietanzaRepository.save(pietanza50);
                 Prenotazione pr10 = new Prenotazione(new PrenotazioneId(ristorante, ut1,
-                        System.currentTimeMillis()), System.currentTimeMillis() + 81818181,
+                        System.currentTimeMillis()), System.currentTimeMillis() - 81818181,
                         "20:00", 2, ristorante.getSconto(), "Stefano", false);
                 prenotazioneRepository.save(pr10);
 
@@ -666,7 +666,7 @@ public class FoodayApplication {
                 prenotazioneRepository.save(pr11);
 
                 Prenotazione pr12 = new Prenotazione(new PrenotazioneId(ristorante, ut3,
-                        System.currentTimeMillis()), System.currentTimeMillis() + 61818181,
+                        System.currentTimeMillis()), System.currentTimeMillis() - 61818181,
                         "21:30", 9, ristorante.getSconto(), "Florio", true, true);
                 prenotazioneRepository.save(pr12);
 
@@ -757,7 +757,7 @@ public class FoodayApplication {
                 prenotazioneRepository.save(pr10);
 
                 Prenotazione pr11 = new Prenotazione(new PrenotazioneId(ristorante, ut2,
-                        System.currentTimeMillis()), System.currentTimeMillis() + 61818181,
+                        System.currentTimeMillis()), System.currentTimeMillis() - 61818181,
                         "21:30", 7, ristorante.getSconto(), "Stefano", false, true);
                 prenotazioneRepository.save(pr11);
 
@@ -847,7 +847,7 @@ public class FoodayApplication {
                 pietanzaRepository.save(pietanza49);
                 pietanzaRepository.save(pietanza50);
                 Prenotazione pr10 = new Prenotazione(new PrenotazioneId(ristorante, ut1,
-                        System.currentTimeMillis()), System.currentTimeMillis() + 81818181,
+                        System.currentTimeMillis()), System.currentTimeMillis() - 81818181,
                         "20:00", 2, ristorante.getSconto(), "Stefano", false, true);
                 prenotazioneRepository.save(pr10);
 
