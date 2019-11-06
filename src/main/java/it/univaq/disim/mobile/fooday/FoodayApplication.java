@@ -142,8 +142,8 @@ public class FoodayApplication {
             ristorante5.setDescrizione("La pinsa romana più buona del mondo");
             ristorante5.setPostiTot(67);
             ristorante5.setPrezzoMedio(15);
-            ristorante5.setLatitudine(41.8919);
-            ristorante5.setLongitudine(12.5113);
+            ristorante5.setLatitudine(41.95919);
+            ristorante5.setLongitudine(12.8113);
             ristorante5.setSconto(0);
             ristorante5.setCitta(citta4);
             ristorante5.getCategorie().add(c);
@@ -404,7 +404,7 @@ public class FoodayApplication {
             utenteRepository.save(ut3);
 
 
-            for(int i = 0; i < 5; i++) {
+            for(int i = 0; i < 3; i++) {
                 Ristorante ristorante = new Ristorante();
                 ristorante.setNome("Ristorante " + i);
                 ristorante.setIndirizzo("Via del ristorante " + i);
@@ -413,8 +413,8 @@ public class FoodayApplication {
                 ristorante.setSconto(new Random().nextInt(31));
                 ristorante.setPunteggio(new Random().nextInt(6) + 5);
                 ristorante.setCitta(citta1);
-                ristorante.setLatitudine(42.1253);
-                ristorante.setLongitudine(14.7068);
+                ristorante.setLatitudine(42.0 + new Random().nextDouble());
+                ristorante.setLongitudine(13.0 + new Random().nextDouble());
                 ristorante.setPostiTot(new Random().nextInt(100) + 50);
                 ristorante.getCategorie().add(b);
                 ristorante.getCategorie().add(d);
@@ -469,10 +469,6 @@ public class FoodayApplication {
                 pietanzaRepository.save(pietanza48);
                 pietanzaRepository.save(pietanza49);
                 pietanzaRepository.save(pietanza50);
-                Prenotazione pr10 = new Prenotazione(new PrenotazioneId(ristorante, ut1,
-                        System.currentTimeMillis()), System.currentTimeMillis() + 81818181,
-                        "20:00", 2, ristorante.getSconto(), "Stefano", false);
-                prenotazioneRepository.save(pr10);
 
                 Prenotazione pr11 = new Prenotazione(new PrenotazioneId(ristorante, ut2,
                         System.currentTimeMillis()), System.currentTimeMillis() + 61818181,
@@ -484,9 +480,6 @@ public class FoodayApplication {
                         "21:30", 9, ristorante.getSconto(), "Florio", true);
                 prenotazioneRepository.save(pr12);
 
-                Recensione rec10 = new Recensione(new RecensioneId(ristorante, ut1, System.currentTimeMillis()),
-                        new Random().nextInt(6) + 5, new Random().nextInt(6) + 5, new Random().nextInt(6) + 5,
-                        "Ottime le cotture delle carni, tuttavia il conto è salato");
 
                 Recensione rec11 = new Recensione(new RecensioneId(ristorante, ut2, System.currentTimeMillis()),
                         new Random().nextInt(6) + 5, new Random().nextInt(6) + 5, new Random().nextInt(6) + 5,
@@ -495,12 +488,11 @@ public class FoodayApplication {
                 Recensione rec12 = new Recensione(new RecensioneId(ristorante, ut3, System.currentTimeMillis()),
                         new Random().nextInt(6) + 5, new Random().nextInt(6) + 5, new Random().nextInt(6) + 5,
                         "Abbiamo aspettato 2 ore per ricevere da mangiare");
-                recensioneRepository.save(rec10);
                 recensioneRepository.save(rec11);
                 recensioneRepository.save(rec12);
             }
 
-            for(int i = 5; i < 10; i++) {
+            for(int i = 3; i < 6; i++) {
                 Ristorante ristorante = new Ristorante();
                 ristorante.setNome("Ristorante " + i);
                 ristorante.setIndirizzo("Via del ristorante " + i);
@@ -509,8 +501,8 @@ public class FoodayApplication {
                 ristorante.setSconto(new Random().nextInt(31));
                 ristorante.setPunteggio(new Random().nextInt(6) + 5);
                 ristorante.setCitta(citta2);
-                ristorante.setLatitudine(42.366);
-                ristorante.setLongitudine(13.3944);
+                ristorante.setLatitudine(42.0 + new Random().nextDouble());
+                ristorante.setLongitudine(13.0 + new Random().nextDouble());
                 ristorante.setPostiTot(new Random().nextInt(100) + 50);
                 ristorante.getCategorie().add(c);
                 ristorante.getCategorie().add(d);
@@ -599,7 +591,7 @@ public class FoodayApplication {
                 recensioneRepository.save(rec12);
             }
 
-            for(int i = 10; i < 15; i++) {
+            for(int i = 6; i < 9; i++) {
                 Ristorante ristorante = new Ristorante();
                 ristorante.setNome("Ristorante " + i);
                 ristorante.setIndirizzo("Via del ristorante " + i);
@@ -608,8 +600,8 @@ public class FoodayApplication {
                 ristorante.setSconto(new Random().nextInt(31));
                 ristorante.setPunteggio(new Random().nextInt(6) + 5);
                 ristorante.setCitta(citta3);
-                ristorante.setLatitudine(42.1253);
-                ristorante.setLongitudine(14.7068);
+                ristorante.setLatitudine(42.0 + new Random().nextDouble());
+                ristorante.setLongitudine(13.0 + new Random().nextDouble());
                 ristorante.setPostiTot(new Random().nextInt(100) + 50);
                 ristorante.getCategorie().add(a);
                 ristoranteRepository.save(ristorante);
@@ -669,13 +661,13 @@ public class FoodayApplication {
                 prenotazioneRepository.save(pr10);
 
                 Prenotazione pr11 = new Prenotazione(new PrenotazioneId(ristorante, ut2,
-                        System.currentTimeMillis()), System.currentTimeMillis() + 61818181,
+                        System.currentTimeMillis()), System.currentTimeMillis() - 61818181,
                         "21:30", 7, ristorante.getSconto(), "Stefano", false);
                 prenotazioneRepository.save(pr11);
 
                 Prenotazione pr12 = new Prenotazione(new PrenotazioneId(ristorante, ut3,
-                        System.currentTimeMillis()), System.currentTimeMillis() - 61818181,
-                        "21:30", 9, ristorante.getSconto(), "Florio", true);
+                        System.currentTimeMillis()), System.currentTimeMillis() + 61818181,
+                        "21:30", 9, ristorante.getSconto(), "Florio", true, true);
                 prenotazioneRepository.save(pr12);
 
                 Recensione rec10 = new Recensione(new RecensioneId(ristorante, ut1, System.currentTimeMillis()),
@@ -694,7 +686,7 @@ public class FoodayApplication {
                 recensioneRepository.save(rec12);
             }
 
-            for(int i = 15; i < 20; i++) {
+            for(int i = 9; i < 12; i++) {
                 Ristorante ristorante = new Ristorante();
                 ristorante.setNome("Ristorante " + i);
                 ristorante.setIndirizzo("Via del ristorante " + i);
@@ -703,8 +695,8 @@ public class FoodayApplication {
                 ristorante.setSconto(new Random().nextInt(31));
                 ristorante.setPunteggio(new Random().nextInt(6) + 5);
                 ristorante.setCitta(citta4);
-                ristorante.setLatitudine(42.4331);
-                ristorante.setLongitudine(13.3126);
+                ristorante.setLatitudine(42.0 + new Random().nextDouble());
+                ristorante.setLongitudine(13.0 + new Random().nextDouble());
                 ristorante.setPostiTot(new Random().nextInt(100) + 50);
                 ristorante.getCategorie().add(e);
                 ristorante.getCategorie().add(f);
@@ -766,7 +758,7 @@ public class FoodayApplication {
 
                 Prenotazione pr11 = new Prenotazione(new PrenotazioneId(ristorante, ut2,
                         System.currentTimeMillis()), System.currentTimeMillis() + 61818181,
-                        "21:30", 7, ristorante.getSconto(), "Stefano", false);
+                        "21:30", 7, ristorante.getSconto(), "Stefano", false, true);
                 prenotazioneRepository.save(pr11);
 
                 Prenotazione pr12 = new Prenotazione(new PrenotazioneId(ristorante, ut3,
@@ -790,7 +782,7 @@ public class FoodayApplication {
                 recensioneRepository.save(rec12);
             }
 
-            for(int i = 20; i < 25; i++) {
+            for(int i = 12; i < 15; i++) {
                 Ristorante ristorante = new Ristorante();
                 ristorante.setNome("Ristorante " + i);
                 ristorante.setIndirizzo("Via del ristorante " + i);
@@ -799,8 +791,8 @@ public class FoodayApplication {
                 ristorante.setSconto(new Random().nextInt(31));
                 ristorante.setPunteggio(new Random().nextInt(6) + 5);
                 ristorante.setCitta(citta5);
-                ristorante.setLatitudine(42.4331);
-                ristorante.setLongitudine(13.3126);
+                ristorante.setLatitudine(42.0 + new Random().nextDouble());
+                ristorante.setLongitudine(13.0 + new Random().nextDouble());
                 ristorante.setPostiTot(new Random().nextInt(100) + 50);
                 ristorante.getCategorie().add(f);
                 ristoranteRepository.save(ristorante);
@@ -856,7 +848,7 @@ public class FoodayApplication {
                 pietanzaRepository.save(pietanza50);
                 Prenotazione pr10 = new Prenotazione(new PrenotazioneId(ristorante, ut1,
                         System.currentTimeMillis()), System.currentTimeMillis() + 81818181,
-                        "20:00", 2, ristorante.getSconto(), "Stefano", false);
+                        "20:00", 2, ristorante.getSconto(), "Stefano", false, true);
                 prenotazioneRepository.save(pr10);
 
                 Prenotazione pr11 = new Prenotazione(new PrenotazioneId(ristorante, ut2,
@@ -889,7 +881,7 @@ public class FoodayApplication {
 
             Prenotazione pr1 = new Prenotazione(new PrenotazioneId(ristorante1, ut1,
                     System.currentTimeMillis()), System.currentTimeMillis() + 81818181,
-                    "20:00", 2, ristorante1.getSconto(), "Stefano", false);
+                    "20:00", 2, ristorante1.getSconto(), "Stefano", false, true);
             prenotazioneRepository.save(pr1);
 
             Prenotazione pr2 = new Prenotazione(new PrenotazioneId(ristorante2, ut1,

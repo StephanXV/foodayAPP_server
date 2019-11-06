@@ -63,6 +63,18 @@ public class Prenotazione {
         this.valutata = false;
     }
 
+    public Prenotazione(PrenotazioneId id, long giorno, String orario, int posti, int scontoApplicato,
+                        String nomePrenotazione, Boolean usaPunti, Boolean isValutata) {
+        this.prenotazioneId = id;
+        this.giorno = giorno;
+        this.orario = orario;
+        this.posti = posti;
+        this.scontoApplicato = scontoApplicato;
+        this.nome = nomePrenotazione;
+        this.usaPunti = usaPunti;
+        this.valutata = isValutata;
+    }
+
     public PrenotazioneId getPrenotazioneId() {
         return prenotazioneId;
     }
